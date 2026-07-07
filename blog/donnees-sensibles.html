@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fichiers clients, devis, contrats : comment protéger les données sensibles de votre TPE/PME sans être un expert.">
+  <title>Données sensibles : les protéger sans être expert — NovaSec</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0e17'/%3E%3Cpath d='M16 6L6 11v6c0 5.2 4.3 9.6 10 11 5.7-1.4 10-5.8 10-11v-6l-10-5zm0 2.2l7.5 3.8v4.5c0 4-3.3 7.4-7.5 8.5-4.2-1.1-7.5-4.5-7.5-8.5v-4.5L16 8.2z' fill='%2300e5ff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .article { max-width: 720px; margin: 0 auto; padding: 120px 24px 60px; }
+    .article h1 { font-size: clamp(1.6rem,4vw,2.2rem); font-weight: 800; margin-bottom: 8px; line-height: 1.3; }
+    .article .meta { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 32px; }
+    .article h2 { font-size: 1.25rem; font-weight: 700; margin-top: 36px; margin-bottom: 10px; color: var(--accent); }
+    .article p, .article li { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; margin-bottom: 16px; }
+    .article ul, .article ol { padding-left: 24px; margin-bottom: 16px; }
+    .article li { margin-bottom: 8px; }
+    .highlight-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius-sm); padding: 16px 20px; margin-bottom: 24px; }
+    .highlight-box p { margin-bottom: 0; font-size: 0.9rem; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; margin-bottom: 24px; transition: color var(--transition); }
+    .back-link:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">Nova<span>Sec</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html#services" class="nav-link">Services</a></li>
+        <li><a href="../index.html#formations" class="nav-link">Formations</a></li>
+        <li><a href="../index.html#portfolio" class="nav-link">Portfolio</a></li>
+        <li><a href="../clients.html" class="nav-link">Cas clients</a></li>
+        <li><a href="../blog.html" class="nav-link">Blog</a></li>
+        <li><a href="../checklist.html" class="nav-link">Checklist</a></li>
+        <li><a href="../index.html#contact" class="nav-link nav-cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="article">
+    <a href="../blog.html" class="back-link">&larr; Retour au blog</a>
+    <h1>Données sensibles : 3 réflexes simples pour les protéger sans être expert</h1>
+    <p class="meta">7 juillet 2026 — 4 min de lecture</p>
+
+    <p>Vous avez des fichiers clients, des devis, des contrats, des bulletins de paie sur votre PC. Si on vous vole votre ordinateur ou que votre cloud se fait pirater, ces données peuvent fuiter. Et ça peut coûter cher.</p>
+
+    <p>Voici 3 réflexes ultra-simples à adopter dès cette semaine — sans compétence technique.</p>
+
+    <h2>1. Chiffrez vos fichiers importants</h2>
+    <p>Le chiffrement, c'est comme un coffre-fort : même si quelqu'un vole vos fichiers, il ne peut pas les lire sans la clé. Pas besoin d'être un hacker pour ça :</p>
+    <ul>
+      <li><strong>Sur Windows</strong> → Activez BitLocker (Paramètres → Chiffrement de l'appareil). Si votre PC est compatible, c'est un clic.</li>
+      <li><strong>Sur Mac</strong> → Activez FileVault (Préférences Système → Sécurité et confidentialité)</li>
+      <li><strong>Pour un dossier spécifique</strong> → Utilisez 7-Zip ou VeraCrypt, gratuit et simple</li>
+    </ul>
+
+    <div class="highlight-box">
+      <p><strong>Pourquoi c'est important ?</strong> Si on vole votre PC, le voleur peut retirer le disque dur et lire tous vos fichiers. Avec BitLocker ou FileVault, c'est impossible sans votre mot de passe.</p>
+    </div>
+
+    <h2>2. Activez la sauvegarde automatique chiffrée</h2>
+    <p>Un ransomware chiffre vos fichiers et vous demande une rançon. Si vous avez une sauvegarde, vous restaurez et vous n'avez rien à payer. Sauce :</p>
+    <ul>
+      <li><strong>Règle 3-2-1</strong> : 3 copies, 2 supports différents, 1 hors site</li>
+      <li><strong>Solution gratuite</strong> : Sauvegarde Windows (Paramètres → Mise à jour et sécurité → Sauvegarde) vers un disque externe</li>
+      <li><strong>Solution cloud</strong> : Backblaze (6€/mois, illimité, chiffré) ou Google Drive (15 Go gratuits)</li>
+    </ul>
+
+    <h2>3. Verrouillez vos accès</h2>
+    <p>La plupart des fuites de données ne viennent pas de hackers mais d'un accès trop permissif :</p>
+    <ul>
+      <li><strong>Écran de verrouillage</strong> → Activez-le avec un mot de passe (pas un code PIN à 4 chiffres)</li>
+      <li><strong>Compte invité</strong> → Désactivez-le si vous ne l'utilisez pas</li>
+      <li><strong>Partage réseau</strong> → Désactivez le partage de fichiers si vous n'en avez pas besoin</li>
+      <li><strong>Session automatique</strong> → Désactivez la connexion automatique au démarrage</li>
+    </ul>
+
+    <div class="highlight-box">
+      <p><strong>💡 Conseil NovaSec :</strong> Si vous utilisez Google Drive ou Dropbox pour vos fichiers pros, activez la double authentification (2FA) sur votre compte. Voir <a href="double-authentification.html" style="color:var(--accent);">notre article sur la 2FA</a>.</p>
+    </div>
+
+    <h2>Et ça suffit ?</h2>
+    <p>Ces 3 réflexes ne vous rendent pas invincibles, mais ils vous protègent contre 95 % des scénarios les plus courants : vol de PC, ransomware, accès non autorisé. La cybersécurité, c'est comme l'hygiène : quelques gestes simples et réguliers valent mieux qu'une solution complexe que vous n'appliquez jamais.</p>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="../index.html" class="nav-logo">Nova<span>Sec</span></a>
+          <p>Consultant Cybersécurité &amp; Développement Web<br>Protégez votre entreprise. Développez votre présence en ligne.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <a href="../index.html#services">Audit sécurité</a>
+          <a href="../index.html#services">Création de site</a>
+          <a href="../index.html#formations">Formations</a>
+        </div>
+        <div class="footer-links">
+          <h4>Contact</h4>
+          <a href="mailto:NovaSec81@gmail.com">NovaSec81@gmail.com</a>
+          <a href="../index.html#contact">Formulaire de contact</a>
+          <a href="https://www.tiktok.com/@n0vasec81" target="_blank" rel="noopener">TikTok @n0vasec81</a>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <a href="../blog.html">Blog</a>
+          <a href="../checklist.html">Checklist sécurité</a>
+          <a href="../clients.html">Cas clients</a>
+          <a href="../tarifs.html">Tarifs</a>
+        </div>
+        <div class="footer-links">
+          <h4>Légal</h4>
+          <a href="../mentions-legales.html">Mentions légales</a>
+          <a href="../cgv.html">CGV</a>
+          <a href="../confidentialite.html">Confidentialité</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 NovaSec. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>var Tawk_API=Tawk_API||{},Tawk_LoadStart=new Date();(function(){var s=document.createElement('script');s.src='https://embed.tawk.to/6a4d10fc751e041d46cbda00/1jsugkmu1';s.async=true;s.charset='UTF-8';document.body.appendChild(s);})();</script>
+</body>
+</html>

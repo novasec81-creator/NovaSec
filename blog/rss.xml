@@ -35,5 +35,12 @@
       <pubDate>Mon, 07 Jul 2026 08:00:00 +0200</pubDate>
       <guid>https://novasec.pages.dev/blog/mots-de-passe.html</guid>
     </item>
+    <item>
+      <title>Données sensibles : 3 réflexes pour les protéger sans être expert</title>
+      <link>https://novasec.pages.dev/blog/donnees-sensibles.html</link>
+      <description>Fichiers clients, devis, contrats — chiffrement, sauvegarde et verrouillage pour TPE/PME.</description>
+      <pubDate>Tue, 07 Jul 2026 14:00:00 +0200</pubDate>
+      <guid>https://novasec.pages.dev/blog/donnees-sensibles.html</guid>
+    </item>
   </channel>
 </rss>

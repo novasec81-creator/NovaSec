@@ -429,3 +429,11 @@ body {
 .card-enter { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
 .card-enter.visible { opacity: 1; transform: translateY(0); }
 
+.formation-actions { display: flex; gap: 8px; padding: 0 24px 20px; }
+.formation-actions .btn-card { flex: 1; text-align: center; margin: 0; padding: 10px; font-size: 0.8rem; }
+.btn-buy { display: inline-block; padding: 10px 16px; background: var(--accent); color: var(--bg-primary); border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 700; text-decoration: none; text-align: center; transition: var(--transition); }
+.btn-buy:hover { background: #33eaff; transform: translateY(-2px); }
+.service-actions, .pack-actions, .maintenance-actions { display: flex; gap: 8px; margin-top: auto; }
+.service-actions .btn-card, .pack-actions .btn-card, .maintenance-actions .btn-card { flex: 1; text-align: center; padding: 12px; }
+.service-actions .btn-buy, .pack-actions .btn-buy, .maintenance-actions .btn-buy { flex: 1; padding: 12px; }
+
