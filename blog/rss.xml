@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog NovaSec</title>
+    <link>https://novasec.pages.dev/blog.html</link>
+    <description>Conseils cybersécurité pour TPE/PME</description>
+    <language>fr</language>
+    <atom:link href="https://novasec.pages.dev/blog/rss.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Tue, 07 Jul 2026 12:00:00 +0200</lastBuildDate>
+    <item>
+      <title>Double authentification (2FA) : le bouclier anti-piratage</title>
+      <link>https://novasec.pages.dev/blog/double-authentification.html</link>
+      <description>Activez la 2FA en 5 minutes et bloquez 99,9% des attaques. Guide complet pour TPE/PME.</description>
+      <pubDate>Tue, 07 Jul 2026 12:00:00 +0200</pubDate>
+      <guid>https://novasec.pages.dev/blog/double-authentification.html</guid>
+    </item>
+    <item>
+      <title>5 signes que votre site a été piraté</title>
+      <link>https://novasec.pages.dev/blog/site-pirate.html</link>
+      <description>Lenteurs, fichiers inconnus, redirections suspectes… Détectez rapidement une compromission.</description>
+      <pubDate>Mon, 07 Jul 2026 10:00:00 +0200</pubDate>
+      <guid>https://novasec.pages.dev/blog/site-pirate.html</guid>
+    </item>
+    <item>
+      <title>Pourquoi les TPE sont les cibles préférées des hackers</title>
+      <link>https://novasec.pages.dev/blog/cibles-tpe.html</link>
+      <description>43% des cyberattaques visent les TPE/PME. Comprenez pourquoi et comment vous protéger.</description>
+      <pubDate>Mon, 07 Jul 2026 09:00:00 +0200</pubDate>
+      <guid>https://novasec.pages.dev/blog/cibles-tpe.html</guid>
+    </item>
+    <item>
+      <title>Les 3 règles d'or pour des mots de passe inviolables</title>
+      <link>https://novasec.pages.dev/blog/mots-de-passe.html</link>
+      <description>123456, password, azerty : adoptez 3 réflexes simples qui changent tout.</description>
+      <pubDate>Mon, 07 Jul 2026 08:00:00 +0200</pubDate>
+      <guid>https://novasec.pages.dev/blog/mots-de-passe.html</guid>
+    </item>
+  </channel>
+</rss>

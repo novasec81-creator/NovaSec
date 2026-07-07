@@ -33,8 +33,10 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html#services" class="nav-link">Services</a></li>
         <li><a href="index.html#formations" class="nav-link">Formations</a></li>
+        <li><a href="clients.html" class="nav-link">Cas clients</a></li>
         <li><a href="blog.html" class="nav-link">Blog</a></li>
         <li><a href="checklist.html" class="nav-link">Checklist</a></li>
+        <li><a href="en/index.html" class="nav-link" hreflang="en" style="color:var(--accent);">EN</a></li>
         <li><a href="index.html#contact" class="nav-link nav-cta">Contact</a></li>
       </ul>
     </div>
@@ -90,9 +92,16 @@
           <a href="index.html#formations">Formations</a>
         </div>
         <div class="footer-links">
+          <h4>Contact</h4>
+          <a href="mailto:NovaSec81@gmail.com">NovaSec81@gmail.com</a>
+          <a href="index.html#contact">Formulaire de contact</a>
+          <a href="https://www.tiktok.com/@n0vasec81" target="_blank" rel="noopener">TikTok @n0vasec81</a>
+        </div>
+        <div class="footer-links">
           <h4>Resources</h4>
           <a href="blog.html">Blog</a>
           <a href="checklist.html">Checklist sécurité</a>
+          <a href="clients.html">Cas clients</a>
           <a href="tarifs.html">Tarifs</a>
         </div>
         <div class="footer-links">
@@ -109,6 +118,8 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <!-- Tawk.to Live Chat -->
+  <script>var Tawk_API=Tawk_API||{},Tawk_LoadStart=new Date();(function(){var s=document.createElement('script');s.src='https://embed.tawk.to/6a4d10fc751e041d46cbda00/1jsugkmu1';s.async=true;s.charset='UTF-8';document.body.appendChild(s);})();</script>
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "0fa2411bc95f4e07aca612a34ce08cdb"}'></script>
 
   <script>
@@ -118,20 +129,31 @@
       btn.textContent = 'Envoi...';
       btn.disabled = true;
       var f = new FormData(this);
+      var nom = f.get('nom');
+      var email = f.get('email');
+      var htmlMsg = '<div style="font-family:Inter,sans-serif;max-width:500px;margin:0 auto;background:#0a0e17;padding:32px;border-radius:12px;color:#f1f5f9;">'
+        + '<h1 style="color:#00e5ff;font-size:22px;margin:0 0 8px;">Merci ' + nom + ' !</h1>'
+        + '<p style="color:#94a3b8;font-size:15px;line-height:1.6;">Voici votre checklist sécurité NovaSec en 10 points.</p>'
+        + '<div style="margin:24px 0;text-align:center;">'
+        + '<a href="https://novasec.pages.dev/checklist-securite.pdf" style="display:inline-block;background:#00e5ff;color:#0a0e17;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;">Télécharger la checklist (PDF)</a>'
+        + '</div>'
+        + '<p style="color:#64748b;font-size:13px;">Imprimez-la et cochez les 10 points. Si vous avez moins de 7 cases cochées, contactez-moi pour un audit.</p>'
+        + '<hr style="border:none;border-top:1px solid #1e293b;margin:20px 0;">'
+        + '<p style="color:#64748b;font-size:12px;">NovaSec — Consultant Cybersécurité & Développement Web<br>NovaSec81@gmail.com</p>'
+        + '</div>';
       fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           access_key: 'a439b93f-8002-4e89-a3f8-3fffe0cb3c79',
-          subject: 'NovaSec - Checklist sécurité demandée',
-          from_name: f.get('nom'),
-          email: f.get('email'),
-          message: 'Merci pour votre demande de checklist securite !\n\nTelechargez votre PDF ici :\nhttps://novasec.pages.dev/checklist-securite.pdf\n\nNovaSec'
+          subject: 'NovaSec - Votre checklist sécurité',
+          from_name: 'NovaSec',
+          email: email,
+          message: htmlMsg,
+          attachment: ['https://novasec.pages.dev/checklist-securite.pdf']
         })
       }).then(function(r) { return r.json(); }).then(function(d) {
-        if (d.success) {
-          window.location.href = 'merci.html?dl=checklist';
-        } else { throw new Error(d.message); }
+        window.location.href = 'merci.html?dl=checklist';
       }).catch(function() {
         window.location.href = 'merci.html?dl=checklist';
       });

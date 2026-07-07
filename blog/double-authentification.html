@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="La double authentification (2FA) bloque 99,9% des piratages. Guide simple pour activer 2FA sur vos comptes en 5 minutes.">
+  <title>Double authentification (2FA) : le bouclier qui bloque 99,9% des piratages — NovaSec</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0e17'/%3E%3Cpath d='M16 6L6 11v6c0 5.2 4.3 9.6 10 11 5.7-1.4 10-5.8 10-11v-6l-10-5zm0 2.2l7.5 3.8v4.5c0 4-3.3 7.4-7.5 8.5-4.2-1.1-7.5-4.5-7.5-8.5v-4.5L16 8.2z' fill='%2300e5ff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .article { max-width: 720px; margin: 0 auto; padding: 120px 24px 60px; }
+    .article h1 { font-size: clamp(1.6rem,4vw,2.2rem); font-weight: 800; margin-bottom: 8px; line-height: 1.3; }
+    .article .meta { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 32px; }
+    .article h2 { font-size: 1.25rem; font-weight: 700; margin-top: 36px; margin-bottom: 10px; color: var(--accent); }
+    .article p, .article li { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; margin-bottom: 16px; }
+    .article ul, .article ol { padding-left: 24px; margin-bottom: 16px; }
+    .article li { margin-bottom: 8px; }
+    .highlight-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius-sm); padding: 16px 20px; margin-bottom: 24px; }
+    .highlight-box p { margin-bottom: 0; font-size: 0.9rem; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; margin-bottom: 24px; transition: color var(--transition); }
+    .back-link:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">Nova<span>Sec</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html#services" class="nav-link">Services</a></li>
+        <li><a href="../index.html#formations" class="nav-link">Formations</a></li>
+        <li><a href="../index.html#portfolio" class="nav-link">Portfolio</a></li>
+        <li><a href="../clients.html" class="nav-link">Cas clients</a></li>
+        <li><a href="../blog.html" class="nav-link">Blog</a></li>
+        <li><a href="../checklist.html" class="nav-link">Checklist</a></li>
+        <li><a href="../index.html#contact" class="nav-link nav-cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="article">
+    <a href="../blog.html" class="back-link">&larr; Retour au blog</a>
+    <h1>Double authentification (2FA) : le bouclier qui bloque 99,9% des piratages</h1>
+    <p class="meta">7 juillet 2026 — 4 min de lecture</p>
+
+    <p>Vous utilisez le même mot de passe partout ? Pas de jugement. Mais sachez qu'il existe un filet de sécurité ultra-simple à activer qui bloque 99,9 % des attaques automatisées : <strong>la double authentification</strong> (2FA).</p>
+
+    <p>Voici ce que c'est, pourquoi ça marche, et comment l'activer en 5 minutes sur vos comptes les plus importants.</p>
+
+    <h2>Qu'est-ce que la 2FA ?</h2>
+    <p>C'est une deuxième vérification après votre mot de passe. Quelque chose que vous <em>seul</em> possédez :</p>
+    <ul>
+      <li><strong>SMS</strong> — un code reçu par texto (mieux que rien, mais pas le plus sûr)</li>
+      <li><strong>Appli d'authentification</strong> — Google Authenticator, Microsoft Authenticator, Authy (recommandé)</li>
+      <li><strong>Clé physique</strong> — une clé USB (YubiKey) — le plus sécurisé</li>
+    </ul>
+
+    <div class="highlight-box">
+      <p><strong>Pourquoi c'est efficace ?</strong> Même si un hacker trouve ou devine votre mot de passe, il ne peut pas se connecter sans le code 2FA — qui change toutes les 30 secondes.</p>
+    </div>
+
+    <h2>Les comptes à protéger en priorité</h2>
+    <ol>
+      <li><strong>Email</strong> — c'est la clé de tous vos autres comptes (mot de passe oublié = email)</li>
+      <li><strong>Banque</strong> — inutile d'expliquer pourquoi</li>
+      <li><strong>Réseaux sociaux</strong> — usurpation d'identité, pages professionnelles</li>
+      <li><strong>Hébergement web / nom de domaine</strong> — si on pirate votre hébergeur, votre site disparaît</li>
+      <li><strong>Cloud / sauvegardes</strong> — Google Drive, Dropbox, OneDrive, iCloud</li>
+    </ol>
+
+    <h2>Comment activer la 2FA ?</h2>
+    <p>Pour chaque service, le chemin est similaire :</p>
+    <ol>
+      <li>Allez dans <strong>Paramètres → Sécurité → Authentification à deux facteurs</strong></li>
+      <li>Choisissez votre méthode (application recommandée)</li>
+      <li>Scannez le QR code avec votre appli d'authentification</li>
+      <li>Sauvegardez les codes de secours (imprimez-les ou notez-les)</li>
+      <li>Testez la connexion pour vérifier que tout fonctionne</li>
+    </ol>
+
+    <div class="highlight-box">
+      <p><strong>💡 Conseil NovaSec :</strong> Utilisez <strong>Authy</strong> plutôt que Google Authenticator. Authy sauvegarde vos codes dans le cloud, donc vous ne les perdez pas si vous changez de téléphone.</p>
+    </div>
+
+    <h2>Et si je perds mon téléphone ?</h2>
+    <p>C'est la peur n°1 avec la 2FA. La solution : gardez vos <strong>codes de secours</strong> dans un endroit sûr. Pas dans vos emails — sur un papier dans votre portefeuille ou dans un gestionnaire de mots de passe (Bitwarden par exemple).</p>
+
+    <h2>La 2FA n'est pas parfaite, mais...</h2>
+    <p>Rien n'est infaillible à 100 %. Mais activer la 2FA, c'est comme mettre une serrure à votre porte : ça n'arrête pas un professionnel déterminé, mais ça dissuade 99,9 % des cambrioleurs. Et dans le monde numérique, les cambrioleurs sont des robots qui tentent des millions de connexions par seconde.</p>
+
+    <p><strong>En 5 minutes, vous passez de "protégé par un mot de passe" à "protégé par un mot de passe + un code unique".</strong> C'est le meilleur rapport effort/sécurité qui existe.</p>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="../index.html" class="nav-logo">Nova<span>Sec</span></a>
+          <p>Consultant Cybersécurité &amp; Développement Web<br>Protégez votre entreprise. Développez votre présence en ligne.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <a href="../index.html#services">Audit sécurité</a>
+          <a href="../index.html#services">Création de site</a>
+          <a href="../index.html#formations">Formations</a>
+        </div>
+        <div class="footer-links">
+          <h4>Contact</h4>
+          <a href="mailto:NovaSec81@gmail.com">NovaSec81@gmail.com</a>
+          <a href="../index.html#contact">Formulaire de contact</a>
+          <a href="https://www.tiktok.com/@n0vasec81" target="_blank" rel="noopener">TikTok @n0vasec81</a>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <a href="../blog.html">Blog</a>
+          <a href="../checklist.html">Checklist sécurité</a>
+          <a href="../clients.html">Cas clients</a>
+          <a href="../tarifs.html">Tarifs</a>
+        </div>
+        <div class="footer-links">
+          <h4>Légal</h4>
+          <a href="../mentions-legales.html">Mentions légales</a>
+          <a href="../cgv.html">CGV</a>
+          <a href="../confidentialite.html">Confidentialité</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 NovaSec. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "0fa2411bc95f4e07aca612a34ce08cdb"}'></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0a0e17"/>
+  <rect x="60" y="60" width="1080" height="510" rx="20" fill="none" stroke="#1e293b" stroke-width="2"/>
+  <text x="600" y="240" font-family="Inter, Arial, sans-serif" font-size="80" font-weight="800" fill="#00e5ff" text-anchor="middle">NovaSec</text>
+  <text x="600" y="320" font-family="Inter, Arial, sans-serif" font-size="32" fill="#94a3b8" text-anchor="middle">Cybersécurité &amp; Développement Web</text>
+  <text x="600" y="380" font-family="Inter, Arial, sans-serif" font-size="22" fill="#64748b" text-anchor="middle">Pour TPE/PME • Audit • Formation • Site sécurisé</text>
+  <path d="M600 140 L600 170" stroke="#00e5ff" stroke-width="3"/>
+</svg>

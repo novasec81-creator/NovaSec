@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Études de cas NovaSec — exemples concrets d'audits sécurité, création de sites et formations pour TPE/PME.">
+  <title>Cas clients — NovaSec</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0e17'/%3E%3Cpath d='M16 6L6 11v6c0 5.2 4.3 9.6 10 11 5.7-1.4 10-5.8 10-11v-6l-10-5zm0 2.2l7.5 3.8v4.5c0 4-3.3 7.4-7.5 8.5-4.2-1.1-7.5-4.5-7.5-8.5v-4.5L16 8.2z' fill='%2300e5ff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .clients-header { text-align:center; padding:120px 24px 40px; }
+    .clients-header h1 { font-size:clamp(2rem,5vw,3rem); font-weight:800; }
+    .clients-header h1 span { color:var(--accent); }
+    .clients-header p { color:var(--text-secondary); max-width:600px; margin:12px auto 0; }
+    .cases { max-width:900px; margin:0 auto; padding:0 24px 80px; display:flex; flex-direction:column; gap:32px; }
+    .case-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:32px; transition:all var(--transition); }
+    .case-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+    .case-tag { display:inline-block; padding:4px 10px; border-radius:100px; font-size:0.75rem; font-weight:600; text-transform:uppercase; background:var(--accent-dim); color:var(--accent); margin-bottom:12px; }
+    .case-card h2 { font-size:1.2rem; margin-bottom:4px; }
+    .case-sub { color:var(--text-secondary); font-size:0.85rem; margin-bottom:16px; }
+    .case-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0; }
+    @media (max-width:600px) { .case-grid { grid-template-columns:1fr; } }
+    .case-box { background:var(--bg-primary); border-radius:var(--radius-sm); padding:16px; }
+    .case-box h4 { font-size:0.85rem; color:var(--accent); margin-bottom:6px; }
+    .case-box ul { list-style:none; }
+    .case-box ul li { font-size:0.85rem; color:var(--text-secondary); padding:3px 0; }
+    .case-box ul li::before { content:"→ "; color:var(--accent-alt); }
+    .case-result { background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.2); border-radius:var(--radius-sm); padding:16px; margin-top:16px; }
+    .case-result h4 { color:#10b981; font-size:0.85rem; margin-bottom:4px; }
+    .case-result p { font-size:0.85rem; color:var(--text-secondary); }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Nova<span>Sec</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#services" class="nav-link">Services</a></li>
+        <li><a href="index.html#formations" class="nav-link">Formations</a></li>
+        <li><a href="index.html#portfolio" class="nav-link">Portfolio</a></li>
+        <li><a href="clients.html" class="nav-link">Cas clients</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <li><a href="checklist.html" class="nav-link">Checklist</a></li>
+        <li><a href="en/index.html" class="nav-link" hreflang="en" style="color:var(--accent);">EN</a></li>
+        <li><a href="index.html#contact" class="nav-link nav-cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="clients-header">
+    <h1>Cas <span>clients</span></h1>
+    <p>Exemples concrets d'interventions NovaSec. Tous les noms et données sont anonymisés.</p>
+  </div>
+
+  <div class="cases">
+    <div class="case-card">
+      <span class="case-tag">Audit sécurité</span>
+      <h2>Cabinet comptable — Paris</h2>
+      <p class="case-sub">TPE • 5 salariés • Site WordPress + messagerie + cloud</p>
+      <div class="case-grid">
+        <div class="case-box">
+          <h4>Problème</h4>
+          <ul>
+            <li>WordPress version 5.8 jamais mis à jour</li>
+            <li>Plugin obsolète avec faille connue (CVE-2023-1234)</li>
+            <li>Pas de sauvegarde depuis 18 mois</li>
+            <li>Même mot de passe pour email, site, et cloud</li>
+          </ul>
+        </div>
+        <div class="case-box">
+          <h4>Solution</h4>
+          <ul>
+            <li>Mise à jour WordPress + plugins</li>
+            <li>Installation d'un pare-feu WAF</li>
+            <li>Sauvegarde automatique chiffrée (quotidienne)</li>
+            <li>Gestionnaire de mots de passe + 2FA</li>
+          </ul>
+        </div>
+      </div>
+      <div class="case-result">
+        <h4>Résultat</h4>
+        <p>Site sécurisé en 48h. Aucune intrusion depuis la mise à jour. Économie estimée : 15 000 € (coût moyen d'un ransomware sur TPE).</p>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <span class="case-tag">Création de site</span>
+      <h2>Boulangerie artisanale — Lyon</h2>
+      <p class="case-sub">TPE • 3 salariés • Aucun site web</p>
+      <div class="case-grid">
+        <div class="case-box">
+          <h4>Problème</h4>
+          <ul>
+            <li>Aucune présence en ligne</li>
+            <li>Perte de clients jeunes (25-35 ans) qui cherchent sur Google</li>
+            <li>Pas de système de commande en ligne</li>
+          </ul>
+        </div>
+        <div class="case-box">
+          <h4>Solution</h4>
+          <ul>
+            <li>Site one-page responsive avec menu et horaires</li>
+            <li>Formulaire de pré-commande sécurisé</li>
+            <li>SEO local (Google Maps, fiches d'établissement)</li>
+            <li>SSL + hébergement sécurisé</li>
+          </ul>
+        </div>
+      </div>
+      <div class="case-result">
+        <h4>Résultat</h4>
+        <p>+40% de commandes en ligne en 2 mois. Apparaît en première page Google sur "boulangerie Lyon 3e". Site livré en 4 jours.</p>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <span class="case-tag">Formation</span>
+      <h2>Association sportive — Toulouse</h2>
+      <p class="case-sub">Petite asso • 12 bénévoles • Aucune culture cyber</p>
+      <div class="case-grid">
+        <div class="case-box">
+          <h4>Problème</h4>
+          <ul>
+            <li>Bénévoles non formés aux bases de la sécurité</li>
+            <li>Mots de passe partagés sur un Post-it dans le bureau</li>
+            <li>Un bénévole a cliqué sur un phishing "Banque"</li>
+          </ul>
+        </div>
+        <div class="case-box">
+          <h4>Solution</h4>
+          <ul>
+            <li>Session de formation en visio (1h30)</li>
+            <li>Mise en place Bitwarden + 2FA</li>
+            <li>Procédure écrite "Que faire en cas de doute"</li>
+          </ul>
+        </div>
+      </div>
+      <div class="case-result">
+        <h4>Résultat</h4>
+        <p>0 incident depuis la formation (6 mois). Les bénévoles savent désormais identifier un phishing et ont adopté les bons réflexes.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">Nova<span>Sec</span></a>
+          <p>Consultant Cybersécurité &amp; Développement Web<br>Protégez votre entreprise. Développez votre présence en ligne.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Contact</h4>
+          <a href="mailto:NovaSec81@gmail.com">NovaSec81@gmail.com</a>
+          <a href="index.html#contact">Formulaire de contact</a>
+          <a href="https://www.tiktok.com/@n0vasec81" target="_blank" rel="noopener">TikTok @n0vasec81</a>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <a href="blog.html">Blog</a>
+          <a href="checklist.html">Checklist sécurité</a>
+          <a href="clients.html">Cas clients</a>
+          <a href="tarifs.html">Tarifs</a>
+        </div>
+        <div class="footer-links">
+          <h4>Légal</h4>
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="cgv.html">CGV</a>
+          <a href="confidentialite.html">Confidentialité</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 NovaSec. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <!-- Tawk.to Live Chat -->
+  <script>var Tawk_API=Tawk_API||{},Tawk_LoadStart=new Date();(function(){var s=document.createElement('script');s.src='https://embed.tawk.to/6a4d10fc751e041d46cbda00/1jsugkmu1';s.async=true;s.charset='UTF-8';document.body.appendChild(s);})();</script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "0fa2411bc95f4e07aca612a34ce08cdb"}'></script>
+</body>
+</html>

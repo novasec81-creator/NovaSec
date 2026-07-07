@@ -13,8 +13,17 @@
   <meta property="og:url" content="https://novasec.pages.dev">
   <meta property="og:site_name" content="NovaSec">
   <meta property="og:locale" content="fr_FR">
+  <meta property="og:image" content="https://novasec.pages.dev/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NovaSec – Cybersécurité &amp; Développement Web">
+  <meta name="twitter:description" content="Audits sécurité, création de sites, formations cyber pour TPE/PME.">
   <link rel="canonical" href="https://novasec.pages.dev">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0e17'/%3E%3Cpath d='M16 6L6 11v6c0 5.2 4.3 9.6 10 11 5.7-1.4 10-5.8 10-11v-6l-10-5zm0 2.2l7.5 3.8v4.5c0 4-3.3 7.4-7.5 8.5-4.2-1.1-7.5-4.5-7.5-8.5v-4.5L16 8.2z' fill='%2300e5ff'/%3E%3C/svg%3E">
+  <link rel="preload" as="style" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <title>NovaSec – Cybersécurité &amp; Développement Web</title>
   <script type="application/ld+json">
   {
@@ -29,7 +38,8 @@
     "serviceType": ["Audit sécurité", "Création site web", "Formation cyber", "Maintenance", "Pentest"]
   }
   </script>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="css/style.css"></noscript>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
@@ -45,8 +55,10 @@
         <li><a href="#formations" class="nav-link">Formations</a></li>
         <li><a href="#packs" class="nav-link">Packs</a></li>
         <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+        <li><a href="clients.html" class="nav-link">Cas clients</a></li>
         <li><a href="blog.html" class="nav-link">Blog</a></li>
         <li><a href="checklist.html" class="nav-link">Checklist</a></li>
+        <li><a href="en/index.html" class="nav-link" hreflang="en" style="color:var(--accent);">EN</a></li>
         <li><a href="#contact" class="nav-link nav-cta">Contact</a></li>
       </ul>
     </div>
@@ -589,6 +601,15 @@
     </div>
   </section>
 
+  <section class="section section-dark" style="text-align:center;">
+    <div class="container">
+      <span class="section-tag">Rendez-vous</span>
+      <h2 style="font-size:clamp(1.5rem,3vw,2rem);margin-bottom:12px;">Besoin d'un audit ?</h2>
+      <p style="color:var(--text-secondary);max-width:500px;margin:0 auto 24px;">Réservez un créneau de 30 minutes gratuit pour discuter de vos besoins en cybersécurité ou développement web.</p>
+      <a href="https://calendly.com/novasec81/30min" target="_blank" rel="noopener" class="btn btn-primary">Réserver un créneau</a>
+    </div>
+  </section>
+
   <section id="contact" class="section section-dark">
     <div class="container">
       <div class="section-header">
@@ -676,11 +697,13 @@
           <h4>Contact</h4>
           <a href="mailto:NovaSec81@gmail.com">NovaSec81@gmail.com</a>
           <a href="#contact">Formulaire de contact</a>
+          <a href="https://www.tiktok.com/@n0vasec81" target="_blank" rel="noopener">TikTok @n0vasec81</a>
         </div>
         <div class="footer-links">
           <h4>Resources</h4>
           <a href="blog.html">Blog</a>
           <a href="checklist.html">Checklist sécurité</a>
+          <a href="clients.html">Cas clients</a>
           <a href="tarifs.html">Tarifs</a>
         </div>
         <div class="footer-links">
@@ -697,6 +720,8 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <!-- Tawk.to Live Chat -->
+  <script>var Tawk_API=Tawk_API||{},Tawk_LoadStart=new Date();(function(){var s=document.createElement('script');s.src='https://embed.tawk.to/6a4d10fc751e041d46cbda00/1jsugkmu1';s.async=true;s.charset='UTF-8';document.body.appendChild(s);})();</script>
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "0fa2411bc95f4e07aca612a34ce08cdb"}'></script>
   <!-- End Cloudflare Web Analytics -->
