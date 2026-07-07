@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formation – Guide complet de cybersécurité (TPE/PME)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { margin: 18mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; color: #1a1a2e; max-width: 210mm; margin: 0 auto; padding: 40px; line-height: 1.8; font-size: 12.5px; background: #fafafa; }
+  .page { background: #fff; border-radius: 4px; padding: 40px 48px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .cover { text-align: center; padding: 60px 0 20px; }
+  .cover h1 { font-size: 28px; } .cover h1 span { color: #00e5ff; }
+  .cover .sstitre { color: #64748b; font-size: 15px; margin-top: 6px; }
+  .cover .titre { font-size: 26px; font-weight: 700; margin: 30px 0 8px; }
+  .cover .prix { font-size: 20px; font-weight: 700; color: #00e5ff; }
+  .cover .pagecount { color: #94a3b8; font-size: 13px; margin-top: 4px; }
+  .cover .sub { font-size: 14px; color: #475569; margin-top: 18px; max-width: 500px; margin-left: auto; margin-right: auto; }
+  .sommaire { background: #f8fafc; border-radius: 10px; padding: 24px 32px; margin: 30px 0; border: 1px solid #e2e8f0; }
+  .sommaire h2 { font-size: 16px; margin-bottom: 12px; border: none; }
+  .sommaire ul { columns: 2; list-style: none; padding: 0; }
+  .sommaire ul li { padding: 3px 0; font-size: 13px; color: #475569; }
+  .sommaire ul li::before { content: "0" counter(item) ". "; counter-increment: item; color: #00e5ff; font-weight: 600; }
+  .sommaire ul { counter-reset: item; }
+  h2 { font-size: 18px; margin: 36px 0 14px; border-bottom: 2px solid #00e5ff; padding-bottom: 6px; color: #0f172a; }
+  h3 { font-size: 15px; margin: 24px 0 10px; color: #0f172a; }
+  h4 { font-size: 13.5px; margin: 18px 0 8px; color: #334155; }
+  p { color: #334155; margin-bottom: 10px; }
+  ul, ol { padding-left: 22px; margin-bottom: 12px; }
+  li { margin-bottom: 5px; color: #334155; }
+  .encadre { background: #f0fdfa; border-left: 4px solid #10b981; padding: 14px 18px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .alerte { background: #fef2f2; border-left: 4px solid #ef4444; padding: 14px 18px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .info { background: #f0f9ff; border-left: 4px solid #0ea5e9; padding: 14px 18px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .exemple { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 20px; margin: 16px 0; }
+  .exemple h4 { font-size: 12px; color: #64748b; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+  code { background: #f1f5f9; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12.5px; }
+  th { background: #1a1a2e; color: #fff; padding: 10px 14px; text-align: left; }
+  td { padding: 10px 14px; border-bottom: 1px solid #e2e8f0; }
+  tr:nth-child(even) td { background: #f8fafc; }
+  .btn-print { position: fixed; top: 20px; right: 20px; padding: 10px 20px; background: #00e5ff; color: #1a1a2e; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-family: inherit; z-index: 10; }
+  .btn-print:hover { background: #33eaff; }
+  @media print { body { padding: 0; background: #fff; } .page { box-shadow: none; padding: 0; } .btn-print { display: none; } .cover { padding-top: 20px; } }
+  .page-break { page-break-before: always; }
+  .password-gate { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a1a2e; display: none; align-items: center; justify-content: center; z-index: 9999; }
+  .password-gate-inner { background: #fff; padding: 40px; border-radius: 12px; max-width: 400px; width: 90%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+  .password-gate h2 { border: none; margin: 0 0 8px 0; color: #1a1a2e; }
+  .password-gate p { color: #64748b; font-size: 13px; margin-bottom: 20px; }
+  .password-gate input { width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 15px; font-family: inherit; margin-bottom: 12px; outline: none; box-sizing: border-box; }
+  .password-gate input:focus { border-color: #00e5ff; }
+  .password-gate button { width: 100%; padding: 12px; background: #00e5ff; color: #1a1a2e; border: none; border-radius: 8px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; }
+  .password-gate button:hover { background: #33eaff; }
+  .password-gate .error { color: #ef4444; font-size: 12px; margin-top: 8px; display: none; }
+  .password-gate .logo { font-size: 24px; font-weight: 800; margin-bottom: 16px; }
+  .password-gate .logo span { color: #00e5ff; }
+</style>
+</head>
+<body>
+<div id="passwordGate" class="password-gate">
+  <div class="password-gate-inner">
+    <div class="logo">Nova<span>Sec</span></div>
+    <h2>Formation payante</h2>
+    <p>Cette formation est protégée. Veuillez saisir le mot de passe reçu lors de votre achat.</p>
+    <input type="password" id="pwdInput" placeholder="Mot de passe" autocomplete="off">
+    <button id="pwdSubmit">Accéder à la formation</button>
+    <div class="error" id="pwdError">Mot de passe incorrect.</div>
+  </div>
+</div>
+<div id="protectedContent" class="page">
+
+<div class="cover">
+  <h1>Nova<span>Sec</span></h1>
+  <p class="sstitre">Formation cybersécurité pour TPE/PME</p>
+  <p class="titre">Guide complet de cybersécurité</p>
+  <p class="prix">49 €</p>
+  <p class="pagecount">Version 1.0 — 2026 — ~25 pages</p>
+  <p class="sub">Le guide ultime pour protéger votre entreprise : synthèse des 5 formations NovaSec, avec plan d'action priorisé, feuille de route 12 mois, lexique et ressources.</p>
+</div>
+
+<div class="sommaire">
+  <h2>Sommaire</h2>
+  <ul>
+    <li>Le cyber-risque expliqué simplement</li>
+    <li>Pilier 1 : Mots de passe et accès</li>
+    <li>Pilier 2 : Mises à jour et antivirus</li>
+    <li>Pilier 3 : Sauvegardes</li>
+    <li>Pilier 4 : Réseau et équipements</li>
+    <li>Pilier 5 : Sensibilisation des équipes</li>
+    <li>Pilier 6 : Sites web et WordPress</li>
+    <li>Pilier 7 : Réponse aux incidents</li>
+    <li>Lexique de la cybersécurité</li>
+    <li>Feuille de route 12 mois</li>
+    <li>Plan d'action priorisé</li>
+    <li>Ressources et contacts utiles</li>
+    <li>Annexe : modèles de documents</li>
+  </ul>
+</div>
+
+<h2>Le cyber-risque expliqué simplement</h2>
+<p>En tant que dirigeant de TPE/PME, vous avez déjà 1 000 choses à gérer. La cybersécurité ne devrait pas être un casse-tête supplémentaire. Voici l'essentiel à retenir :</p>
+
+<h3>Les 3 menaces principales</h3>
+<table>
+  <tr><th>Menace</th><th>Probabilité</th><th>Impact</th><th>Solution rapide</th></tr>
+  <tr><td>Phishing (email piégé)</td><td>Très élevée</td><td>Vol identifiants, rançongiciel</td><td>Sensibilisation + 2FA (Formation n°1)</td></tr>
+  <tr><td>Mot de passe faible</td><td>Élevée</td><td>Compte piraté, fuite de données</td><td>Gestionnaire + 2FA (Formation n°2)</td></tr>
+  <tr><td>Absence de sauvegarde</td><td>Moyenne</td><td>Perte définitive des données</td><td>Sauvegarde 3-2-1 (Formation n°3)</td></tr>
+</table>
+
+<div class="info">
+  <strong>Le saviez-vous ?</strong> La cybersécurité n'est pas un coût, c'est un investissement. En moyenne, 1 € dépensé en prévention évite 5 € de pertes en cas d'attaque. Une TPE qui investit 1 000 €/an dans sa sécurité se protège contre un risque moyen de 8 000 à 15 000 €.
+</div>
+
+<h2>Pilier 1 : Mots de passe et accès</h2>
+<p>C'est la porte d'entrée de tout votre système informatique. Voici les règles d'or :</p>
+
+<h3>La politique de mots de passe (à appliquer partout)</h3>
+<ul>
+  <li><strong>Longueur minimale :</strong> 12 caractères (16 pour les comptes critiques: admin, banque, email)</li>
+  <li><strong>Complexité :</strong> lettres minuscules + majuscules + chiffres + symboles</li>
+  <li><strong>Unicité :</strong> jamais le même mot de passe pour deux services différents</li>
+  <li><strong>Rotation :</strong> changer tous les 6 mois (ou immédiatement après une fuite suspectée)</li>
+  <li><strong>Stockage :</strong> gestionnaire de mots de passe (Bitwarden recommandé)</li>
+  <li><strong>Partage :</strong> via le coffre-fort du gestionnaire, jamais par email ou messagerie</li>
+</ul>
+
+<h3>La double authentification (2FA) — activer partout</h3>
+<table>
+  <tr><th>Service</th><th>2FA obligatoire ?</th></tr>
+  <tr><td>Email principal (Gmail, Outlook, ProtonMail)</td><td>OUI — dès maintenant</td></tr>
+  <tr><td>Banque en ligne</td><td>OUI — dès maintenant</td></tr>
+  <tr><td>Gestionnaire de mots de passe</td><td>OUI — dès maintenant</td></tr>
+  <tr><td>Hébergement / nom de domaine</td><td>OUI — dès maintenant</td></tr>
+  <tr><td>Réseaux sociaux (LinkedIn, Facebook, X)</td><td>OUI</td></tr>
+  <tr><td>SaaS métier (CRM, facturation, comptabilité)</td><td>OUI</td></tr>
+  <tr><td>Administration WordPress / site web</td><td>OUI</td></tr>
+</table>
+
+<h3>Checklist mensuelle des accès</h3>
+<ul>
+  <li> Changer les mots de passe partagés</li>
+  <li> Vérifier qu'aucun employé parti a encore des accès</li>
+  <li> Vérifier la liste des connexions récentes sur les comptes critiques</li>
+  <li> Mettre à jour le gestionnaire de mots de passe</li>
+  <li> Vérifier les tentatives de connexion échouées</li>
+</ul>
+
+<h2 class="page-break">Pilier 2 : Mises à jour et antivirus</h2>
+
+<h3>Les mises à jour : votre bouclier automatique</h3>
+<p>Les éditeurs publient des mises à jour pour corriger des failles de sécurité. Ne pas les installer, c'est laisser une porte ouverte aux pirates.</p>
+
+<table>
+  <tr><th>Logiciel</th><th>Fréquence de mise à jour</th><th>Configuration</th></tr>
+  <tr><td>Windows 10/11</td><td>Mensuelle (Patch Tuesday)</td><td>Mises à jour automatiques activées</td></tr>
+  <tr><td>macOS</td><td>Quelques fois par an</td><td>Mises à jour automatiques activées</td></tr>
+  <tr><td>Navigateurs (Chrome, Firefox, Edge)</td><td>Toutes les 2-4 semaines</td><td>Mise à jour automatique (vérifier paramètres)</td></tr>
+  <tr><td>Antivirus</td><td>Quotidienne (définitions)</td><td>Mise à jour automatique</td></tr>
+  <tr><td>Applications métiers</td><td>Variable</td><td>Vérifier manuellement chaque mois</td></tr>
+  <tr><td>Smartphone (iOS/Android)</td><td>Mensuelle</td><td>Mise à jour automatique activée</td></tr>
+</table>
+
+<h3>Antivirus</h3>
+<ul>
+  <li><strong>Windows</strong> : Windows Defender (Microsoft) est gratuit et très efficace. Vérifiez qu'il est actif.</li>
+  <li><strong>Mac</strong> : Pas d'antivirus intégré ? Installez Bitdefender ou Malwarebytes (versions gratuites).</li>
+  <li><strong>Alternative payante</strong> : Bitdefender, ESET, Kaspersky (selon budget).</li>
+  <li><strong>À éviter</strong> : McAfee, Norton (lourds, souvent préinstallés, moins efficaces qu'avant).</li>
+</ul>
+
+<p><strong>Pour les serveurs :</strong> un antivirus avec protection en temps réel est recommandé. Windows Defender peut suffire sur un petit serveur. Pour les serveurs Linux, utilisez ClamAV (gratuit, open source).</p>
+
+<h2>Pilier 3 : Sauvegardes</h2>
+<p>La sauvegarde est la mesure de cybersécurité la plus importante. Si tout le reste échoue, elle vous permet de tout récupérer.</p>
+
+<h3>La règle 3-2-1</h3>
+<p>Application concrète pour une TPE :</p>
+<ul>
+  <li><strong>3 copies</strong> des données : 1 sur le serveur/PC, 1 sur disque externe, 1 dans le cloud</li>
+  <li><strong>2 supports différents</strong> : disque dur + cloud (ou NAS + cloud)</li>
+  <li><strong>1 copie hors site</strong> : cloud (Backblaze, iDrive, pCloud) ou chez un tiers de confiance</li>
+</ul>
+
+<h3>Que sauvegarder ?</h3>
+<table>
+  <tr><th>Données</th><th>Support</th><th>Fréquence</th></tr>
+  <tr><td>Documents comptables, factures, devis</td><td>Cloud + disque externe</td><td>Quotidienne</td></tr>
+  <tr><td>Base de données client</td><td>Cloud</td><td>Quotidienne</td></tr>
+  <tr><td>Site web (fichiers + BDD)</td><td>Cloud (UpdraftPlus)</td><td>Hebdomadaire</td></tr>
+  <tr><td>Emails professionnels</td><td>Export PST / Sauvegarde 365</td><td>Mensuelle</td></tr>
+  <tr><td>Configuration logiciels métiers</td><td>Cloud</td><td>À chaque modification</td></tr>
+  <tr><td>Mots de passe (export gestionnaire)</td><td>Hors ligne (clé USB chiffrée)</td><td>Mensuelle</td></tr>
+</table>
+
+<h3>Test de restauration</h3>
+<p>Une sauvegarde que vous ne testez pas n'est pas une sauvegarde. C'est un vœu pieux. Tous les 3 mois, testez la restauration d'au moins un fichier. Une fois par an, testez la restauration complète d'un poste.</p>
+
+<div class="alerte">
+  <strong>Erreur fatale n°1 :</strong> brancher le disque de sauvegarde en permanence sur le serveur. Un ransomware le chiffrera aussi → adieu les sauvegardes. Débranchez-le ou utilisez un NAS avec snapshots immutables.
+</div>
+
+<h2 class="page-break">Pilier 4 : Réseau et équipements</h2>
+
+<h3>WiFi professionnel</h3>
+<table>
+  <tr><th>Action</th><th>Détail</th></tr>
+  <tr><td>Chiffrement WPA3 (ou WPA2 minimum)</td><td>Vérifier dans l'interface de votre box/Fritzbox</td></tr>
+  <tr><td>Mot de passe WiFi : 16+ caractères</td><td>Généré par votre gestionnaire de mots de passe</td></tr>
+  <tr><td>Réseau invité</td><td>Les clients et visiteurs n'ont pas accès à votre réseau interne</td></tr>
+  <tr><td>Mot de passe administrateur de la box</td><td>Changer le mot de passe par défaut (admin/admin, freebox/freebox)</td></tr>
+  <tr><td>WPS</td><td>Désactiver (permet de connecter un appareil avec un code PIN de 8 chiffres crackable)</td></tr>
+</table>
+
+<h3>VPN pour le télétravail</h3>
+<p>Si vos employés se connectent depuis l'extérieur :</p>
+<ul>
+  <li><strong>WireGuard</strong> : le plus simple et rapide (gratuit, toutes plateformes)</li>
+  <li><strong>Tailscale</strong> : simplifie encore WireGuard (gratuit pour 3 utilisateurs)</li>
+  <li><strong>OpenVPN</strong> : plus complexe mais très fiable (gratuit)</li>
+  <li><strong>NordLayer</strong> : payant mais clé en main pour PME</li>
+</ul>
+
+<h3>Sécurité des postes de travail</h3>
+<ul>
+  <li>Verrouillage automatique de session après 5 min (Win+L / Ctrl+Cmd+Q)</li>
+  <li>Chiffrement du disque : BitLocker (Windows Pro) ou FileVault (Mac)</li>
+  <li>Droits utilisateur limités (pas d'admin pour les employés)</li>
+  <li>Désactiver les macros Office (Word, Excel, PowerPoint)</li>
+  <li>Désactiver l'exécution automatique des clés USB (Autorun)</li>
+  <li>Pare-feu Windows / macOS activé</li>
+</ul>
+
+<h2>Pilier 5 : Sensibilisation des équipes</h2>
+<p>La sécurité humaine est le maillon le plus important (et le plus faible). Un employé bien formé est votre meilleure défense.</p>
+
+<h3>Programme de sensibilisation minimal</h3>
+<table>
+  <tr><th>Fréquence</th><th>Action</th><th>Durée</th></tr>
+  <tr><td>À l'embauche</td><td>Session d'accueil : mots de passe, phishing, procédures</td><td>30 min</td></tr>
+  <tr><td>Tous les 6 mois</td><td>Formation cybersécurité (utilisez les formations NovaSec)</td><td>1h</td></tr>
+  <tr><td>Tous les mois</td><td>Astuce sécurité par email (newsletter interne)</td><td>2 min</td></tr>
+  <tr><td>2x par an</td><td>Test de phishing simulé</td><td>—</td></tr>
+  <tr><td>1x par an</td><td>Rappel de la charte informatique (à faire signer)</td><td>15 min</td></tr>
+</table>
+
+<h3>Les 5 règles à connaître absolument</h3>
+<ol>
+  <li><strong>Ne cliquez pas sans vérifier.</strong> Survolez les liens, regardez l'expéditeur, prenez 5 secondes.</li>
+  <li><strong>Ne donnez jamais votre mot de passe.</strong> Ni par téléphone, ni par email, ni à un collègue.</li>
+  <li><strong>Verrouillez votre poste</strong> quand vous vous levez (même pour aller aux toilettes).</li>
+  <li><strong>Signalez tout comportement suspect</strong> à votre responsable ou à NovaSec.</li>
+  <li><strong>Mettez à jour vos logiciels</strong> quand le système vous le propose.</li>
+</ol>
+
+<h2 class="page-break">Pilier 6 : Sites web et WordPress (si applicable)</h2>
+<p>Si votre entreprise a un site web :</p>
+
+<h3>Les 10 actions essentielles</h3>
+<ol>
+  <li><strong>HTTPS obligatoire</strong> : votre site doit être en https:// (certificat SSL gratuit avec Let's Encrypt)</li>
+  <li><strong>Mises à jour automatiques</strong> : activez-les pour WordPress (ou votre CMS)</li>
+  <li><strong>Extensions minimales</strong> : moins vous en avez, moins vous avez de failles</li>
+  <li><strong>Extensions à jour</strong> : supprimez celles qui ne sont plus mises à jour depuis 6 mois+</li>
+  <li><strong>Comptes utilisateurs</strong> : pas de compte "admin", pas de mot de passe faible</li>
+  <li><strong>2FA sur l'administration</strong> : obligatoire (Wordfence, WP 2FA)</li>
+  <li><strong>Sauvegardes automatiques</strong> : UpdraftPlus ou extension similaire</li>
+  <li><strong>Pare-feu applicatif (WAF)</strong> : Cloudflare (gratuit) ou Wordfence</li>
+  <li><strong>Limitation de connexion</strong> : bloquer après 5 tentatives échouées</li>
+  <li><strong>Scan de malware régulier</strong> : Wordfence fait ça automatiquement</li>
+</ol>
+
+<div class="info">
+  <strong>Rappel :</strong> Voir la formation dédiée "Sécuriser WordPress" pour le guide complet. Si votre site est fait avec un autre CMS (Wix, Shopify, Jimdo), vérifiez les options de sécurité proposées par la plateforme.
+</div>
+
+<h2>Pilier 7 : Réponse aux incidents</h2>
+<p>Même avec toutes les précautions, une attaque peut arriver. Voici la procédure à suivre, étape par étape.</p>
+
+<h3>Procédure d'urgence (les 30 premières minutes)</h3>
+<ol>
+  <li><strong>Isoler l'équipement touché</strong> : débranchez le câble réseau, coupez le WiFi</li>
+  <li><strong>Couper les accès distants</strong> : désactivez le VPN, RDP, TeamViewer</li>
+  <li><strong>Prévenir le dirigeant</strong> : informe immédiatement votre chef d'entreprise</li>
+  <li><strong>Contacter NovaSec</strong> (ou votre prestataire sécurité) pour prendre la main</li>
+  <li><strong>Changer les mots de passe</strong> des comptes critiques (email, banque, hébergement)</li>
+  <li><strong>Ne pas éteindre le PC</strong> : les experts ont besoin des logs en mémoire</li>
+</ol>
+
+<h3>Fuite de données personnelles (RGPD)</h3>
+<ol>
+  <li>Identifier la nature et l'ampleur de la fuite</li>
+  <li>Contenir la fuite (corriger la faille, couper l'accès)</li>
+  <li>Notifier la CNIL sous 72h (obligation légale) via leur formulaire en ligne</li>
+  <li>Informer les personnes concernées (clients, employés)</li>
+  <li>Documenter l'incident pour l'analyse post-mortem</li>
+</ol>
+
+<h3>Contacts d'urgence à afficher</h3>
+<table>
+  <tr><th>Contact</th><th>Numéro / Site</th></tr>
+  <tr><td>NovaSec</td><td>Contact@NovaSec81.gmail.com</td></tr>
+  <tr><td>Opposition bancaire (carte)</td><td>Appeler votre banque (voir au dos de la carte)</td></tr>
+  <tr><td>CNIL (notifier une fuite)</td><td>cnil.fr</td></tr>
+  <tr><td>Cybermalveillance.gouv.fr</td><td>cybermalveillance.gouv.fr — assistance et signalement</td></tr>
+  <tr><td>Signal Spam (phishing)</td><td>signal-spam.fr</td></tr>
+  <tr><td>Police / Gendarmerie</td><td>17 (urgence) ou pre-plainte-en-ligne.gouv.fr</td></tr>
+</table>
+
+<h2 class="page-break">Lexique de la cybersécurité (50 termes)</h2>
+<table>
+  <tr><th>Terme</th><th>Définition simple</th></tr>
+  <tr><td>2FA (double authentification)</td><td>Deuxième vérification (code SMS, appli) en plus du mot de passe</td></tr>
+  <tr><td>Antivirus</td><td>Logiciel qui détecte et bloque les programmes malveillants</td></tr>
+  <tr><td>Backdoor</td><td>Porte dérobée laissée par un pirate pour revenir sur un système</td></tr>
+  <tr><td>Botnet</td><td>Réseau d'ordinateurs infectés, contrôlés à distance par un pirate</td></tr>
+  <tr><td>Brute force</td><td>Attaque qui essaie toutes les combinaisons de mots de passe possibles</td></tr>
+  <tr><td>BYOD (Bring Your Own Device)</td><td>Politique qui autorise les employés à utiliser leur matériel personnel</td></tr>
+  <tr><td>Chiffrement</td><td>Transformation des données en code illisible sans la clé de déchiffrement</td></tr>
+  <tr><td>Cloud</td><td>Stockage de données sur des serveurs distants (Google Drive, OneDrive, Dropbox)</td></tr>
+  <tr><td>CMS</td><td>Système de gestion de contenu (WordPress, Joomla, Drupal) — permet de créer un site web</td></tr>
+  <tr><td>Credential stuffing</td><td>Réutilisation de mots de passe volés pour accéder à d'autres comptes</td></tr>
+  <tr><td>DDoS (déni de service)</td><td>Attaque qui submerge un site de requêtes pour le rendre inaccessible</td></tr>
+  <tr><td>DNS</td><td>Annuaire qui traduit un nom de domaine (google.fr) en adresse IP</td></tr>
+  <tr><td>Exploit</td><td>Programme ou technique qui profite d'une faille de sécurité</td></tr>
+  <tr><td>Firewall (pare-feu)</td><td>Barrière qui filtre les connexions entrantes et sortantes</td></tr>
+  <tr><td>FOVI</td><td>Faux Ordre de Virement International (arnaque au président)</td></tr>
+  <tr><td>Hameçonnage</td><td>Phishing en français</td></tr>
+  <tr><td>IP (adresse)</td><td>Numéro d'identification unique d'un appareil sur Internet</td></tr>
+  <tr><td>Keylogger</td><td>Logiciel espion qui enregistre tout ce que vous tapez au clavier</td></tr>
+  <tr><td>Malware</td><td>Logiciel malveillant (virus, ver, trojan, ransomware)</td></tr>
+  <tr><td>NAS (Network Attached Storage)</td><td>Disque dur relié au réseau, accessible par tous les postes</td></tr>
+  <tr><td>Pare-feu</td><td>Voir Firewall</td></tr>
+  <tr><td>Phishing</td><td>Email frauduleux imitant un organisme de confiance pour voler des données</td></tr>
+  <tr><td>PRA (Plan de Reprise d'Activité)</td><td>Procédure pour redémarrer l'activité après une catastrophe</td></tr>
+  <tr><td>Ransomware (rançongiciel)</td><td>Logiciel qui chiffre vos fichiers et demande une rançon</td></tr>
+  <tr><td>RGPD</td><td>Règlement européen sur la protection des données personnelles</td></tr>
+  <tr><td>Root</td><td>Super-administrateur sur Linux (accès total au système)</td></tr>
+  <tr><td>Rootkit</td><td>Malware caché profondément dans le système, difficile à détecter</td></tr>
+  <tr><td>RDP (Remote Desktop Protocol)</td><td>Protocole Microsoft pour prendre le contrôle d'un PC à distance</td></tr>
+  <tr><td>SIM swapping</td><td>Vol de numéro de téléphone pour intercepter les SMS (dont codes 2FA)</td></tr>
+  <tr><td>Smishing</td><td>Phishing par SMS</td></tr>
+  <tr><td>Snapshot</td><td>Instantanné d'un système à un moment donné (permet de restaurer)</td></tr>
+  <tr><td>Sniffing</td><td>Interception de données sur un réseau (WiFi public notamment)</td></tr>
+  <tr><td>Social engineering</td><td>Manipulation psychologique pour obtenir des informations ou un accès</td></tr>
+  <tr><td>Spam</td><td>Email non sollicité (publicité, arnaque)</td></tr>
+  <tr><td>Spear phishing</td><td>Phishing ciblé (personnalisé pour une personne ou entreprise spécifique)</td></tr>
+  <tr><td>SQL injection</td><td>Attaque qui injecte du code SQL dans un champ de saisie pour voler des données</td></tr>
+  <tr><td>SSH</td><td>Protocole sécurisé pour administrer un serveur à distance</td></tr>
+  <tr><td>SSL/TLS</td><td>Protocole de chiffrement pour les connexions HTTPS (le cadenas dans le navigateur)</td></tr>
+  <tr><td>SSO (Single Sign-On)</td><td>Un seul mot de passe pour accéder à plusieurs services (Google, Microsoft)</td></tr>
+  <tr><td>Trojan (cheval de Troie)</td><td>Logiciel qui se fait passer pour un programme légitime mais qui est malveillant</td></tr>
+  <tr><td>VPN</td><td>Réseau privé virtuel : chiffre la connexion entre votre PC et un serveur distant</td></tr>
+  <tr><td>Vishing</td><td>Phishing par téléphone (voix)</td></tr>
+  <tr><td>Vulnérabilité</td><td>Faille de sécurité dans un logiciel ou un système</td></tr>
+  <tr><td>WAF (Web Application Firewall)</td><td>Pare-feu spécialisé pour les applications web (WordPress, sites)</td></tr>
+  <tr><td>Whaling</td><td>Phishing ciblant les dirigeants (grosses prises = "baleines")</td></tr>
+  <tr><td>WiFi public</td><td>Réseau non sécurisé (hôtel, café, aéroport) — ne jamais faire d'opérations sensibles sans VPN</td></tr>
+  <tr><td>Worm (ver)</td><td>Malware qui se propage automatiquement (sans intervention humaine)</td></tr>
+  <tr><td>XSS (Cross-Site Scripting)</td><td>Injection de code JavaScript dans une page web pour voler les visiteurs</td></tr>
+  <tr><td>Zero-day</td><td>Faille inconnue de l'éditeur, pas encore corrigée (la plus dangereuse)</td></tr>
+  <tr><td>Zero Trust</td><td>Stratégie de sécurité : ne faire confiance à personne, vérifier tout le temps</td></tr>
+</table>
+
+<h2 class="page-break">Feuille de route 12 mois</h2>
+
+<h3>Mois 1 : Les bases urgentes</h3>
+<ul>
+  <li> Changer tous les mots de passe par défaut (box, comptes, WiFI)</li>
+  <li> Activer la 2FA sur l'email principal</li>
+  <li> Installer un gestionnaire de mots de passe (Bitwarden)</li>
+  <li> Vérifier les mises à jour Windows/macOS sur tous les postes</li>
+  <li> S'assurer que l'antivirus est actif</li>
+  <li> Mettre en place la sauvegarde 3-2-1 (au moins une sauvegarde cloud)</li>
+</ul>
+
+<h3>Mois 2 : Structure</h3>
+<ul>
+  <li> Activer la 2FA sur tous les comptes critiques (banque, hébergement, réseaux sociaux)</li>
+  <li> Établir une charte informatique simplifiée (1 page)</li>
+  <li> Faire signer la charte à tous les employés</li>
+  <li> Créer les comptes individuels pour chaque employé</li>
+  <li> Mettre en place un réseau WiFi invité</li>
+</ul>
+
+<h3>Mois 3 : Formation</h3>
+<ul>
+  <li> Organiser une session de formation de 30 min (utilisez les formations NovaSec)</li>
+  <li> Former les employés au phishing</li>
+  <li> Simuler un phishing</li>
+  <li> Vérifier que le verrouillage automatique des postes est actif</li>
+  <li> Changer l'URL de connexion WordPress / CMS</li>
+</ul>
+
+<h3>Mois 4 : Approfondissement</h3>
+<ul>
+  <li> Activer la 2FA sur tous les comptes restants</li>
+  <li> Mettre en place les sauvegardes automatiques (site web)</li>
+  <li> Configurer le chiffrement des disques (BitLocker / FileVault)</li>
+  <li> Vérifier les autorisations des employés (principe du moindre privilège)</li>
+  <li> Auditer les extensions/thèmes du site web</li>
+</ul>
+
+<h3>Mois 5 : Réseau et équipements</h3>
+<ul>
+  <li> Vérifier la configuration WiFi (WPA3, mot de passe fort, réseau invité)</li>
+  <li> Mettre en place un VPN pour le télétravail</li>
+  <li> Vérifier les permissions des serveurs/NAS</li>
+  <li> Désactiver les services inutiles (FTP, Telnet, etc.)</li>
+  <li> Vérifier les accès distants (RDP, SSH)</li>
+</ul>
+
+<h3>Mois 6-8 : Consolidation</h3>
+<ul>
+  <li> Faire un audit de sécurité complet (par NovaSec ou en autonomie)</li>
+  <li> Tester la restauration complète d'un poste depuis les sauvegardes</li>
+  <li> Écrire un plan de réponse aux incidents (1-2 pages)</li>
+  <li> Mettre en place un monitoring de sécurité (Wordfence, Cloudflare)</li>
+  <li> Revérifier les accès des employés partis depuis le début de l'année</li>
+</ul>
+
+<h3>Mois 9-12 : Maintenance</h3>
+<ul>
+  <li> Organiser une seconde session de formation (renouvellement)</li>
+  <li> Réaliser un test de phishing avancé</li>
+  <li> Vérifier la couverture d'assurance cyber</li>
+  <li> Planifier les audits pour l'année suivante</li>
+  <li> Faire un bilan sécurité de l'année écoulée</li>
+</ul>
+
+<h2 class="page-break">Plan d'action priorisé (les 10 actions immédiates)</h2>
+<p>Si vous ne deviez faire que 10 choses, dans cet ordre :</p>
+<ol>
+  <li><strong>🔴 2FA sur l'email principal</strong> — 10 min — gratuit. C'est le compte qui permet de réinitialiser tous les autres.</li>
+  <li><strong>🔴 Gestionnaire de mots de passe</strong> — 30 min — gratuit (Bitwarden). Générez des mots de passe forts uniques.</li>
+  <li><strong>🔴 Sauvegarde cloud</strong> — 1h — 5-15 €/mois. Vos données les plus critiques doivent être sauvegardées automatiquement.</li>
+  <li><strong>🔴 Mises à jour</strong> — 30 min — gratuit. Vérifiez Windows, macOS, navigateurs, antivirus, logiciels métiers.</li>
+  <li><strong>🔴 Antivirus actif</strong> — 15 min — gratuit. Windows Defender est bon, mais vérifiez qu'il est bien activé.</li>
+  <li><strong>🔴 Changer les mots de passe par défaut</strong> — 20 min — gratuit. Box, imprimante, NAS, caméras.</li>
+  <li><strong>🟡 Formation des employés (30 min)</strong> — 30 min — utilisez les formations NovaSec. C'est votre meilleure protection.</li>
+  <li><strong>🟡 Charte informatique</strong> — 1h — gratuit. 1 page signée par tous.</li>
+  <li><strong>🟡 Réseau WiFi invité</strong> — 15 min — gratuit. Séparez le réseau employés du réseau clients.</li>
+  <li><strong>🟡 Plan de réponse aux incidents</strong> — 1h — gratuit. 1 page avec la procédure d'urgence et les contacts.</li>
+</ol>
+
+<h2>Ressources et contacts utiles</h2>
+<table>
+  <tr><th>Ressource</th><th>URL</th><th>Utilité</th></tr>
+  <tr><td>Cybermalveillance.gouv.fr</td><td>cybermalveillance.gouv.fr</td><td>Assistance et signalement pour les particuliers et entreprises</td></tr>
+  <tr><td>Signal Spam</td><td>signal-spam.fr</td><td>Signaler un email de phishing ou un spam</td></tr>
+  <tr><td>CNIL</td><td>cnil.fr</td><td>Notifier une fuite de données, registre des traitements</td></tr>
+  <tr><td>Have I Been Pwned</td><td>haveibeenpwned.com</td><td>Vérifier si votre email ou mot de passe a fuité</td></tr>
+  <tr><td>ANSSI</td><td>ssi.gouv.fr</td><td>Guides et recommandations officielles de cybersécurité</td></tr>
+  <tr><td>Bitwarden</td><td>bitwarden.com</td><td>Gestionnaire de mots de passe gratuit et open source</td></tr>
+  <tr><td>Cloudflare</td><td>cloudflare.com</td><td>CDN + pare-feu gratuit pour votre site</td></tr>
+  <tr><td>VirusTotal</td><td>virustotal.com</td><td>Analyser un fichier suspect avec 70+ antivirus</td></tr>
+  <tr><td>Have I Been Sold</td><td>haveibeensold.app</td><td>Vérifier si vos données personnelles sont en vente</td></tr>
+  <tr><td>NovaSec</td><td>Contact@NovaSec81.gmail.com</td><td>Votre partenaire cybersécurité pour TPE/PME</td></tr>
+</table>
+
+<h2>Annexe : modèles de documents</h2>
+<p>Voici les documents que vous devriez avoir dans votre entreprise :</p>
+<ul>
+  <li><strong>Charte informatique</strong> (1 page, signée par chaque employé)</li>
+  <li><strong>Plan de réponse aux incidents</strong> (1 page, affiché dans les locaux)</li>
+  <li><strong>Procédure de départ d'un employé</strong> (checklist à suivre)</li>
+  <li><strong>Procédure d'urgence phishing</strong> (que faire si un employé clique)</li>
+  <li><strong>Registre des traitements</strong> (obligation RGPD, même pour les TPE)</li>
+</ul>
+
+<div class="encadre">
+  <strong>NovaSec vous accompagne</strong> — Audit, formation, maintenance et assistance. Vous n'êtes pas seul face à la cybersécurité. Contactez-nous pour un diagnostic gratuit de votre entreprise.
+</div>
+
+<p style="text-align:center;margin-top:40px;color:#94a3b8;font-size:12px;">Formation NovaSec – Tous droits réservés – 2026 – Version 1.0</p>
+
+</div>
+<script>
+var FORMATION_ID = '06-guide-complet';
+var TOKEN_KEY = 'nova_' + FORMATION_ID;
+var EXPIRES_KEY = 'nova_exp_' + FORMATION_ID;
+
+document.addEventListener('DOMContentLoaded', function() {
+  var gate = document.getElementById('passwordGate');
+  var content = document.getElementById('protectedContent');
+  var input = document.getElementById('pwdInput');
+  var error = document.getElementById('pwdError');
+  var submitBtn = document.getElementById('pwdSubmit');
+  var attempts = 0;
+  var maxAttempts = 3;
+
+  var token = sessionStorage.getItem(TOKEN_KEY);
+  var expires = sessionStorage.getItem(EXPIRES_KEY);
+  if (token && expires && Date.now() < parseInt(expires)) {
+    gate.style.display = 'none';
+    content.style.display = 'block';
+  } else {
+    content.style.display = 'none';
+    gate.style.display = 'flex';
+  }
+
+  function checkPassword() {
+    fetch('/api/verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ formation: FORMATION_ID, password: input.value })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.valid) {
+        sessionStorage.setItem(TOKEN_KEY, data.token);
+        sessionStorage.setItem(EXPIRES_KEY, Date.now() + 3600000);
+        gate.style.display = 'none';
+        content.style.display = 'block';
+      } else {
+        attempts++;
+        error.style.display = 'block';
+        if (attempts >= maxAttempts) {
+          error.textContent = 'Trop de tentatives. Rechargez la page.';
+          input.disabled = true;
+          submitBtn.disabled = true;
+        }
+        input.value = '';
+      }
+    })
+    .catch(function() {
+      error.textContent = 'Erreur serveur. Rechargez la page.';
+      error.style.display = 'block';
+    });
+  }
+  submitBtn.addEventListener('click', checkPassword);
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+});
+</script>
+</body>
+</html>

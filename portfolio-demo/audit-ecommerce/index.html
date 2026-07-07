@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rapport d'audit – Site e-commerce (démonstration)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', Arial, sans-serif; background: #0a0e17; color: #e2e8f0; padding: 30px; line-height: 1.6; }
+  .container { max-width: 960px; margin: 0 auto; }
+  .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding: 16px 24px; background: #111827; border-radius: 12px; border: 1px solid #1e293b; }
+  .logo { font-size: 22px; font-weight: 800; color: #f1f5f9; } .logo span { color: #00e5ff; }
+  .top-bar .badge { background: rgba(239,68,68,0.15); color: #fca5a5; padding: 6px 14px; border-radius: 100px; font-size: 12px; font-weight: 600; }
+  .report-header { background: linear-gradient(135deg, #111827, #1a2332); border: 1px solid #1e293b; border-radius: 16px; padding: 40px; margin-bottom: 30px; }
+  .report-header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+  .report-header .subtitle { color: #94a3b8; font-size: 14px; }
+  .client-info { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; padding: 16px; background: rgba(0,0,0,0.2); border-radius: 8px; font-size: 13px; }
+  .client-info span { color: #94a3b8; } .client-info strong { color: #f1f5f9; }
+  .score-card { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 30px; }
+  .score-item { background: #111827; border: 1px solid #1e293b; border-radius: 12px; padding: 20px; text-align: center; }
+  .score-item .num { font-size: 32px; font-weight: 800; }
+  .score-item .num.critical { color: #ef4444; } .score-item .num.high { color: #f97316; } .score-item .num.medium { color: #eab308; } .score-item .num.low { color: #22c55e; } .score-item .num.total { color: #00e5ff; }
+  .score-item .label { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+  .exec-summary { background: linear-gradient(135deg, #1a2332, #111827); border: 1px solid #1e293b; border-radius: 12px; padding: 24px; margin-bottom: 30px; }
+  .exec-summary h2 { font-size: 16px; margin-bottom: 12px; color: #00e5ff; }
+  .exec-summary p { color: #94a3b8; font-size: 14px; }
+  .exec-summary ul { list-style: none; margin-top: 12px; }
+  .exec-summary ul li { padding: 6px 0; color: #cbd5e1; font-size: 14px; }
+  .exec-summary ul li::before { content: "\25B6"; color: #ef4444; margin-right: 10px; font-size: 10px; }
+  .severity { display: inline-block; padding: 3px 12px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.03em; }
+  .sev-critical { background: rgba(239,68,68,0.15); color: #fca5a5; }
+  .sev-high { background: rgba(249,115,22,0.15); color: #fdba74; }
+  .sev-medium { background: rgba(234,179,8,0.15); color: #fde047; }
+  .sev-low { background: rgba(34,197,94,0.15); color: #86efac; }
+  .vuln-card { background: #111827; border: 1px solid #1e293b; border-radius: 12px; padding: 24px; margin-bottom: 14px; transition: 0.2s; }
+  .vuln-card:hover { border-color: #334155; }
+  .vuln-card h3 { font-size: 15px; margin: 8px 0 6px; }
+  .vuln-card p { color: #94a3b8; font-size: 13px; }
+  .vuln-card .rec { margin-top: 10px; padding: 10px 14px; background: rgba(16,185,129,0.1); border-left: 3px solid #10b981; border-radius: 0 6px 6px 0; font-size: 13px; color: #86efac; }
+  .vuln-card .impact { display: inline-block; margin-top: 8px; font-size: 12px; color: #64748b; }
+  .vuln-card .impact strong { color: #cbd5e1; }
+  .action-plan { background: #111827; border: 1px solid #1e293b; border-radius: 12px; padding: 24px; margin-top: 30px; }
+  .action-plan h2 { font-size: 16px; margin-bottom: 16px; color: #00e5ff; }
+  .step { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid #1e293b; }
+  .step:last-child { border: none; }
+  .step-num { width: 28px; height: 28px; background: #00e5ff; color: #0a0e17; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+  .step-content h4 { font-size: 14px; margin-bottom: 2px; }
+  .step-content p { color: #94a3b8; font-size: 13px; }
+  .footer-note { text-align: center; padding: 30px; color: #475569; font-size: 12px; }
+  .back-link { display: inline-flex; align-items: center; gap: 6px; color: #00e5ff; text-decoration: none; font-size: 14px; font-weight: 600; margin-top: 20px; }
+  .back-link:hover { text-decoration: underline; }
+  .top-bar a { color: #00e5ff; text-decoration: none; } .top-bar a:hover { text-decoration: underline; }
+  @media (max-width: 640px) { .score-card { grid-template-columns: repeat(2,1fr); } .client-info { grid-template-columns: 1fr; } body { padding: 16px; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="top-bar">
+    <a href="../../index.html" class="logo">Nova<span>Sec</span></a>
+    <span class="badge">DÉMONSTRATION</span>
+  </div>
+
+  <div class="report-header">
+    <h1>Rapport d'audit de cybersécurité</h1>
+    <p class="subtitle">Site e-commerce « MaBoutique.fr » — Réalisé le 15/06/2026</p>
+    <div class="client-info">
+      <div><span>Client :</span> <strong>MaBoutique.fr (démonstration)</strong></div>
+      <div><span>Type d'audit :</span> <strong>Boîte grise (accès limité)</strong></div>
+      <div><span>Méthodologie :</span> <strong>OWASP Top 10 2021</strong></div>
+      <div><span>Référence :</span> <strong>RAP-2026-001</strong></div>
+    </div>
+  </div>
+
+  <div class="score-card">
+    <div class="score-item"><div class="num total">12</div><div class="label">Vulnérabilités</div></div>
+    <div class="score-item"><div class="num critical">2</div><div class="label">Critiques</div></div>
+    <div class="score-item"><div class="num high">4</div><div class="label">Élevées</div></div>
+    <div class="score-item"><div class="num medium">4</div><div class="label">Moyennes</div></div>
+    <div class="score-item"><div class="num low">2</div><div class="label">Faibles</div></div>
+  </div>
+
+  <div class="exec-summary">
+    <h2>Résumé pour le chef d'entreprise</h2>
+    <p>Ce site e-commerce présente <strong>12 failles de sécurité</strong>, dont 2 critiques qui mettent en danger les données de vos clients. En l'état, un attaquant pourrait :</p>
+    <ul>
+      <li>Voler la base de données clients (noms, emails, mots de passe, adresses)</li>
+      <li>Prendre le contrôle du site et afficher de faux produits ou de fausses promotions</li>
+      <li>Pirater le compte de n'importe quel client</li>
+      <li>Dérober des informations bancaires</li>
+    </ul>
+    <p style="margin-top:12px;color:#fca5a5;">Le coût estimé d'une intrusion : 15 000 € à 50 000 € (perte de données, réparation, image). Le coût des corrections : 399 €.</p>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-critical">Critique</span>
+    <h3>1. Injection SQL — fuite de la base de données</h3>
+    <p><strong>Concrètement :</strong> En tapant un code spécial dans la barre d'adresse (ex: <code>/produit?id=1' OR '1'='1</code>), un attaquant peut afficher toute votre base de données clients : noms, emails, adresses et mots de passe.</p>
+    <p class="impact"><strong>Impact :</strong> Vol de données clients, risque juridique (CNIL), perte de confiance.</p>
+    <div class="rec">Recommandation : Utiliser des requêtes préparées (PDO) — correction simple et rapide.</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-critical">Critique</span>
+    <h3>2. Faille XSS — attaque via les commentaires</h3>
+    <p><strong>Concrètement :</strong> N'importe qui peut poster un commentaire contenant du code JavaScript caché. Quand un visiteur lit ce commentaire, le code s'exécute et peut voler ses cookies de session.</p>
+    <p class="impact"><strong>Impact :</strong> Piratage de comptes clients, vol de paniers, redirection vers des faux sites de paiement.</p>
+    <div class="rec">Recommandation : Échapper les caractères spéciaux dans les commentaires (<code>htmlspecialchars()</code>).</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-high">Élevée</span>
+    <h3>3. Mots de passe stockés en MD5 (non salés)</h3>
+    <p><strong>Concrètement :</strong> Les mots de passe sont stockés avec un ancien système (MD5) qui se craque en moins d'une minute. Si la base de données fuit, 80 % des mots de passe sont récupérables immédiatement.</p>
+    <p class="impact"><strong>Impact :</strong> Vos clients réutilisent souvent le même mot de passe ailleurs → risque de piratage de leur boîte mail, banque, etc.</p>
+    <div class="rec">Recommandation : Remplacer par bcrypt (standard actuel, recommandé par l'ANSSI).</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-high">Élevée</span>
+    <h3>4. Pas de protection CSRF sur le formulaire de connexion</h3>
+    <p><strong>Concrètement :</strong> Un attaquant peut fabriquer un faux lien qui, si vous cliquez dessus pendant que vous êtes connecté, exécute une action sans votre consentement (changer le mot de passe, passer une commande).</p>
+    <p class="impact"><strong>Impact :</strong> Un simple clic sur un piège peut suffire à se faire pirater son compte.</p>
+    <div class="rec">Recommandation : Ajouter un token CSRF unique à chaque formulaire.</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-high">Élevée</span>
+    <h3>5. Cookies de session non sécurisés</h3>
+    <p><strong>Concrètement :</strong> Les cookies "session" (qui permettent de rester connecté) n'ont pas les protections de base. Un attaquant peut les voler et usurper l'identité de n'importe quel utilisateur.</p>
+    <p class="impact"><strong>Impact :</strong> Usurpation de compte administrateur possible → contrôle total du site.</p>
+    <div class="rec">Recommandation : Activer les flags <code>HttpOnly</code>, <code>Secure</code> et <code>SameSite</code> sur les cookies.</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-high">Élevée</span>
+    <h3>6. Bibliothèque obsolète (jQuery 1.12.4)</h3>
+    <p><strong>Concrètement :</strong> Cette version de jQuery a 14 failles de sécurité connues. Certaines permettent d'exécuter du code à distance.</p>
+    <p class="impact"><strong>Impact :</strong> Vulnérabilités connues et documentées, attaquable par des outils automatiques.</p>
+    <div class="rec">Recommandation : Mettre à jour jQuery vers la version stable la plus récente.</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-medium">Moyenne</span>
+    <h3>7. En-têtes de sécurité absents</h3>
+    <p><strong>Concrètement :</strong> Votre site n'envoie pas certains en-têtes qui protègent contre les attaques courantes (clic vol de fichiers, injection de contenu).</p>
+    <div class="rec">Recommandation : Ajouter X-Content-Type-Options, Content-Security-Policy et X-Frame-Options.</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-medium">Moyenne</span>
+    <h3>8. Répertoires accessibles publiquement</h3>
+    <p><strong>Concrètement :</strong> N'importe qui peut lister le contenu des dossiers <code>/uploads/</code> et <code>/backup/</code> dans son navigateur.</p>
+    <div class="rec">Recommandation : Désactiver l'indexation des répertoires dans le serveur.</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-medium">Moyenne</span>
+    <h3>9. Certificat SSL obsolète (SHA-1)</h3>
+    <p><strong>Concrètement :</strong> Le certificat utilise SHA-1, une technologie qui n'est plus considérée comme sûre depuis 2017. Les navigateurs récents affichent un avertissement.</p>
+    <div class="rec">Recommandation : Regénérer le certificat avec SHA-256 (Let's Encrypt le fait automatiquement).</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-medium">Moyenne</span>
+    <h3>10. Pas de limite de tentatives de connexion</h3>
+    <p><strong>Concrètement :</strong> Un attaquant peut essayer des milliers de mots de passe par minute sans être bloqué.</p>
+    <div class="rec">Recommandation : Installer un système de limitation (3 tentatives, puis blocage 15 minutes).</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-low">Faible</span>
+    <h3>11. Version PHP affichée publiquement</h3>
+    <p>Un attaquant peut connaître la version exacte de PHP utilisée pour cibler des failles connues.</p>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-low">Faible</span>
+    <h3>12. Adresse email exposée dans le pied de page</h3>
+    <p>Visible en texte clair, elle peut être récoltée par des robots pour du spam ou du phishing ciblé.</p>
+  </div>
+
+  <div class="action-plan">
+    <h2>Plan d'action prioritaire (par urgence)</h2>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content"><h4>Urgent — Corriger l'injection SQL et la XSS</h4><p>Ces deux failles critiques doivent être corrigées sous 48h. Elles exposent directement les données de vos clients.</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content"><h4>Urgent — Remplacer MD5 par bcrypt</h4><p>Les mots de passe de tous vos clients doivent être regénérés avec un algorithme sécurisé.</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content"><h4>Important — Mettre à jour jQuery + en-têtes</h4><p>Corriger les vulnérabilités connues et ajouter les protections de base.</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content"><h4>Important — Désactiver le directory listing</h4><p>Empêcher l'accès public aux dossiers sensibles.</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-content"><h4>Souhaitable — Renouveler le certificat SSL</h4><p>Passer en SHA-256 pour la confiance des navigateurs.</p></div>
+    </div>
+  </div>
+
+  <a href="../../index.html#portfolio" class="back-link">&larr; Retour au portfolio NovaSec</a>
+  <div class="footer-note">Document confidentiel — NovaSec © 2026 — Rapport de démonstration à but pédagogique</div>
+</div>
+</body>
+</html>

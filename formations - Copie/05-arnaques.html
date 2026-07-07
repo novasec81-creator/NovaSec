@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formation – Éviter les arnaques sur Internet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { margin: 18mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; color: #1a1a2e; max-width: 210mm; margin: 0 auto; padding: 40px; line-height: 1.8; font-size: 12.5px; background: #fafafa; }
+  .page { background: #fff; border-radius: 4px; padding: 40px 48px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .cover { text-align: center; padding: 60px 0 20px; }
+  .cover h1 { font-size: 28px; } .cover h1 span { color: #00e5ff; }
+  .cover .sstitre { color: #64748b; font-size: 15px; margin-top: 6px; }
+  .cover .titre { font-size: 26px; font-weight: 700; margin: 30px 0 8px; }
+  .cover .prix { font-size: 20px; font-weight: 700; color: #00e5ff; }
+  .cover .pagecount { color: #94a3b8; font-size: 13px; margin-top: 4px; }
+  .sommaire { background: #f8fafc; border-radius: 10px; padding: 24px 32px; margin: 30px 0; border: 1px solid #e2e8f0; }
+  .sommaire h2 { font-size: 16px; margin-bottom: 12px; border: none; }
+  .sommaire ul { columns: 2; list-style: none; padding: 0; }
+  .sommaire ul li { padding: 3px 0; font-size: 13px; color: #475569; }
+  .sommaire ul li::before { content: "0" counter(item) ". "; counter-increment: item; color: #00e5ff; font-weight: 600; }
+  .sommaire ul { counter-reset: item; }
+  h2 { font-size: 18px; margin: 36px 0 14px; border-bottom: 2px solid #00e5ff; padding-bottom: 6px; color: #0f172a; }
+  h3 { font-size: 15px; margin: 24px 0 10px; color: #0f172a; }
+  h4 { font-size: 13.5px; margin: 18px 0 8px; color: #334155; }
+  p { color: #334155; margin-bottom: 10px; }
+  ul, ol { padding-left: 22px; margin-bottom: 12px; }
+  li { margin-bottom: 5px; color: #334155; }
+  .encadre { background: #f0fdfa; border-left: 4px solid #10b981; padding: 14px 18px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .alerte { background: #fef2f2; border-left: 4px solid #ef4444; padding: 14px 18px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .info { background: #f0f9ff; border-left: 4px solid #0ea5e9; padding: 14px 18px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .exemple { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 20px; margin: 16px 0; }
+  .exemple h4 { font-size: 12px; color: #64748b; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+  code { background: #f1f5f9; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12.5px; }
+  th { background: #1a1a2e; color: #fff; padding: 10px 14px; text-align: left; }
+  td { padding: 10px 14px; border-bottom: 1px solid #e2e8f0; }
+  tr:nth-child(even) td { background: #f8fafc; }
+  .btn-print { position: fixed; top: 20px; right: 20px; padding: 10px 20px; background: #00e5ff; color: #1a1a2e; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-family: inherit; z-index: 10; }
+  .btn-print:hover { background: #33eaff; }
+  @media print { body { padding: 0; background: #fff; } .page { box-shadow: none; padding: 0; } .btn-print { display: none; } .cover { padding-top: 20px; } }
+  .page-break { page-break-before: always; }
+  .password-gate { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a1a2e; display: none; align-items: center; justify-content: center; z-index: 9999; }
+  .password-gate-inner { background: #fff; padding: 40px; border-radius: 12px; max-width: 400px; width: 90%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+  .password-gate h2 { border: none; margin: 0 0 8px 0; color: #1a1a2e; }
+  .password-gate p { color: #64748b; font-size: 13px; margin-bottom: 20px; }
+  .password-gate input { width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 15px; font-family: inherit; margin-bottom: 12px; outline: none; box-sizing: border-box; }
+  .password-gate input:focus { border-color: #00e5ff; }
+  .password-gate button { width: 100%; padding: 12px; background: #00e5ff; color: #1a1a2e; border: none; border-radius: 8px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; }
+  .password-gate button:hover { background: #33eaff; }
+  .password-gate .error { color: #ef4444; font-size: 12px; margin-top: 8px; display: none; }
+  .password-gate .logo { font-size: 24px; font-weight: 800; margin-bottom: 16px; }
+  .password-gate .logo span { color: #00e5ff; }
+</style>
+</head>
+<body>
+<div id="passwordGate" class="password-gate">
+  <div class="password-gate-inner">
+    <div class="logo">Nova<span>Sec</span></div>
+    <h2>Formation payante</h2>
+    <p>Cette formation est protégée. Veuillez saisir le mot de passe reçu lors de votre achat.</p>
+    <input type="password" id="pwdInput" placeholder="Mot de passe" autocomplete="off">
+    <button id="pwdSubmit">Accéder à la formation</button>
+    <div class="error" id="pwdError">Mot de passe incorrect.</div>
+  </div>
+</div>
+<div id="protectedContent" class="page">
+
+<div class="cover">
+  <h1>Nova<span>Sec</span></h1>
+  <p class="sstitre">Formation cybersécurité pour TPE/PME</p>
+  <p class="titre">Éviter les arnaques sur Internet</p>
+  <p class="prix">29 €</p>
+  <p class="pagecount">Version 1.0 — 2026 — ~14 pages</p>
+</div>
+
+<div class="sommaire">
+  <h2>Sommaire</h2>
+  <ul>
+    <li>Introduction : la guerre numérique au quotidien</li>
+    <li>Les 10 arnaques Internet les plus répandues</li>
+    <li>Arnaque n°1 : la fausse facture</li>
+    <li>Arnaque n°2 : le faux support technique</li>
+    <li>Arnaque n°3 : les sites marchands frauduleux</li>
+    <li>Arnaque n°4 : les fausses annonces d'emploi</li>
+    <li>Arnaque n°5 : les investissements miracles</li>
+    <li>Arnaque n°6 : rançongiciel (ransomware)</li>
+    <li>Arnaque n°7 : l'arnaque au président</li>
+    <li>Arnaque n°8 : les faux remboursements</li>
+    <li>Arnaque n°9 : les arnaques sentimentales</li>
+    <li>Arnaque n°10 : les faux abonnements</li>
+    <li>Comment vérifier un site d'e-commerce</li>
+    <li>Que faire si vous êtes victime</li>
+    <li>Quiz final et checklist</li>
+  </ul>
+</div>
+
+<h2>Introduction : la guerre numérique au quotidien</h2>
+<p>Internet est un espace formidable pour travailler, communiquer, acheter et se divertir. Mais c'est aussi un terrain de chasse pour les arnaqueurs. En France en 2025 :</p>
+<ul>
+  <li><strong>3,9 milliards d'euros</strong> perdus à cause des arnaques en ligne</li>
+  <li><strong>1 adulte sur 5</strong> a déjà été victime d'une arnaque sur Internet</li>
+  <li><strong>53 %</strong> des victimes ne portent pas plainte (par honte ou ignorance)</li>
+  <li><strong>+40 %</strong> d'augmentation des arnaques par rapport à 2024</li>
+  <li><strong>15 000 €</strong> : préjudice moyen pour une TPE/PME victime d'une fraude aux faux ordres de virement</li>
+</ul>
+<p>Les arnaqueurs sont de plus en plus sophistiqués : ils utilisent l'IA pour rédiger des messages sans fautes, créent de faux sites quasi identiques aux vrais, et exploitent les données volées pour personnaliser leurs attaques.</p>
+<p>Cette formation vous présente <strong>les 10 arnaques les plus courantes</strong> avec des exemples concrets et des réflexes pour ne pas tomber dans le piège.</p>
+
+<h2>Les 10 arnaques Internet les plus répandues</h2>
+<table>
+  <tr><th>#</th><th>Arnaque</th><th>Risque</th><th>Victime type</th></tr>
+  <tr><td>1</td><td>Fausse facture</td><td>💰 500-10 000 €</td><td>Entreprise / indépendant</td></tr>
+  <tr><td>2</td><td>Faux support technique</td><td>🔐 Accès à l'ordinateur</td><td>Particulier / senior</td></tr>
+  <tr><td>3</td><td>Site marchand frauduleux</td><td>💳 Données bancaires</td><td>Tout le monde</td></tr>
+  <tr><td>4</td><td>Fausse annonce d'emploi</td><td>🆔 Pièces d'identité</td><td>Demandeur d'emploi</td></tr>
+  <tr><td>5</td><td>Investissement miracle</td><td>💰 1 000-50 000 €</td><td>Épargnant</td></tr>
+  <tr><td>6</td><td>Rançongiciel</td><td>🔐 Données chiffrées</td><td>Entreprise / particulier</td></tr>
+  <tr><td>7</td><td>Arnaque au président</td><td>💰 10 000-500 000 €</td><td>Entreprise (comptable)</td></tr>
+  <tr><td>8</td><td>Faux remboursement</td><td>💳 Données bancaires</td><td>Client d'un site</td></tr>
+  <tr><td>9</td><td>Arnaque sentimentale</td><td>🧠 Émotionnel + financier</td><td>Personne isolée</td></tr>
+  <tr><td>10</td><td>Faux abonnement</td><td>💰 30-100 €/mois</td><td>Abonné piégé</td></tr>
+</table>
+
+<h2 class="page-break">Arnaque n°1 : la fausse facture</h2>
+<p>Vous recevez une facture par email, semblant provenir d'un fournisseur, d'un transporteur ou d'une administration. Le montant est souvent modeste (50-200 €) pour que vous payiez sans vérifier.</p>
+
+<h3>Comment ça marche</h3>
+<ol>
+  <li>Vous recevez une "facture" pour un service que vous n'avez pas commandé</li>
+  <li>Le RIB sur la facture est frauduleux (pas celui du vrai fournisseur)</li>
+  <li>Vous payez, l'argent part sur le compte du pirate</li>
+  <li>Le vrai fournisseur vous relance pour impayé : vous payez deux fois</li>
+</ol>
+
+<div class="exemple">
+  <h4>Exemple réel</h4>
+  <p>Une TPE reçoit une facture de "Pages Jaunes" de 89 € pour un référencement qu'elle n'a jamais commandé. La facture est professionnelle, avec le logo Pages Jaunes. La société paie. 3 mois plus tard, relance avec majoration. En vérifiant, le RIB sur la facture est celui d'une banque lituanienne. Perte : 89 € + frais.</p>
+</div>
+
+<h3>Réflexes de protection</h3>
+<ul>
+  <li>Ne payez jamais une facture que vous n'avez pas explicitement demandée</li>
+  <li>Vérifiez le RIB : est-ce bien celui de votre fournisseur habituel ?</li>
+  <li>Vérifiez l'adresse email de l'expéditeur (gmail.com au lieu de fournisseur.fr)</li>
+  <li>Mettez en place un processus de validation des factures : un bon de commande doit précéder la facture</li>
+  <li>En cas de doute, contactez votre fournisseur par téléphone (au numéro habituel, pas celui sur la facture)</li>
+</ul>
+
+<h2>Arnaque n°2 : le faux support technique</h2>
+<p>Une fenêtre pop-up s'affiche sur votre écran : "Votre ordinateur est infecté ! Appelez le 01 23 45 67 89." Ou vous recevez un appel de "Microsoft" vous disant que votre PC est piraté.</p>
+
+<h3>Comment ça marche</h3>
+<ol>
+  <li>Le faux technicien vous demande d'installer un logiciel de contrôle à distance (TeamViewer, AnyDesk)</li>
+  <li>Une fois connecté, il fait semblant de "réparer" votre ordinateur</li>
+  <li>Il vous demande de payer (50-500 €) pour un "abonnement de sécurité"</li>
+  <li>Pire : il installe un vrai malware, vole vos mots de passe ou chiffre vos fichiers</li>
+</ol>
+
+<div class="alerte">
+  <strong>Ne faites jamais confiance à un support technique qui vous contacte.</strong> Microsoft, Apple, Google, votre FAI ne vous appellent jamais pour vous dire que votre ordinateur est infecté. Les pop-ups "Votre PC est infecté" sont des publicités frauduleuses.
+</div>
+
+<h3>Réflexes de protection</h3>
+<ul>
+  <li>Raccrochez immédiatement si quelqu'un vous appelle pour une raison informatique</li>
+  <li>Ne rappelez jamais un numéro laissé dans un pop-up</li>
+  <li>Ne donnez jamais le contrôle de votre ordinateur à un inconnu</li>
+  <li>Fermez la fenêtre pop-up avec Alt+F4 (pas sur le bouton "Fermer" du pop-up)</li>
+  <li>Si vous avez un doute, allez dans un magasin (Boulanger, Fnac, entreprise comme NovaSec)</li>
+</ul>
+
+<h2>Arnaque n°3 : les sites marchands frauduleux</h2>
+<p>Vous trouvez une offre incroyable sur Internet : le nouvel iPhone à 299 €, une console à -70 %, une marque de luxe à -80 %. Le site a l'air vrai mais...</p>
+
+<h3>Les signes d'un site frauduleux</h3>
+<table>
+  <tr><th>À vérifier</th><th>Site frauduleux</th><th>Site légitime</th></tr>
+  <tr><td>Prix</td><td>-50 % à -90 % par rapport au marché</td><td>Prix cohérents (-10 % à -30 % max)</td></tr>
+  <tr><td>Moyens de paiement</td><td>Virement bancaire uniquement, ou crypto</td><td>Carte bancaire + PayPal + plusieurs options</td></tr>
+  <tr><td>Mentions légales</td><td>Absentes ou fausses (SIRET invalide)</td><td>Présentes, vérifiables sur societe.com</td></tr>
+  <tr><td>Contact</td><td>Simple formulaire ou adresse Gmail</td><td>Téléphone + adresse physique + email pro</td></tr>
+  <tr><td>Avis clients</td><td>Que des avis 5 étoiles, tous écrits le même jour</td><td>Avis variés, récents, vérifiés</td></tr>
+  <tr><td>URL</td><td>nom-bizarre-77.com, site-pascher.fr</td><td>URL claire, .fr, .com, .eu</td></tr>
+  <tr><td>Date de création du domaine</td><td>Moins de 6 mois (vérifier sur whois.com)</td><td>Plusieurs années d'ancienneté</td></tr>
+</table>
+
+<div class="info">
+  <strong>Règle d'or :</strong> Si une offre est trop belle pour être vraie, c'est que c'est une arnaque. Personne ne vend un iPhone 16 à 299 €.
+</div>
+
+<h2 class="page-break">Arnaque n°4 : les fausses annonces d'emploi</h2>
+<p>Une offre d'emploi alléchante (télétravail, salaire élevé, pas d'expérience requise) vous est proposée. Le recruteur vous demande :</p>
+<ul>
+  <li>Une copie de votre pièce d'identité (pour "préparer le contrat")</li>
+  <li>Un "frais de dossier" ou "d'inscription" (50-150 €)</li>
+  <li>Votre RIB (pour "le versement du salaire") — en réalité pour prélever de l'argent</li>
+  <li>Un virement pour "l'achat du matériel" (ordinateur, logiciel) — vous ne serez jamais remboursé</li>
+</ul>
+
+<div class="alerte">
+  <strong>Un employeur légitime ne vous demandera jamais d'argent pour vous embaucher.</strong> Les seuls frais possibles sont les titres de transport pour l'entretien, et c'est souvent l'employeur qui les prend en charge.
+</div>
+
+<h3>Réflexes</h3>
+<ul>
+  <li>Vérifiez l'entreprise sur societe.com ou LinkedIn</li>
+  <li>Vérifiez que l'email du recruteur correspond au nom de domaine de l'entreprise (pas un Gmail)</li>
+  <li>Ne donnez jamais vos documents d'identité sans avoir signé un contrat</li>
+  <li>Ne payez jamais pour un emploi</li>
+  <li>Méfiez-vous des offres "trop faciles" ou "trop payantes"</li>
+</ul>
+
+<h2>Arnaque n°5 : les investissements miracles</h2>
+<p>On vous propose d'investir dans le Forex, les cryptomonnaies, le trading automatique, avec des promesses de rendements de 10 %, 20 % voire 50 % par mois. C'est systématiquement une arnaque.</p>
+
+<h3>Les signes</h3>
+<ul>
+  <li>"Rendez-vous de 200 % en 3 mois"</li>
+  <li>"Trading automatique sans risque"</li>
+  <li>"Plateforme exclusive réservée à quelques privilégiés"</li>
+  <li>"Urgence : dernière chance d'investir"</li>
+  <li>Influenceur qui fait la promotion d'une "plateforme révolutionnaire"</li>
+  <li>Site d'investissement sans agrément AMF (Autorité des Marchés Financiers)</li>
+</ul>
+
+<div class="encadre">
+  <strong>À savoir :</strong> L'AMF tient une liste noire des sites d'investissement frauduleux. Consultez-la sur amf-france.org avant d'investir. Aucun investissement légitime ne promet des rendements élevés sans risque.
+</div>
+
+<h2>Arnaque n°6 : rançongiciel (ransomware)</h2>
+<p>Un logiciel malveillant chiffre tous vos fichiers et affiche une demande de rançon (souvent en bitcoins) pour les déchiffrer. Montant moyen demandé : 500 à 5 000 € pour un particulier, 5 000 à 50 000 € pour une entreprise.</p>
+
+<h3>Comment s'en protéger</h3>
+<ul>
+  <li>Sauvegardes régulières (règle 3-2-1) — votre meilleure défense</li>
+  <li>Antivirus à jour</li>
+  <li>Ne pas ouvrir les pièces jointes suspectes</li>
+  <li>Ne pas cliquer sur les liens dans les emails non sollicités</li>
+  <li>Mises à jour Windows et logiciels à jour</li>
+  <li>Désactiver les macros Office (Word, Excel, PowerPoint)</li>
+</ul>
+
+<div class="alerte">
+  <strong>Ne payez pas la rançon.</strong> Rien ne garantit que le pirate rendra vos fichiers. Et en payant, vous financez le crime organisé. Si vous avez des sauvegardes, restaurez. Sinon, contactez un professionnel (NovaSec) avant de payer.
+</div>
+
+<h2 class="page-break">Arnaque n°7 : l'arnaque au président (FOVI)</h2>
+<p>Également appelée <strong>Faux Ordre de Virement International</strong> (FOVI). C'est l'arnaque la plus dangereuse pour les entreprises. Son principe :</p>
+<ol>
+  <li>Un pirate usurpe l'identité du dirigeant (email presque identique : @novasec.co au lieu de @novasec.com)</li>
+  <li>Il envoie un email au comptable : "Bonjour, je suis en réunion avec notre avocat. Virement urgent de 15 000 € sur le compte [RIB pirate] pour finaliser l'acquisition. Confidentialité absolue."</li>
+  <li>Le comptable, qui obéit au "PDG", fait le virement</li>
+  <li>L'argent est perdu (sauf réaction ultra-rapide avec opposition bancaire)</li>
+</ol>
+
+<h3>Les chiffres</h3>
+<ul>
+  <li><strong>+ de 500 millions d'euros</strong> de préjudice par an en France</li>
+  <li>Montant moyen : <strong>15 000 à 80 000 €</strong> selon la taille de l'entreprise</li>
+  <li><strong>1 entreprise sur 10</strong> a déjà été ciblée</li>
+  <li>Seulement <strong>30 %</strong> des sommes sont récupérées</li>
+</ul>
+
+<h3>Procédure de protection</h3>
+<ol>
+  <li>Mettre en place un <strong>double contrôle</strong> : tout virement > 1 000 € doit être validé par 2 personnes</li>
+  <li>Établir un <strong>canal de vérification</strong> : tout ordre de virement reçu par email doit être confirmé par téléphone (sur un numéro connu, pas celui dans l'email)</li>
+  <li>Utiliser des <strong>mots de passe forts</strong> sur la boîte email du dirigeant (c'est par là que ça commence)</li>
+  <li>Activer la <strong>2FA</strong> sur les comptes email</li>
+  <li>Sensibiliser le personnel comptable</li>
+  <li>Vérifier les noms de domaine proches du vôtre (arnaque au cybersquatting)</li>
+</ol>
+
+<h2>Arnaque n°8 : les faux remboursements</h2>
+<p>Vous recevez un email d'un site où vous avez déjà acheté : "Vous avez droit à un remboursement de 45 € suite à une erreur." On vous demande de cliquer sur un lien pour "recevoir le remboursement". Le lien vous demande vos coordonnées bancaires.</p>
+
+<h3>Réflexes</h3>
+<ul>
+  <li>Ne cliquez pas sur le lien de remboursement</li>
+  <li>Connectez-vous directement sur le site marchand (pas via le lien) pour vérifier</li>
+  <li>Un véritable remboursement se fait automatiquement sur le moyen de paiement original</li>
+  <li>On ne vous demandera jamais votre numéro de carte pour un remboursement</li>
+</ul>
+
+<h2>Arnaque n°9 : les arnaques sentimentales</h2>
+<p>Le pirate crée un faux profil sur un site de rencontres ou un réseau social, gagne votre confiance sur plusieurs semaines ou mois, puis invente une urgence (opération médicale, billet d'avion, problème avec la justice) pour vous demander de l'argent.</p>
+
+<h3>Les signes</h3>
+<ul>
+  <li>La personne refuse les appels vidéo ou les rencontres physiques</li>
+  <li>Historique "tragique" : veuf/veuve récent, enfant malade, mission à l'étranger</li>
+  <li>Déclarations d'amour très rapides (en quelques jours)</li>
+  <li>Demandes d'argent pour des situations d'urgence</li>
+  <li>Profil trop parfait (militaire, médecin humanitaire, ingénieur pétrolier)</li>
+</ul>
+
+<h2>Arnaque n°10 : les faux abonnements</h2>
+<p>Vous souscrivez à ce que vous croyez être un service à 1 € pour un essai. En réalité, c'est un abonnement à 49 €/mois, avec des conditions d'annulation impossibles. Exemples : "vérification de compte" 1 €, "envoi du CV" 1 €, "accès à des offres exclusives".</p>
+
+<h3>Protection</h3>
+<ul>
+  <li>Lisez les conditions avant de payer, même 1 €</li>
+  <li>Utilisez une carte virtuelle à usage unique (proposé par certaines banques)</li>
+  <li>Ne donnez jamais vos coordonnées bancaires pour un "essai gratuit" sans lire les conditions d'annulation</li>
+  <li>Vérifiez les avis du site sur Trustpilot avant de payer</li>
+</ul>
+
+<h2 class="page-break">Comment vérifier un site d'e-commerce</h2>
+<ol>
+  <li><strong>Vérifiez le SIRET</strong> sur societe.com ou infogreffe.fr</li>
+  <li><strong>Regardez les mentions légales</strong> : doivent être complètes (nom, adresse, email, téléphone, SIRET, TVA intracommunautaire)</li>
+  <li><strong>Testez le service client</strong> : envoyez un email, appelez si possible</li>
+  <li><strong>Cherchez des avis</strong> sur Google Avis, Trustpilot, e-commerce.org</li>
+  <li><strong>Vérifiez l'URL</strong> : https:// (le "s" est important) et nom de domaine logique</li>
+  <li><strong>Utilisez PayPal</strong> si possible : vous bénéficiez de la protection acheteur</li>
+  <li><strong>Méfiez-vous des promos géantes</strong> : les soldes > 50 % sur des produits récents sont suspectes</li>
+  <li><strong>Vérifiez l'âge du domaine</strong> sur whois.com (s'il a moins d'un an, soyez prudent)</li>
+  <li><strong>Regardez le design</strong> : un site amateur avec des fautes, des images floues, des textes mal écrits</li>
+  <li><strong>Testez une page produit aléatoire</strong> : si elle est en construction ou n'existe pas, fuyez</li>
+</ol>
+
+<h2>Que faire si vous êtes victime</h2>
+<ol>
+  <li><strong>Ne paniquez pas.</strong> Chaque minute compte.</li>
+  <li><strong>Si vous avez payé par carte :</strong> faites opposition immédiate auprès de votre banque (numéro de carte). Demandez un "chargeback" (contestation de paiement).</li>
+  <li><strong>Si vous avez fait un virement :</strong> appelez votre banque en urgence (24h/24) pour demander une opposition et un rappel de fonds. Chaque heure compte.</li>
+  <li><strong>Si on a volé vos identifiants :</strong> changez vos mots de passe immédiatement, activez la 2FA.</li>
+  <li><strong>Déposez plainte</strong> au commissariat/gendarmerie ou en ligne sur pre-plainte-en-ligne.gouv.fr</li>
+  <li><strong>Signalez sur le site du gouvernement :</strong> cybermalveillance.gouv.fr</li>
+  <li><strong>Contactez NovaSec</strong> pour un diagnostic et des mesures correctives.</li>
+</ol>
+
+<h2>Quiz final</h2>
+<ol>
+  <li>Vous recevez une facture de 89 € pour un service que vous n'avez pas commandé. Que faites-vous ?<br>a) Vous payez | b) Vous vérifiez et ne payez pas ✓</li>
+  <li>Une pop-up dit que votre ordinateur est infecté avec un numéro à appeler. Que faites-vous ?<br>a) Vous appelez | b) Vous fermez avec Alt+F4 ✓</li>
+  <li>Trouvez-vous un iPhone à 200 € sur un site inconnu. Que faites-vous ?<br>a) Saisissez l'offre | b) C'est une arnaque ✓</li>
+  <li>Votre patron vous demande par email un virement urgent de 5 000 €. Que faites-vous ?<br>a) Vous exécutez | b) Vous vérifiez par téléphone ✓</li>
+  <li>On vous propose un investissement avec 20 % de rendement par mois. Que faites-vous ?<br>a) Vous investissez | b) C'est une arnaque ✓</li>
+  <li>Quel réflexe en premier si vous faites un virement frauduleux ?<br>a) Attendre | b) Appeler votre banque immédiatement pour opposition ✓</li>
+  <li>Quel site vérifier pour la légitimité d'une entreprise ?<br>a) Facebook | b) societe.com ✓</li>
+  <li>Comment payer sur un site inconnu pour être protégé ?<br>a) Virement | b) PayPal ✓</li>
+</ol>
+
+<h2>Checklist de prudence en ligne</h2>
+<ul>
+  <li> Je vérifie les prix anormaux (trop bas = arnaque probable)</li>
+  <li> Je vérifie les mentions légales et le SIRET</li>
+  <li> Je vérifie les avis clients sur plusieurs plateformes</li>
+  <li> Je ne clique pas sur les liens de remboursement non sollicités</li>
+  <li> Je ne donne jamais le contrôle de mon PC à un inconnu</li>
+  <li> Je vérifie par téléphone tout ordre de virement inhabituel</li>
+  <li> J'utilise PayPal pour les achats sur des sites inconnus</li>
+  <li> Je ne paye jamais pour un emploi, un visa, ou une inscription</li>
+  <li> Je vérifie les conditions d'abonnement avant de donner ma carte</li>
+  <li> En cas de doute, je ne fais rien et je consulte un professionnel</li>
+</ul>
+
+<div class="encadre">
+  <strong>Rappel :</strong> Votre prudence est la meilleure protection. Prenez 5 secondes de plus pour vérifier avant d'agir. Ces 5 secondes peuvent vous économiser des milliers d'euros.
+</div>
+
+<p style="text-align:center;margin-top:40px;color:#94a3b8;font-size:12px;">Formation NovaSec – Tous droits réservés – 2026 – Version 1.0</p>
+
+</div>
+<script>
+var FORMATION_ID = '05-arnaques';
+var TOKEN_KEY = 'nova_' + FORMATION_ID;
+var EXPIRES_KEY = 'nova_exp_' + FORMATION_ID;
+
+document.addEventListener('DOMContentLoaded', function() {
+  var gate = document.getElementById('passwordGate');
+  var content = document.getElementById('protectedContent');
+  var input = document.getElementById('pwdInput');
+  var error = document.getElementById('pwdError');
+  var submitBtn = document.getElementById('pwdSubmit');
+  var attempts = 0;
+  var maxAttempts = 3;
+
+  var token = sessionStorage.getItem(TOKEN_KEY);
+  var expires = sessionStorage.getItem(EXPIRES_KEY);
+  if (token && expires && Date.now() < parseInt(expires)) {
+    gate.style.display = 'none';
+    content.style.display = 'block';
+  } else {
+    content.style.display = 'none';
+    gate.style.display = 'flex';
+  }
+
+  function checkPassword() {
+    fetch('/api/verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ formation: FORMATION_ID, password: input.value })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.valid) {
+        sessionStorage.setItem(TOKEN_KEY, data.token);
+        sessionStorage.setItem(EXPIRES_KEY, Date.now() + 3600000);
+        gate.style.display = 'none';
+        content.style.display = 'block';
+      } else {
+        attempts++;
+        error.style.display = 'block';
+        if (attempts >= maxAttempts) {
+          error.textContent = 'Trop de tentatives. Rechargez la page.';
+          input.disabled = true;
+          submitBtn.disabled = true;
+        }
+        input.value = '';
+      }
+    })
+    .catch(function() {
+      error.textContent = 'Erreur serveur. Rechargez la page.';
+      error.style.display = 'block';
+    });
+  }
+  submitBtn.addEventListener('click', checkPassword);
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+});
+</script>
+</body>
+</html>

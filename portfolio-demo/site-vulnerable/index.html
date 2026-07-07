@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DemoBank – Site vulnérable (démonstration pédagogique)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', Arial, sans-serif; background: #0a0e17; color: #e2e8f0; padding: 20px; }
+  .container { max-width: 850px; margin: 0 auto; }
+  .warning-banner { background: linear-gradient(135deg, #7f1d1d, #991b1b); color: #fecaca; text-align: center; padding: 14px; border-radius: 12px; margin-bottom: 20px; font-size: 14px; font-weight: 600; border: 1px solid #ef4444; }
+  .header-card { background: linear-gradient(135deg, #0f3460, #16213e); border: 1px solid #1e3a5f; border-radius: 16px; padding: 36px; text-align: center; margin-bottom: 24px; }
+  .header-card h1 { font-size: 28px; color: #00e5ff; margin-bottom: 4px; }
+  .header-card p { color: #94a3b8; font-size: 14px; }
+  .header-card .tag { display: inline-block; padding: 4px 14px; background: rgba(239,68,68,0.15); color: #fca5a5; border-radius: 100px; font-size: 11px; font-weight: 600; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .explain-box { background: rgba(16,185,129,0.08); border-left: 4px solid #10b981; padding: 14px 18px; border-radius: 0 8px 8px 0; margin-bottom: 20px; font-size: 13px; color: #86efac; line-height: 1.6; }
+  .explain-box strong { color: #fff; }
+  .vuln-card { background: #111827; border: 1px solid #1e293b; border-radius: 14px; padding: 24px; margin-bottom: 16px; }
+  .vuln-card h3 { font-size: 16px; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+  .vuln-card .vuln-desc { color: #94a3b8; font-size: 13px; margin-bottom: 12px; }
+  .tag-sql { background: rgba(220,38,38,0.15); color: #fca5a5; padding: 2px 10px; border-radius: 100px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+  .tag-xss { background: rgba(234,88,12,0.15); color: #fdba74; padding: 2px 10px; border-radius: 100px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+  .tag-csrf { background: rgba(217,119,6,0.15); color: #fde047; padding: 2px 10px; border-radius: 100px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+  .tag-idor { background: rgba(139,92,246,0.15); color: #c4b5fd; padding: 2px 10px; border-radius: 100px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+  .tag-exposed { background: rgba(236,72,153,0.15); color: #f9a8d4; padding: 2px 10px; border-radius: 100px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+  .demo-input { width: 100%; padding: 12px 14px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #1e293b; background: #0f172a; color: #e2e8f0; font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+  .demo-input:focus { outline: none; border-color: #00e5ff; }
+  .demo-btn { padding: 10px 20px; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; font-family: inherit; transition: 0.2s; }
+  .demo-btn.primary { background: #00e5ff; color: #0a0e17; }
+  .demo-btn.primary:hover { background: #33eaff; }
+  .demo-btn.danger { background: #ef4444; color: #fff; }
+  .demo-btn.danger:hover { background: #dc2626; }
+  .demo-btn.ghost { background: #1e293b; color: #e2e8f0; }
+  .demo-btn.ghost:hover { background: #334155; }
+  .result-box { margin-top: 12px; padding: 12px 14px; border-radius: 8px; font-size: 13px; display: none; font-family: 'JetBrains Mono', monospace; }
+  .result-box.error { display: block; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; }
+  .result-box.success { display: block; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: #86efac; }
+  .result-box.info { display: block; background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.3); color: #67e8f9; }
+  .list-files { padding-left: 20px; color: #94a3b8; font-size: 13px; margin: 8px 0; }
+  .list-files li { padding: 4px 0; }
+  .file-link { color: #fca5a5; text-decoration: underline; cursor: pointer; }
+  .file-link:hover { color: #ef4444; }
+  .footer-note { text-align: center; padding: 30px; color: #475569; font-size: 12px; }
+  .back-link { display: inline-flex; align-items: center; gap: 6px; color: #00e5ff; text-decoration: none; font-size: 14px; font-weight: 600; margin-top: 12px; }
+  .back-link:hover { text-decoration: underline; }
+  .nonsecure-badge { display: inline-block; padding: 2px 8px; background: rgba(239,68,68,0.15); color: #fca5a5; border-radius: 4px; font-size: 10px; font-weight: 600; }
+  @media (max-width: 640px) { body { padding: 12px; } }
+  .password-gate { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0a0e17; display: none; align-items: center; justify-content: center; z-index: 9999; }
+  .password-gate-inner { background: #1a2332; padding: 40px; border-radius: 12px; max-width: 400px; width: 90%; text-align: center; border: 1px solid #1e293b; }
+  .password-gate h2 { font-size: 20px; margin: 0 0 8px 0; color: #f1f5f9; border: none; }
+  .password-gate p { color: #94a3b8; font-size: 13px; margin-bottom: 20px; }
+  .password-gate input { width: 100%; padding: 12px 16px; border: 2px solid #1e293b; border-radius: 8px; font-size: 15px; font-family: inherit; margin-bottom: 12px; outline: none; box-sizing: border-box; background: #0f172a; color: #f1f5f9; }
+  .password-gate input:focus { border-color: #00e5ff; }
+  .password-gate button { width: 100%; padding: 12px; background: #00e5ff; color: #0a0e17; border: none; border-radius: 8px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; }
+  .password-gate button:hover { background: #33eaff; }
+  .password-gate .error { color: #ef4444; font-size: 12px; margin-top: 8px; display: none; }
+  .password-gate .logo { font-size: 24px; font-weight: 800; margin-bottom: 16px; color: #f1f5f9; }
+  .password-gate .logo span { color: #00e5ff; }
+</style>
+</head>
+<body>
+<div id="passwordGate" class="password-gate">
+  <div class="password-gate-inner">
+    <div class="logo">Nova<span>Sec</span></div>
+    <h2>Formation payante</h2>
+    <p>Cette démonstration est protégée. Veuillez saisir le mot de passe reçu lors de votre achat.</p>
+    <input type="password" id="pwdInput" placeholder="Mot de passe" autocomplete="off">
+    <button id="pwdSubmit">Accéder</button>
+    <div class="error" id="pwdError">Mot de passe incorrect.</div>
+  </div>
+</div>
+<div id="protectedContent" style="display:none;">
+<div class="container">
+  <div class="warning-banner">⚠ SITE VOLONTAIREMENT VULNÉRABLE — Usage pédagogique uniquement</div>
+
+  <div class="header-card">
+    <div class="tag">🔴 Site de démonstration — Ne pas utiliser en production</div>
+    <h1>DemoBank</h1>
+    <p>Banque en ligne fictive — Comprendre les failles en les testant soi-même</p>
+  </div>
+
+  <div class="explain-box">
+    <strong>Comment ça marche ?</strong> Ce site reproduit les <strong>5 failles les plus courantes</strong> sur le web. Chaque section vous explique la faille <strong>en français simple</strong> et vous permet de la tester concrètement. Aucune donnée réelle n'est utilisée.
+  </div>
+
+  <!-- SQL Injection -->
+  <div class="vuln-card">
+    <h3><span class="tag-sql">SQL Injection</span> Connexion — Fuite de données</h3>
+    <div class="vuln-desc">
+      <strong>En clair :</strong> Le champ identifiant est mal protégé. Au lieu de taper un vrai login, on peut taper une "formule magique" qui force l'ouverture de la base de données.<br>
+      <strong>👉 Teste :</strong> Tape <code>admin' OR '1'='1</code> dans l'identifiant, n'importe quoi en mot de passe, et clique.
+    </div>
+    <input type="text" class="demo-input" id="sqlUser" placeholder="Identifiant" value="admin' OR '1'='1">
+    <input type="password" class="demo-input" id="sqlPass" placeholder="Mot de passe (n'importe quoi)">
+    <button class="demo-btn primary" onclick="testSQL()">Se connecter</button>
+    <div class="result-box" id="sqlResult"></div>
+  </div>
+
+  <!-- XSS -->
+  <div class="vuln-card">
+    <h3><span class="tag-xss">XSS stockée</span> Commentaires — Injection de code</h3>
+    <div class="vuln-desc">
+      <strong>En clair :</strong> Les commentaires ne sont pas nettoyés. On peut y glisser du code JavaScript malveillant. Si un admin le lit, son compte peut être volé.<br>
+      <strong>👉 Teste :</strong> Copie <code>&lt;script&gt;alert('Hacké !')&lt;/script&gt;</code> dans le champ et publie.
+    </div>
+    <textarea class="demo-input" id="xssInput" placeholder="Écris un commentaire..." rows="2" style="font-family:'JetBrains Mono',monospace;">&lt;script&gt;alert('Hacké !')&lt;/script&gt;</textarea>
+    <button class="demo-btn primary" onclick="testXSS()">Publier le commentaire</button>
+    <div class="result-box" id="xssResult"></div>
+  </div>
+
+  <!-- CSRF -->
+  <div class="vuln-card">
+    <h3><span class="tag-csrf">CSRF</span> Transfert sans confirmation</h3>
+    <div class="vuln-desc">
+      <strong>En clair :</strong> Pas de jeton de sécurité. Un attaquant peut fabriquer un faux bouton qui, si vous cliquez, exécute une action (comme un virement) sans que vous le sachiez.<br>
+      <strong>👉 Teste :</strong> Clique sur "Transférer" — normalement, on devrait te demander une confirmation, mais là ça part direct.
+    </div>
+    <button class="demo-btn danger" onclick="testCSRF()">Transférer 1 000 € à l'attaquant</button>
+    <div class="result-box" id="csrfResult"></div>
+  </div>
+
+  <!-- IDOR -->
+  <div class="vuln-card">
+    <h3><span class="tag-idor">IDOR</span> Accès aux comptes des autres</h3>
+    <div class="vuln-desc">
+      <strong>En clair :</strong> Chaque compte a un numéro (ID). En changeant simplement ce chiffre dans la page, on peut voir le compte des autres clients. La banque n'a pas vérifié que c'est bien le vôtre.<br>
+      <strong>👉 Teste :</strong> Clique sur les différents numéros pour voir les comptes des autres utilisateurs.
+    </div>
+    <p style="font-size:13px;color:#94a3b8;margin-bottom:8px;">Compte actuel : <strong id="idorAccount">Utilisateur #1</strong> — Solde : <strong id="idorBalance">1 234,56 €</strong></p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="demo-btn ghost" onclick="switchIDOR(1)">Compte #1 (moi)</button>
+      <button class="demo-btn ghost" onclick="switchIDOR(2)">Compte #2</button>
+      <button class="demo-btn ghost" onclick="switchIDOR(3)">Compte #3</button>
+      <button class="demo-btn ghost" onclick="switchIDOR(4)">Compte #4</button>
+    </div>
+    <div class="result-box info" id="idorResult" style="display:none;"></div>
+  </div>
+
+  <!-- Fichiers exposés -->
+  <div class="vuln-card">
+    <h3><span class="tag-exposed">Fichiers exposés</span> Données sensibles accessibles</h3>
+    <div class="vuln-desc">
+      <strong>En clair :</strong> Des fichiers importants sont laissés accessibles à tout le monde. C'est comme laisser la clé de votre coffre sous le paillasson. Voici ce qu'un attaquant peut trouver :<br>
+    </div>
+    <ul class="list-files">
+      <li><span class="file-link" onclick="showExposed('dump')">📄 /backup/database.sql</span> — Toute la base (clients, comptes, mots de passe)</li>
+      <li><span class="file-link" onclick="showExposed('config')">📄 /config.php</span> — Identifiants de connexion à la base</li>
+      <li><span class="file-link" onclick="showExposed('git')">📄 /.git/config</span> — Historique complet du code (contient les anciens mots de passe)</li>
+    </ul>
+    <div class="result-box" id="exposedResult" style="display:none;"></div>
+  </div>
+
+  <a href="../../index.html#portfolio" class="back-link">&larr; Retour au portfolio NovaSec</a>
+  <div class="footer-note">Site vulnérable NovaSec — À usage pédagogique uniquement — Ne pas déployer en production © 2026</div>
+</div>
+
+<script>
+function testSQL() {
+  const user = document.getElementById('sqlUser').value;
+  const r = document.getElementById('sqlResult');
+  r.className = 'result-box';
+  if (user.includes("'") || user.includes("OR") || user.includes("or")) {
+    r.className = 'result-box error';
+    r.innerHTML = '❌ ACCÈS ACCORDÉ — Base de données fuite !<br><br>🔓 <strong>Comptes clients récupérés :</strong><br>admin / 123456<br>jean.dupont@email.com / mot2passe<br>marie.l@email.com / MD5:827ccb0eea8a706c4c34a16891f84e7b<br>paul.martin@email.com / 0000<br><br><span style="color:#fca5a5;">💡 En vrai : un attaquant récupère TOUTE la base utilisateurs, pas juste un compte.</span>';
+  } else {
+    r.className = 'result-box success';
+    r.innerHTML = '✓ Connexion réussie (compte protégé existant)';
+  }
+}
+
+function testXSS() {
+  const val = document.getElementById('xssInput').value;
+  const r = document.getElementById('xssResult');
+  r.className = 'result-box';
+  if (val.includes('<script>')) {
+    r.className = 'result-box error';
+    r.innerHTML = '❌ CODE EXÉCUTÉ ! Le navigateur a interprété votre script.<br><br><span style="color:#fca5a5;">💡 En vrai : si un administrateur lit ce commentaire, son cookie de session est volé et son compte est piraté. Le pirate peut alors modifier le site, voler des données, ou afficher de faux contenus.</span>';
+    try { eval(val.replace('<script>', '').replace('</script>', '')); } catch(e) {}
+  } else {
+    r.className = 'result-box info';
+    r.innerHTML = '✓ Commentaire publié : "' + val + '"';
+  }
+}
+
+function testCSRF() {
+  const r = document.getElementById('csrfResult');
+  r.className = 'result-box error';
+  r.innerHTML = '❌ VIREMENT EFFECTUÉ ! — 1 000 € envoyés vers le compte de l\'attaquant.<br><br><span style="color:#fca5a5;">💡 En vrai : un attaquant mettrait ce bouton sur une fausse page ou un e-mail piégé. Si vous cliquez PENDANT que vous êtes connecté à votre banque, le transfert part sans que vous le voyiez. La solution : un code de confirmation unique à chaque action (token CSRF).</span>';
+}
+
+function switchIDOR(num) {
+  const accounts = {
+    1: { name: 'Utilisateur #1 (moi)', balance: '1 234,56 €' },
+    2: { name: 'Utilisateur #2 (Nathalie D.)', balance: '42 890,00 €' },
+    3: { name: 'Utilisateur #3 (Société ABC SARL)', balance: '156 200,00 €' },
+    4: { name: 'Utilisateur #4 (Marc L.)', balance: '12 450,00 €' }
+  };
+  const acc = accounts[num];
+  document.getElementById('idorAccount').textContent = acc.name;
+  document.getElementById('idorBalance').textContent = acc.balance;
+  const r = document.getElementById('idorResult');
+  r.style.display = 'block';
+  r.className = 'result-box info';
+  if (num === 1) {
+    r.innerHTML = '✓ Compte personnel affiché normalement.';
+  } else {
+    r.innerHTML = '❌ ACCÈS NON AUTORISÉ — Vous pouvez voir le compte de ' + acc.name + ' alors que ce n\'est pas le vôtre.<br><br><span style="color:#fca5a5;">💡 En vrai : la banque aurait dû vérifier que l\'ID dans l\'URL correspond bien à votre session. Cette faille s\'appelle IDOR (Insecure Direct Object Reference). Corrigez-la en vérifiant les droits à chaque accès.</span>';
+  }
+}
+
+function showExposed(type) {
+  const r = document.getElementById('exposedResult');
+  r.style.display = 'block';
+  r.className = 'result-box error';
+  const content = {
+    dump: '📄 <strong>/backup/database.sql</strong> (extrait)<br><br><pre style="font-size:11px;color:#fca5a5;">INSERT INTO users VALUES (1,\'admin\',\'827ccb0eea8a706c4c34a16891f84e7b\',\'admin@demobank.fr\');<br>INSERT INTO users VALUES (2,\'nathalie\',\'5f4dcc3b5aa765d61d8327deb882cf99\',\'nathalie@email.com\');<br>INSERT INTO comptes VALUES (1,1,1234.56);<br>INSERT INTO comptes VALUES (2,2,42890.00);</pre><br><span style="color:#fca5a5;">💡 En vrai : ces fichiers contiennent les mots de passe (souvent en clair ou faiblement hashés), les IBAN, les adresses, etc. C\'est un jackpot pour un attaquant.</span>',
+    config: '📄 <strong>/config.php</strong> (contenu)<br><br><pre style="font-size:11px;color:#fca5a5;">&lt;?php<br>define(\'DB_HOST\', \'localhost\');<br>define(\'DB_USER\', \'root\');<br>define(\'DB_PASS\', \'SuperMot2Passe123!\');<br>define(\'DB_NAME\', \'demobank\');<br>?&gt;</pre><br><span style="color:#fca5a5;">💡 En vrai : l\'attaquant peut maintenant se connecter directement à votre base de données et la voler entièrement, la modifier ou la supprimer.</span>',
+    git: '📄 <strong>/.git/config</strong> (historique exposé)<br><br><pre style="font-size:11px;color:#fca5a5;">[remote "origin"]<br>	url = https://github.com/demobank/site.git<br>[branch "main"]<br>[credential]<br>	helper = wincred<br>Les commits précédents contiennent :<br>- Ancien mot de passe : "DemoBank2024!"<br>- Clé API : "sk_live_xxxxx"</pre><br><span style="color:#fca5a5;">💡 En vrai : avec l\'historique Git, on voit TOUTES les versions du code, y compris les mots de passe et clés API qui ont été "supprimés" récemment mais qui sont toujours dans l\'historique.</span>'
+  };
+  r.innerHTML = content[type];
+}
+</script>
+</div>
+<script>
+var FORMATION_ID = 'site-vulnerable';
+var TOKEN_KEY = 'nova_' + FORMATION_ID;
+var EXPIRES_KEY = 'nova_exp_' + FORMATION_ID;
+
+document.addEventListener('DOMContentLoaded', function() {
+  var gate = document.getElementById('passwordGate');
+  var content = document.getElementById('protectedContent');
+  var input = document.getElementById('pwdInput');
+  var error = document.getElementById('pwdError');
+  var submitBtn = document.getElementById('pwdSubmit');
+  var attempts = 0;
+  var maxAttempts = 3;
+
+  var token = sessionStorage.getItem(TOKEN_KEY);
+  var expires = sessionStorage.getItem(EXPIRES_KEY);
+  if (token && expires && Date.now() < parseInt(expires)) {
+    gate.style.display = 'none';
+    content.style.display = 'block';
+  } else {
+    content.style.display = 'none';
+    gate.style.display = 'flex';
+  }
+
+  function checkPassword() {
+    fetch('/api/verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ formation: FORMATION_ID, password: input.value })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.valid) {
+        sessionStorage.setItem(TOKEN_KEY, data.token);
+        sessionStorage.setItem(EXPIRES_KEY, Date.now() + 3600000);
+        gate.style.display = 'none';
+        content.style.display = 'block';
+      } else {
+        attempts++;
+        error.style.display = 'block';
+        if (attempts >= maxAttempts) {
+          error.textContent = 'Trop de tentatives. Rechargez la page.';
+          input.disabled = true;
+          submitBtn.disabled = true;
+        }
+        input.value = '';
+      }
+    })
+    .catch(function() {
+      error.textContent = 'Erreur serveur. Rechargez la page.';
+      error.style.display = 'block';
+    });
+  }
+  submitBtn.addEventListener('click', checkPassword);
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+});
+</script>
+</body>
+</html>

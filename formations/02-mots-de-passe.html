@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formation – Les mots de passe sécurisés</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { margin: 18mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; color: #1a1a2e; max-width: 210mm; margin: 0 auto; padding: 40px; line-height: 1.8; font-size: 12.5px; background: #fafafa; }
+  .page { background: #fff; border-radius: 4px; padding: 40px 48px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .cover { text-align: center; padding: 60px 0 20px; }
+  .cover h1 { font-size: 28px; } .cover h1 span { color: #00e5ff; }
+  .cover .sstitre { color: #64748b; font-size: 15px; margin-top: 6px; }
+  .cover .titre { font-size: 26px; font-weight: 700; margin: 30px 0 8px; }
+  .cover .prix { font-size: 20px; font-weight: 700; color: #00e5ff; }
+  .cover .pagecount { color: #94a3b8; font-size: 13px; margin-top: 4px; }
+  .sommaire { background: #f8fafc; border-radius: 10px; padding: 24px 32px; margin: 30px 0; border: 1px solid #e2e8f0; }
+  .sommaire h2 { font-size: 16px; margin-bottom: 12px; border: none; }
+  .sommaire ul { columns: 2; list-style: none; padding: 0; }
+  .sommaire ul li { padding: 3px 0; font-size: 13px; color: #475569; }
+  .sommaire ul li::before { content: "0" counter(item) ". "; counter-increment: item; color: #00e5ff; font-weight: 600; }
+  .sommaire ul { counter-reset: item; }
+  h2 { font-size: 18px; margin: 36px 0 14px; border-bottom: 2px solid #00e5ff; padding-bottom: 6px; color: #0f172a; }
+  h3 { font-size: 15px; margin: 24px 0 10px; color: #0f172a; }
+  h4 { font-size: 13.5px; margin: 18px 0 8px; color: #334155; }
+  p { color: #334155; margin-bottom: 10px; }
+  ul, ol { padding-left: 22px; margin-bottom: 12px; }
+  li { margin-bottom: 5px; color: #334155; }
+  .encadre { background: #f0fdfa; border-left: 4px solid #10b981; padding: 14px 18px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .alerte { background: #fef2f2; border-left: 4px solid #ef4444; padding: 14px 18px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .info { background: #f0f9ff; border-left: 4px solid #0ea5e9; padding: 14px 18px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .exemple { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 20px; margin: 16px 0; }
+  .exemple h4 { font-size: 12px; color: #64748b; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+  code { background: #f1f5f9; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12.5px; }
+  th { background: #1a1a2e; color: #fff; padding: 10px 14px; text-align: left; }
+  td { padding: 10px 14px; border-bottom: 1px solid #e2e8f0; }
+  tr:nth-child(even) td { background: #f8fafc; }
+  .btn-print { position: fixed; top: 20px; right: 20px; padding: 10px 20px; background: #00e5ff; color: #1a1a2e; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-family: inherit; z-index: 10; }
+  .btn-print:hover { background: #33eaff; }
+  @media print { body { padding: 0; background: #fff; } .page { box-shadow: none; padding: 0; } .btn-print { display: none; } .cover { padding-top: 20px; } }
+  .page-break { page-break-before: always; }
+  .faible { background: #fef2f2; } .moyen { background: #fffbeb; } .fort { background: #f0fdfa; }
+  .password-gate { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a1a2e; display: none; align-items: center; justify-content: center; z-index: 9999; }
+  .password-gate-inner { background: #fff; padding: 40px; border-radius: 12px; max-width: 400px; width: 90%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+  .password-gate h2 { border: none; margin: 0 0 8px 0; color: #1a1a2e; }
+  .password-gate p { color: #64748b; font-size: 13px; margin-bottom: 20px; }
+  .password-gate input { width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 15px; font-family: inherit; margin-bottom: 12px; outline: none; box-sizing: border-box; }
+  .password-gate input:focus { border-color: #00e5ff; }
+  .password-gate button { width: 100%; padding: 12px; background: #00e5ff; color: #1a1a2e; border: none; border-radius: 8px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; }
+  .password-gate button:hover { background: #33eaff; }
+  .password-gate .error { color: #ef4444; font-size: 12px; margin-top: 8px; display: none; }
+  .password-gate .logo { font-size: 24px; font-weight: 800; margin-bottom: 16px; }
+  .password-gate .logo span { color: #00e5ff; }
+</style>
+</head>
+<body>
+<div id="passwordGate" class="password-gate">
+  <div class="password-gate-inner">
+    <div class="logo">Nova<span>Sec</span></div>
+    <h2>Formation payante</h2>
+    <p>Cette formation est protégée. Veuillez saisir le mot de passe reçu lors de votre achat.</p>
+    <input type="password" id="pwdInput" placeholder="Mot de passe" autocomplete="off">
+    <button id="pwdSubmit">Accéder à la formation</button>
+    <div class="error" id="pwdError">Mot de passe incorrect.</div>
+  </div>
+</div>
+<div id="protectedContent" class="page">
+
+<div class="cover">
+  <h1>Nova<span>Sec</span></h1>
+  <p class="sstitre">Formation cybersécurité pour TPE/PME</p>
+  <p class="titre">Les mots de passe sécurisés</p>
+  <p class="prix">29 €</p>
+  <p class="pagecount">Version 1.0 — 2026 — ~15 pages</p>
+</div>
+
+<div class="sommaire">
+  <h2>Sommaire</h2>
+  <ul>
+    <li>Pourquoi les mots de passe sont importants</li>
+    <li>Comment les pirates cassent vos mots de passe</li>
+    <li>Les erreurs les plus courantes</li>
+    <li>Les pires mots de passe de 2025</li>
+    <li>Règles pour un mot de passe solide</li>
+    <li>La méthode de la phrase secrète</li>
+    <li>Le gestionnaire de mots de passe</li>
+    <li>Double authentification (2FA)</li>
+    <li>Mots de passe en entreprise</li>
+    <li>Checklist et quiz</li>
+  </ul>
+</div>
+
+<h2>Pourquoi les mots de passe sont importants</h2>
+<p>Le <strong>mot de passe</strong> est la clé qui protège l'accès à vos comptes numériques. En 2026, l'utilisateur moyen possède <strong>plus de 150 comptes</strong> en ligne (email, banque, réseaux sociaux, SaaS, administration, etc.). Pourtant, la grande majorité des gens utilisent le même mot de passe pour tout, ou des mots de passe trop faibles.</p>
+<p>C'est le point d'entrée n°1 des pirates. Si votre mot de passe est volé ou forcé, c'est potentiellement toute votre vie numérique qui est compromise.</p>
+
+<div class="alerte">
+  <strong>Chiffres clés :</strong>
+  <ul>
+    <li><strong>81 %</strong> des violations de données sont liées à des mots de passe faibles ou volés</li>
+    <li><strong>65 %</strong> des Français utilisent le même mot de passe pour plusieurs comptes</li>
+    <li><strong>23 millions</strong> de comptes français ont fuité en 2024-2025 (Have I Been Pwned)</li>
+    <li>Un mot de passe de 8 caractères peut être cassé en <strong>5 heures</strong> par un pirate équipé</li>
+    <li>Un mot de passe de 12 caractères aléatoires mettrait <strong>3 000 ans</strong> à être cassé</li>
+  </ul>
+</div>
+
+<h2>Comment les pirates cassent vos mots de passe</h2>
+
+<h3>1. La force brute</h3>
+<p>Le pirate essaie toutes les combinaisons possibles, de "aaaa" à "zzzz", en passant par toutes les variations de chiffres et symboles. La vitesse dépend de la puissance de calcul. Avec un bon GPU, un pirate peut tester <strong>10 à 15 milliards de combinaisons par seconde</strong>.</p>
+<p>Un mot de passe de 8 caractères minuscules (a-z) = 26⁸ = 208 milliards de possibilités. À 10 milliards/s, il lui faut <strong>~20 secondes</strong>.</p>
+
+<h3>2. L'attaque par dictionnaire</h3>
+<p>Au lieu de tout essayer, le pirate utilise une liste des mots de passe les plus courants. Le fichier "rockyou.txt" contient 14 millions de mots de passe réels. 90 % des gens utilisent un mot de passe présent dans ce fichier.</p>
+
+<h3>3. Les fuites de données (breaches)</h3>
+<p>Quand un site se fait pirater, les mots de passe fuitent. Si vous utilisez le même mot de passe partout, un pirate peut prendre le mot de passe d'un petit forum et l'essayer sur votre email professionnel (attaque par <strong>credential stuffing</strong>).</p>
+
+<h3>4. L'ingénierie sociale</h3>
+<p>Le pirate vous appelle ou vous envoie un message en se faisant passer pour un technicien, un collègue ou un support technique pour vous soutirer votre mot de passe. "Bonjour, c'est la DSI, on fait une maintenance, donnez-moi votre mot de passe."</p>
+
+<h3>5. Le keylogging (enregistrement de frappe)</h3>
+<p>Un logiciel espion installé sur votre ordinateur enregistre tout ce que vous tapez, y compris vos mots de passe.</p>
+
+<h3>6. Le sniffing (interception réseau)</h3>
+<p>Sur un WiFi public non sécurisé, le pirate peut intercepter les données échangées. Si le site n'est pas en HTTPS, votre mot de passe voyage en clair.</p>
+
+<h2 class="page-break">Les erreurs les plus courantes</h2>
+
+<table>
+  <tr><th>Erreur</th><th>Exemple</th><th>Temps pour casser</th></tr>
+  <tr><td>Mot de passe trop court</td><td>soleil1</td><td>Moins de 1 seconde</td></tr>
+  <tr><td>Mot de passe = nom/prénom/date naissance</td><td>enzo1990</td><td>Moins de 1 seconde</td></tr>
+  <tr><td>Mot de passe = nom de l'entreprise</td><td>NovaSec2026</td><td>~2 secondes</td></tr>
+  <tr><td>Mot de passe = "motdepasse" ou "123456"</td><td>password123</td><td>Instantané</td></tr>
+  <tr><td>Réutiliser le même mot de passe partout</td><td>MotDePasse Unique partout</td><td>1 fuite = tout compromis</td></tr>
+  <tr><td>Noter le mot de passe sur un post-it</td><td>Post-it collé à l'écran</td><td>Risque physique</td></tr>
+  <tr><td>Utiliser un mot du dictionnaire</td><td>chocolat</td><td>~0,1 seconde</td></tr>
+  <tr><td>Substitutions évidentes (o→0, a→@)</td><td>ch0c0l@t</td><td>~1 seconde</td></tr>
+</table>
+
+<h2>Les pires mots de passe de 2025 (Top 10)</h2>
+<p>Classement NordPass 2025 :</p>
+<ol>
+  <li>123456</li>
+  <li>password</li>
+  <li>123456789</li>
+  <li>12345678</li>
+  <li>12345</li>
+  <li>qwerty123</li>
+  <li>abc123</li>
+  <li>Motdepasse (ou "password" en français)</li>
+  <li>000000</li>
+  <li>iloveyou</li>
+</ol>
+
+<h2>Règles pour un mot de passe solide</h2>
+
+<h3>La règle des 3 critères essentiels</h3>
+<ol>
+  <li><strong>Longueur</strong> : 12 caractères minimum (16 recommandé)</li>
+  <li><strong>Complexité</strong> : minuscules + majuscules + chiffres + symboles</li>
+  <li><strong>Unicité</strong> : un mot de passe différent pour chaque service</li>
+</ol>
+
+<h3>Exemple comparatif</h3>
+<table>
+  <tr><th>Mot de passe</th><th>Longueur</th><th>Entropie</th><th>Temps pour casser</th><th>Verdict</th></tr>
+  <tr class="faible"><td>soleil</td><td>6</td><td>Très faible</td><td>&lt; 1 seconde</td><td>❌</td></tr>
+  <tr class="faible"><td>Soleil2026!</td><td>11</td><td>Faible</td><td>~2 heures</td><td>❌</td></tr>
+  <tr class="moyen"><td>S0l3il*2026!</td><td>12</td><td>Moyenne</td><td>~3 ans</td><td>⚠️ Acceptable</td></tr>
+  <tr class="fort"><td>J'aime*le*Soleil*du*26!</td><td>26</td><td>Très élevée</td><td>+ de 1 million d'années</td><td>✅</td></tr>
+  <tr class="fort"><td>kX9#mP2$vB7&amp;Lq5!rN1</td><td>20</td><td>Maximale</td><td>+ de 100 millions d'années</td><td>✅</td></tr>
+</table>
+
+<h2>La méthode de la phrase secrète (passphrase)</h2>
+<p>Plutôt que de créer un mot de passe compliqué que vous allez oublier, créez une <strong>phrase secrète</strong>. C'est la méthode recommandée par l'ANSSI (Agence Nationale de la Sécurité des Systèmes d'Information).</p>
+
+<h3>Comment faire :</h3>
+<ol>
+  <li>Prenez 4 à 6 mots aléatoires qui n'ont pas de lien entre eux</li>
+  <li>Ajoutez des majuscules, des chiffres ou des symboles</li>
+  <li>Obtenez une phrase longue mais facile à retenir</li>
+</ol>
+
+<div class="exemple">
+  <h4>Exemples de phrases secrètes</h4>
+  <ul>
+    <li>Chaton*Vert*Danse*789! (24 caractères) ✅</li>
+    <li>Banane#Trottoir@Astronaute#42! (31 caractères) ✅</li>
+    <li>Mon%Vieux%Grimoire%2026% (23 caractères) ✅</li>
+    <li>Pluie*Saucisson*Orchestre*7 (26 caractères) ✅</li>
+  </ul>
+</div>
+
+<div class="info">
+  <strong>Pourquoi ça marche ?</strong> Chaque mot ajoute beaucoup d'entropie (variabilité). 4 mots parmi 50 000 mots français = 50 000⁴ possibilités, soit 6,25 × 10¹⁸ combinaisons. Même en connaissant la méthode, un pirate mettrait des milliers d'années.
+</div>
+
+<h2 class="page-break">Le gestionnaire de mots de passe</h2>
+<p>Vous ne pouvez pas retenir 150 mots de passe complexes différents. La solution : un <strong>gestionnaire de mots de passe</strong> (password manager).</p>
+
+<h3>Comment ça marche ?</h3>
+<ol>
+  <li>Vous créez <strong>un seul mot de passe maître</strong> (très fort, que vous seul connaissez)</li>
+  <li>Le gestionnaire génère et stocke tous vos mots de passe dans un coffre-fort chiffré</li>
+  <li>Il les remplit automatiquement dans les sites web et applications</li>
+  <li>Vous n'avez plus besoin de retenir vos mots de passe, seulement le mot de passe maître</li>
+</ol>
+
+<h3>Quel gestionnaire choisir ?</h3>
+<table>
+  <tr><th>Logiciel</th><th>Gratuit ?</th><th>Points forts</th></tr>
+  <tr><td>Bitwarden</td><td>Oui (option payante 10 €/an)</td><td>Open source, français, très sécurisé, toutes plateformes</td></tr>
+  <tr><td>KeePass</td><td>Oui</td><td>Gratuit, fichiers locaux, très sécurisé</td></tr>
+  <tr><td>NordPass</td><td>Oui (version gratuite limitée)</td><td>Simple, design moderne, fonctionne bien</td></tr>
+  <tr><td>1Password</td><td>Payant (~3 €/mois)</td><td>Excellent, idéal pour les familles/équipes</td></tr>
+  <tr><td>Dashlane</td><td>Payant (~5 €/mois)</td><td>Gestion des mots de passe + VPN, complet</td></tr>
+</table>
+
+<div class="encadre">
+  <strong>Recommandation NovaSec :</strong> Bitwarden pour les particuliers (gratuit, open source, fiable). KeePass pour les entreprises qui veulent garder le contrôle de leurs données (stockage local uniquement).
+</div>
+
+<h2>Double authentification (2FA)</h2>
+<p>La double authentification (2FA, <em>two-factor authentication</em>) ajoute une <strong>deuxième couche de sécurité</strong> à votre mot de passe. Même si un pirate vole votre mot de passe, il ne peut pas accéder à votre compte sans le deuxième facteur.</p>
+
+<h3>Les types de 2FA (du meilleur au moins bon)</h3>
+<table>
+  <tr><th>Type</th><th>Exemple</th><th>Sécurité</th><th>Note</th></tr>
+  <tr><td>Clé physique (FIDO/U2F)</td><td>YubiKey, Google Titan</td><td>Maximale</td><td>✅ Recommandé</td></tr>
+  <tr><td>Application d'authentification</td><td>Google Authenticator, Authy, Microsoft Authenticator</td><td>Très élevée</td><td>✅ Recommandé</td></tr>
+  <tr><td>SMS</td><td>Code par texto</td><td>Moyenne</td><td>⚠️ Vulnérable au SIM swapping</td></tr>
+  <tr><td>Email</td><td>Code par email</td><td>Faible</td><td>❌ Pas recommandé</td></tr>
+</table>
+
+<div class="info">
+  <strong>Le SIM swapping :</strong> Le pirate contacte votre opérateur mobile, usurpe votre identité, et demande à ce que votre numéro soit transféré sur une nouvelle carte SIM (qu'il possède). Il reçoit alors vos SMS, y compris vos codes 2FA. Solution : utiliser une application d'authentification plutôt que les SMS.
+</div>
+
+<h3>Activer la 2FA partout où c'est possible :</h3>
+<ul>
+  <li>Compte email principal (Gmail, Outlook, ProtonMail)</li>
+  <li>Banque en ligne</li>
+  <li>Réseaux sociaux (LinkedIn, Facebook, Instagram, X)</li>
+  <li>Fournisseurs SaaS (Microsoft 365, Google Workspace)</li>
+  <li>Gestionnaire de mots de passe</li>
+  <li>Comptes administratifs (hébergement, nom de domaine, cloud)</li>
+</ul>
+
+<h2 class="page-break">Mots de passe en entreprise</h2>
+<p>Dans une TPE/PME, la gestion des mots de passe est encore plus critique car un seul compte compromis peut mettre toute l'entreprise en danger.</p>
+
+<h3>Bonnes pratiques pour l'entreprise</h3>
+<ol>
+  <li><strong>Charte des mots de passe</strong> : établissez des règles claires (12 caractères min, pas de réutilisation, etc.)</li>
+  <li><strong>Gestionnaire d'équipe</strong> : utilisez Bitwarden Teams ou 1Password Business pour partager les mots de passe professionnels</li>
+  <li><strong>Politique de rotation</strong> : changez les mots de passe administrateurs tous les 6 mois (sauf si 2FA)</li>
+  <li><strong>Ne partagez jamais un mot de passe</strong> par email, SMS ou messagerie (Teams, WhatsApp)</li>
+  <li><strong>Comptes individuels</strong> : chaque employé doit avoir ses propres identifiants, pas un compte partagé</li>
+  <li><strong>Départ d'un employé</strong> : révoquez immédiatement tous ses accès</li>
+  <li><strong>SSO (Single Sign-On)</strong> : centralisez les accès via Microsoft 365 ou Google Workspace</li>
+  <li><strong>Audit régulier</strong> : vérifiez les mots de passe faibles dans l'entreprise</li>
+</ol>
+
+<div class="exemple">
+  <h4>Cas pratique : le mot de passe partagé du réseau WiFi</h4>
+  <p>Ne faites pas du mot de passe WiFi de l'entreprise le même que vos mots de passe administrateurs. Le mot de passe WiFi sera donné aux clients et aux visiteurs. Si c'est le même que votre email pro, un client malveillant ou un visiteur pourrait causer des dégâts. Utilisez un réseau invité séparé.</p>
+</div>
+
+<h2>Checklist : évaluez vos mots de passe</h2>
+<ul>
+  <li> Mon mot de passe email fait au moins 16 caractères</li>
+  <li> Mon mot de passe banque est unique (jamais utilisé ailleurs)</li>
+  <li> J'ai activé la 2FA sur mon email principal</li>
+  <li> J'ai activé la 2FA sur mon compte bancaire</li>
+  <li> J'utilise un gestionnaire de mots de passe</li>
+  <li> Je n'ai pas de post-it avec des mots de passe sur mon bureau</li>
+  <li> Mes mots de passe pros sont dans un coffre-fort partagé</li>
+  <li> Je n'utilise plus le même mot de passe pour plusieurs services</li>
+  <li> J'ai vérifié si mes emails ont fuité (haveibeenpwned.com)</li>
+  <li> J'ai changé mes mots de passe dans les 6 derniers mois</li>
+</ul>
+
+<h2>Quiz : testez vos connaissances</h2>
+<ol>
+  <li>Quelle est la longueur minimale recommandée pour un mot de passe ?<br>a) 8 caractères | b) 12 caractères | c) 16 caractères ✓ (16 recommandé, 12 strict minimum)</li>
+  <li>Qu'est-ce qu'un gestionnaire de mots de passe ?<br>a) Un logiciel qui retient vos mots de passe à votre place ✓ | b) Un antivirus | c) Un navigateur web</li>
+  <li>Quelle est la meilleure méthode de 2FA ?<br>a) SMS | b) Application d'authentification | c) Clé physique FIDO ✓</li>
+  <li>Combien de temps faut-il pour casser "Soleil2026!" ?<br>a) Instantané | b) ~2 heures ✓ | c) 100 ans</li>
+  <li>Qu'est-ce que le "credential stuffing" ?<br>a) Voler des fichiers sur un serveur | b) Essayer des mots de passe volés sur d'autres sites ✓ | c) Envoyer des spams</li>
+  <li>Que faire si un site que vous utilisez se fait pirater ?<br>a) Attendre | b) Changer immédiatement votre mot de passe sur ce site ✓ | c) Supprimer votre compte</li>
+  <li>Quel gestionnaire de mots de passe NovaSec recommande-t-il ?<br>a) Dashlane | b) Bitwarden ✓ | c) Le navigateur Chrome</li>
+  <li>Qu'est-ce que le "SIM swapping" ?<br>a) Changer d'opérateur | b) Voler votre numéro de téléphone pour recevoir vos SMS ✓ | c) Pirater votre téléphone</li>
+  <li>Un mot de passe de 8 caractères est :<br>a) Très sûr | b) Acceptable | c) Trop court, c'est insuffisant ✓</li>
+  <li>Quel pourcentage des violations de données est lié aux mots de passe ?<br>a) 30 % | b) 51 % | c) 81 % ✓</li>
+</ol>
+
+<h2>Les outils recommandés</h2>
+<table>
+  <tr><th>Outil</th><th>Utilité</th><th>URL</th></tr>
+  <tr><td>Bitwarden</td><td>Gestionnaire de mots de passe</td><td>bitwarden.com</td></tr>
+  <tr><td>Have I Been Pwned</td><td>Vérifier si vos comptes ont fuité</td><td>haveibeenpwned.com</td></tr>
+  <tr><td>Google Authenticator</td><td>Application 2FA</td><td>Google Play / App Store</td></tr>
+  <tr><td>KeePass</td><td>Gestionnaire local open source</td><td>keepass.info</td></tr>
+  <tr><td>Password Strength Test</td><td>Tester la force d'un mot de passe</td><td>bitwarden.com/password-strength</td></tr>
+</table>
+
+<div class="encadre">
+  <strong>En résumé :</strong> long (16+), unique (jamais réutilisé), stocké dans un gestionnaire, protégé par 2FA. C'est la règle d'or des mots de passe sécurisés.
+</div>
+
+<p style="text-align:center;margin-top:40px;color:#94a3b8;font-size:12px;">Formation NovaSec – Tous droits réservés – 2026 – Version 1.0</p>
+
+</div>
+<script>
+var FORMATION_ID = '02-mots-de-passe';
+var TOKEN_KEY = 'nova_' + FORMATION_ID;
+var EXPIRES_KEY = 'nova_exp_' + FORMATION_ID;
+
+document.addEventListener('DOMContentLoaded', function() {
+  var gate = document.getElementById('passwordGate');
+  var content = document.getElementById('protectedContent');
+  var input = document.getElementById('pwdInput');
+  var error = document.getElementById('pwdError');
+  var submitBtn = document.getElementById('pwdSubmit');
+  var attempts = 0;
+  var maxAttempts = 3;
+
+  var token = sessionStorage.getItem(TOKEN_KEY);
+  var expires = sessionStorage.getItem(EXPIRES_KEY);
+  if (token && expires && Date.now() < parseInt(expires)) {
+    gate.style.display = 'none';
+    content.style.display = 'block';
+  } else {
+    content.style.display = 'none';
+    gate.style.display = 'flex';
+  }
+
+  function checkPassword() {
+    fetch('/api/verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ formation: FORMATION_ID, password: input.value })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.valid) {
+        sessionStorage.setItem(TOKEN_KEY, data.token);
+        sessionStorage.setItem(EXPIRES_KEY, Date.now() + 3600000);
+        gate.style.display = 'none';
+        content.style.display = 'block';
+      } else {
+        attempts++;
+        error.style.display = 'block';
+        if (attempts >= maxAttempts) {
+          error.textContent = 'Trop de tentatives. Rechargez la page.';
+          input.disabled = true;
+          submitBtn.disabled = true;
+        }
+        input.value = '';
+      }
+    })
+    .catch(function() {
+      error.textContent = 'Erreur serveur. Rechargez la page.';
+      error.style.display = 'block';
+    });
+  }
+  submitBtn.addEventListener('click', checkPassword);
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rapport d'audit – Réseau PME (démonstration)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', Arial, sans-serif; background: #0a0e17; color: #e2e8f0; padding: 30px; line-height: 1.6; }
+  .container { max-width: 960px; margin: 0 auto; }
+  .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding: 16px 24px; background: #111827; border-radius: 12px; border: 1px solid #1e293b; }
+  .logo { font-size: 22px; font-weight: 800; color: #f1f5f9; text-decoration: none; } .logo span { color: #00e5ff; }
+  .top-bar .badge { background: rgba(239,68,68,0.15); color: #fca5a5; padding: 6px 14px; border-radius: 100px; font-size: 12px; font-weight: 600; }
+  .report-header { background: linear-gradient(135deg, #111827, #1a2332); border: 1px solid #1e293b; border-radius: 16px; padding: 40px; margin-bottom: 30px; }
+  .report-header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+  .report-header .subtitle { color: #94a3b8; font-size: 14px; }
+  .client-info { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; padding: 16px; background: rgba(0,0,0,0.2); border-radius: 8px; font-size: 13px; }
+  .client-info span { color: #94a3b8; } .client-info strong { color: #f1f5f9; }
+  .score-card { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 30px; }
+  .score-item { background: #111827; border: 1px solid #1e293b; border-radius: 12px; padding: 20px; text-align: center; }
+  .score-item .num { font-size: 32px; font-weight: 800; }
+  .score-item .num.critical { color: #ef4444; } .score-item .num.high { color: #f97316; }
+  .score-item .num.medium { color: #eab308; } .score-item .num.low { color: #22c55e; } .score-item .num.total { color: #00e5ff; }
+  .score-item .label { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+  .exec-summary { background: linear-gradient(135deg, #1a2332, #111827); border: 1px solid #1e293b; border-radius: 12px; padding: 24px; margin-bottom: 30px; }
+  .exec-summary h2 { font-size: 16px; margin-bottom: 12px; color: #00e5ff; }
+  .exec-summary p { color: #94a3b8; font-size: 14px; }
+  .exec-summary ul { list-style: none; margin-top: 12px; }
+  .exec-summary ul li { padding: 6px 0; color: #cbd5e1; font-size: 14px; }
+  .exec-summary ul li::before { content: "\25B6"; color: #ef4444; margin-right: 10px; font-size: 10px; }
+  .severity { display: inline-block; padding: 3px 12px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.03em; }
+  .sev-critical { background: rgba(239,68,68,0.15); color: #fca5a5; }
+  .sev-high { background: rgba(249,115,22,0.15); color: #fdba74; }
+  .sev-medium { background: rgba(234,179,8,0.15); color: #fde047; }
+  .sev-low { background: rgba(34,197,94,0.15); color: #86efac; }
+  .vuln-card { background: #111827; border: 1px solid #1e293b; border-radius: 12px; padding: 24px; margin-bottom: 14px; transition: 0.2s; }
+  .vuln-card:hover { border-color: #334155; }
+  .vuln-card h3 { font-size: 15px; margin: 8px 0 6px; }
+  .vuln-card p { color: #94a3b8; font-size: 13px; }
+  .vuln-card .rec { margin-top: 10px; padding: 10px 14px; background: rgba(16,185,129,0.1); border-left: 3px solid #10b981; border-radius: 0 6px 6px 0; font-size: 13px; color: #86efac; }
+  .vuln-card .impact { display: inline-block; margin-top: 8px; font-size: 12px; color: #64748b; }
+  .vuln-card .impact strong { color: #cbd5e1; }
+  .action-plan { background: #111827; border: 1px solid #1e293b; border-radius: 12px; padding: 24px; margin-top: 30px; }
+  .action-plan h2 { font-size: 16px; margin-bottom: 16px; color: #00e5ff; }
+  .step { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid #1e293b; }
+  .step:last-child { border: none; }
+  .step-num { width: 28px; height: 28px; background: #00e5ff; color: #0a0e17; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+  .step-content h4 { font-size: 14px; margin-bottom: 2px; }
+  .step-content p { color: #94a3b8; font-size: 13px; }
+  .topology-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; font-size: 13px; }
+  .topology-table th { background: #1a2332; color: #f1f5f9; padding: 10px 14px; text-align: left; }
+  .topology-table td { padding: 10px 14px; border-bottom: 1px solid #1e293b; color: #94a3b8; }
+  .topology-table td strong { color: #e2e8f0; }
+  .status-ok { color: #22c55e; font-weight: 600; } .status-ko { color: #ef4444; font-weight: 600; }
+  .footer-note { text-align: center; padding: 30px; color: #475569; font-size: 12px; }
+  .back-link { display: inline-flex; align-items: center; gap: 6px; color: #00e5ff; text-decoration: none; font-size: 14px; font-weight: 600; margin-top: 20px; }
+  .back-link:hover { text-decoration: underline; }
+  .top-bar a { color: #00e5ff; text-decoration: none; } .top-bar a:hover { text-decoration: underline; }
+  @media (max-width: 640px) { .score-card { grid-template-columns: repeat(2,1fr); } .client-info { grid-template-columns: 1fr; } body { padding: 16px; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="top-bar">
+    <a href="../../index.html" class="logo">Nova<span>Sec</span></a>
+    <span class="badge">DÉMONSTRATION</span>
+  </div>
+
+  <div class="report-header">
+    <h1>Rapport d'audit — Sécurité réseau</h1>
+    <p class="subtitle">PME « ABC SARL » — Réalisé le 25/06/2026</p>
+    <div class="client-info">
+      <div><span>Client :</span> <strong>ABC SARL (démonstration)</strong></div>
+      <div><span>Type d'audit :</span> <strong>Audit réseau interne + externe</strong></div>
+      <div><span>Outils :</span> <strong>Nmap, Wireshark, OpenVAS</strong></div>
+      <div><span>Référence :</span> <strong>RAP-2026-003</strong></div>
+    </div>
+  </div>
+
+  <div class="score-card">
+    <div class="score-item"><div class="num total">7</div><div class="label">Vulnérabilités</div></div>
+    <div class="score-item"><div class="num critical">1</div><div class="label">Critique</div></div>
+    <div class="score-item"><div class="num high">3</div><div class="label">Élevées</div></div>
+    <div class="score-item"><div class="num medium">2</div><div class="label">Moyennes</div></div>
+    <div class="score-item"><div class="num low">1</div><div class="label">Faible</div></div>
+  </div>
+
+  <div class="exec-summary">
+    <h2>Résumé pour le chef d'entreprise</h2>
+    <p>Le réseau de cette entreprise <strong>est accessible depuis Internet</strong> via plusieurs points d'entrée non protégés. Un attaquant pourrait :</p>
+    <ul>
+      <li>Accéder au NAS depuis l'extérieur (toutes les données de l'entreprise exposées)</li>
+      <li>Pirater un poste via le Bureau à distance (RDP) laissé ouvert</li>
+      <li>Se connecter au Wi-Fi et intercepter les données</li>
+      <li>Profiter de l'UPnP pour ouvrir des brèches dans le pare-feu</li>
+    </ul>
+  </div>
+
+  <h2 style="color:#00e5ff;font-size:16px;margin-bottom:14px;">Équipements et configuration</h2>
+  <table class="topology-table">
+    <tr><th>Équipement</th><th>Risque</th><th>Statut</th></tr>
+    <tr><td><strong>Routeur Orange Livebox 6</strong></td><td>UPnP activé, administration à distance possible</td><td class="status-ko">À risque</td></tr>
+    <tr><td><strong>Switch Netgear GS108</strong></td><td>Configuration par défaut, pas de segmentation VLAN</td><td class="status-ko">À risque</td></tr>
+    <tr><td><strong>NAS Synology DS220+</strong></td><td>Accessible depuis Internet (port 5001 ouvert)</td><td class="status-ko">Critique</td></tr>
+    <tr><td><strong>PC Administratif (Windows 11)</strong></td><td>Bureau à distance (RDP) ouvert sur le LAN</td><td class="status-ko">À risque</td></tr>
+    <tr><td><strong>Wi-Fi professionnel</strong></td><td>WPA2-PSK, pas de séparation invité/pro</td><td class="status-ko">À risque</td></tr>
+  </table>
+
+  <div class="vuln-card">
+    <span class="severity sev-critical">Critique</span>
+    <h3>1. NAS Synology accessible depuis Internet</h3>
+    <p><strong>Concrètement :</strong> Le port 5001 (interface d'administration du NAS) est directement ouvert sur Internet via une redirection de port sur la Livebox. N'importe qui peut tenter de se connecter depuis l'extérieur.</p>
+    <p class="impact"><strong>Impact :</strong> Vol de toutes les données de l'entreprise (factures, contrats, fichiers clients). Un NAS non mis à jour peut être piraté en quelques minutes.</p>
+    <div class="rec">Recommandation : Désactiver la redirection de port. Utiliser un VPN (ex: WireGuard) pour l'accès distant sécurisé.</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-high">Élevée</span>
+    <h3>2. Bureau à distance (RDP) accessible sur le LAN</h3>
+    <p><strong>Concrètement :</strong> Le PC administratif a le Bureau à distance activé sans authentification réseau (NLA). Un employé malveillant ou un virus sur un autre poste peut prendre le contrôle.</p>
+    <p class="impact"><strong>Impact :</strong> Un pirate peut voir l'écran en temps réel, voler des fichiers, installer un rançongiciel.</p>
+    <div class="rec">Recommandation : Activer NLA, changer le port RDP par défaut, ou utiliser un logiciel dédié (AnyDesk, TeamViewer).</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-high">Élevée</span>
+    <h3>3. Wi-Fi unique sans séparation (invité/pro)</h3>
+    <p><strong>Concrètement :</strong> Un seul réseau Wi-Fi pour tout le monde : employés, clients, fournisseurs. Tout le monde est sur le même réseau que les ordinateurs professionnels.</p>
+    <p class="impact"><strong>Impact :</strong> Un client connecté au Wi-Fi peut tenter de pirater les autres machines sur le réseau. Un fournisseur malveillant peut intercepter les données.</p>
+    <div class="rec">Recommandation : Activer le réseau invité de la Livebox pour séparer les clients des équipements pro.</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-high">Élevée</span>
+    <h3>4. UPnP activé sur la Livebox</h3>
+    <p><strong>Concrètement :</strong> UPnP permet aux appareils du réseau d'ouvrir automatiquement des ports sur la box. Un logiciel malveillant sur un poste peut ouvrir une porte dérobée vers Internet.</p>
+    <p class="impact"><strong>Impact :</strong> Un virus peut s'ouvrir un accès distant vers Internet sans que personne ne le remarque.</p>
+    <div class="rec">Recommandation : Désactiver UPnP dans l'interface de la Livebox.</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-medium">Moyenne</span>
+    <h3>5. DNS non filtré</h3>
+    <p><strong>Concrètement :</strong> Les employés peuvent accéder à n'importe quel site, y compris les sites de phishing ou de téléchargement illégal.</p>
+    <div class="rec">Recommandation : Utiliser un DNS filtrant (OpenDNS Family Shield ou Norton ConnectSafe) pour bloquer les sites malveillants.</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-medium">Moyenne</span>
+    <h3>6. Pas de journalisation centralisée</h3>
+    <p><strong>Concrètement :</strong> Les journaux de connexion sont sur chaque machine individuellement. Impossible de retracer une attaque après coup.</p>
+    <div class="rec">Recommandation : Centraliser les logs sur le NAS ou un serveur dédié.</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-low">Faible</span>
+    <h3>7. SSID du Wi-Fi contient le nom de l'entreprise</h3>
+    <p>Le nom du réseau Wi-Fi ("ABC-SARL-WIFI") permet d'identifier facilement l'entreprise et de cibler une attaque.</p>
+  </div>
+
+  <div class="action-plan">
+    <h2>Plan d'action prioritaire</h2>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content"><h4>Urgence (24h) — Retirer l'accès Internet au NAS</h4><p>Désactiver la redirection de port 5001. Installer un VPN pour l'accès distant.</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content"><h4>Urgence (48h) — Désactiver UPnP + sécuriser RDP</h4><p>Fermer les brèches potentielles et protéger l'accès au PC administratif.</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content"><h4>Important — Activer le Wi-Fi invité + changer le SSID</h4><p>Isoler le trafic invité du trafic professionnel.</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content"><h4>Souhaitable — Audit mensuel + DNS filtrant</h4><p>Mettre en place un suivi régulier de la sécurité réseau.</p></div>
+    </div>
+  </div>
+
+  <a href="../../index.html#portfolio" class="back-link">&larr; Retour au portfolio NovaSec</a>
+  <div class="footer-note">Document confidentiel — NovaSec © 2026 — Rapport de démonstration à but pédagogique</div>
+</div>
+</body>
+</html>

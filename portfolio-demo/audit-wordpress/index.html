@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rapport d'audit – Site WordPress (démonstration)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', Arial, sans-serif; background: #0a0e17; color: #e2e8f0; padding: 30px; line-height: 1.6; }
+  .container { max-width: 960px; margin: 0 auto; }
+  .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding: 16px 24px; background: #111827; border-radius: 12px; border: 1px solid #1e293b; }
+  .logo { font-size: 22px; font-weight: 800; color: #f1f5f9; text-decoration: none; } .logo span { color: #00e5ff; }
+  .top-bar .badge { background: rgba(239,68,68,0.15); color: #fca5a5; padding: 6px 14px; border-radius: 100px; font-size: 12px; font-weight: 600; }
+  .report-header { background: linear-gradient(135deg, #111827, #1a2332); border: 1px solid #1e293b; border-radius: 16px; padding: 40px; margin-bottom: 30px; }
+  .report-header h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+  .report-header .subtitle { color: #94a3b8; font-size: 14px; }
+  .client-info { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; padding: 16px; background: rgba(0,0,0,0.2); border-radius: 8px; font-size: 13px; }
+  .client-info span { color: #94a3b8; } .client-info strong { color: #f1f5f9; }
+  .score-card { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 30px; }
+  .score-item { background: #111827; border: 1px solid #1e293b; border-radius: 12px; padding: 20px; text-align: center; }
+  .score-item .num { font-size: 32px; font-weight: 800; }
+  .score-item .num.critical { color: #ef4444; } .score-item .num.high { color: #f97316; }
+  .score-item .num.medium { color: #eab308; } .score-item .num.low { color: #22c55e; } .score-item .num.total { color: #00e5ff; }
+  .score-item .label { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+  .exec-summary { background: linear-gradient(135deg, #1a2332, #111827); border: 1px solid #1e293b; border-radius: 12px; padding: 24px; margin-bottom: 30px; }
+  .exec-summary h2 { font-size: 16px; margin-bottom: 12px; color: #00e5ff; }
+  .exec-summary p { color: #94a3b8; font-size: 14px; }
+  .exec-summary ul { list-style: none; margin-top: 12px; }
+  .exec-summary ul li { padding: 6px 0; color: #cbd5e1; font-size: 14px; }
+  .exec-summary ul li::before { content: "\25B6"; color: #f97316; margin-right: 10px; font-size: 10px; }
+  .severity { display: inline-block; padding: 3px 12px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.03em; }
+  .sev-critical { background: rgba(239,68,68,0.15); color: #fca5a5; }
+  .sev-high { background: rgba(249,115,22,0.15); color: #fdba74; }
+  .sev-medium { background: rgba(234,179,8,0.15); color: #fde047; }
+  .sev-low { background: rgba(34,197,94,0.15); color: #86efac; }
+  .vuln-card { background: #111827; border: 1px solid #1e293b; border-radius: 12px; padding: 24px; margin-bottom: 14px; transition: 0.2s; }
+  .vuln-card:hover { border-color: #334155; }
+  .vuln-card h3 { font-size: 15px; margin: 8px 0 6px; }
+  .vuln-card p { color: #94a3b8; font-size: 13px; }
+  .vuln-card .rec { margin-top: 10px; padding: 10px 14px; background: rgba(16,185,129,0.1); border-left: 3px solid #10b981; border-radius: 0 6px 6px 0; font-size: 13px; color: #86efac; }
+  .vuln-card .impact { display: inline-block; margin-top: 8px; font-size: 12px; color: #64748b; }
+  .vuln-card .impact strong { color: #cbd5e1; }
+  .action-plan { background: #111827; border: 1px solid #1e293b; border-radius: 12px; padding: 24px; margin-top: 30px; }
+  .action-plan h2 { font-size: 16px; margin-bottom: 16px; color: #00e5ff; }
+  .step { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid #1e293b; }
+  .step:last-child { border: none; }
+  .step-num { width: 28px; height: 28px; background: #00e5ff; color: #0a0e17; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+  .step-content h4 { font-size: 14px; margin-bottom: 2px; }
+  .step-content p { color: #94a3b8; font-size: 13px; }
+  .health-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 30px; }
+  .health-item { background: #111827; border: 1px solid #1e293b; border-radius: 10px; padding: 16px; font-size: 13px; }
+  .health-item .status { font-weight: 700; }
+  .health-item .ok { color: #22c55e; } .health-item .ko { color: #ef4444; }
+  .health-item .label { color: #94a3b8; }
+  .footer-note { text-align: center; padding: 30px; color: #475569; font-size: 12px; }
+  .back-link { display: inline-flex; align-items: center; gap: 6px; color: #00e5ff; text-decoration: none; font-size: 14px; font-weight: 600; margin-top: 20px; }
+  .back-link:hover { text-decoration: underline; }
+  .top-bar a { color: #00e5ff; text-decoration: none; } .top-bar a:hover { text-decoration: underline; }
+  @media (max-width: 640px) { .score-card, .health-grid { grid-template-columns: repeat(2,1fr); } .client-info { grid-template-columns: 1fr; } body { padding: 16px; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="top-bar">
+    <a href="../../index.html" class="logo">Nova<span>Sec</span></a>
+    <span class="badge">DÉMONSTRATION</span>
+  </div>
+
+  <div class="report-header">
+    <h1>Rapport d'audit de cybersécurité</h1>
+    <p class="subtitle">Site WordPress « MonCabinet.fr » — Réalisé le 20/06/2026</p>
+    <div class="client-info">
+      <div><span>Client :</span> <strong>MonCabinet.fr (démonstration)</strong></div>
+      <div><span>Type d'audit :</span> <strong>WordPress Security Scan</strong></div>
+      <div><span>Méthodologie :</span> <strong>OWASP + WPScan</strong></div>
+      <div><span>Référence :</span> <strong>RAP-2026-002</strong></div>
+    </div>
+  </div>
+
+  <div class="score-card">
+    <div class="score-item"><div class="num total">8</div><div class="label">Vulnérabilités</div></div>
+    <div class="score-item"><div class="num critical">1</div><div class="label">Critique</div></div>
+    <div class="score-item"><div class="num high">3</div><div class="label">Élevées</div></div>
+    <div class="score-item"><div class="num medium">3</div><div class="label">Moyennes</div></div>
+    <div class="score-item"><div class="num low">1</div><div class="label">Faible</div></div>
+  </div>
+
+  <div class="exec-summary">
+    <h2>Résumé pour le chef d'entreprise</h2>
+    <p>Ce site WordPress présente <strong>8 vulnérabilités</strong>, dont une critique qui peut permettre à un attaquant de <strong>prendre le contrôle total du site</strong>. Le problème principal : des plugins et le cœur WordPress ne sont pas à jour.</p>
+    <ul>
+      <li>Un attaquant peut voler des comptes administrateurs via un plugin obsolète</li>
+      <li>Le site peut être défiguré (remplacé par un message pirate)</li>
+      <li>Des fichiers sensibles du site sont accessibles à tous</li>
+      <li>Les sauvegardes ne sont pas en place → perte définitive possible</li>
+    </ul>
+  </div>
+
+  <h2 style="color:#00e5ff;font-size:16px;margin-bottom:14px;">Bilan WordPress</h2>
+  <div class="health-grid">
+    <div class="health-item"><span class="label">Version WordPress</span><br><span class="status ko">✗ 6.4.2 (obsolète — 6.7.2 dispo)</span></div>
+    <div class="health-item"><span class="label">Plugins à jour</span><br><span class="status ko">✗ 4 plugins obsolètes sur 12</span></div>
+    <div class="health-item"><span class="label">Thème</span><br><span class="status ok">✓ À jour</span></div>
+    <div class="health-item"><span class="label">SSL / HTTPS</span><br><span class="status ok">✓ Activé (Let's Encrypt)</span></div>
+    <div class="health-item"><span class="label">Comptes admin</span><br><span class="status ko">✗ 2 comptes (1 inactif non supprimé)</span></div>
+    <div class="health-item"><span class="label">Sauvegardes</span><br><span class="status ko">✗ Aucune sauvegarde automatique</span></div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-critical">Critique</span>
+    <h3>1. Plugin Elementor obsolète (version 3.18.1)</h3>
+    <p><strong>Concrètement :</strong> Ce plugin populaire a une faille XSS connue (CVE-2024-XXXX). Un attaquant peut l'exploiter pour prendre le contrôle d'un compte administrateur sans mot de passe.</p>
+    <p class="impact"><strong>Impact :</strong> Un pirate peut modifier le site, voler les données des visiteurs, injecter des malwares, ou rediriger vers un faux site de paiement.</p>
+    <div class="rec">Recommandation : Mettre à jour Elementor vers la version 3.25+ immédiatement.</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-high">Élevée</span>
+    <h3>2. Compte "admin" toujours présent</h3>
+    <p><strong>Concrètement :</strong> Le compte administrateur par défaut "admin" existe encore. 50 % des attaques WordPress ciblent ce nom d'utilisateur connu.</p>
+    <p class="impact"><strong>Impact :</strong> L'attaquant a déjà la moitié des informations pour se connecter (le login). Il ne lui reste plus que le mot de passe à trouver.</p>
+    <div class="rec">Recommandation : Créer un nouveau compte admin avec un nom unique, puis supprimer "admin".</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-high">Élevée</span>
+    <h3>3. XML-RPC activé</h3>
+    <p><strong>Concrètement :</strong> Le fichier <code>xmlrpc.php</code> est accessible. Il permet aux attaquants de tester des milliers de mots de passe par minute.</p>
+    <p class="impact"><strong>Impact :</strong> Attaque par force brute massive possible. Un compte avec un mot de passe faible sera piraté en quelques heures.</p>
+    <div class="rec">Recommandation : Désactiver XML-RPC (via plugin ou code).</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-high">Élevée</span>
+    <h3>4. Pas de limite de tentatives de connexion</h3>
+    <p><strong>Concrètement :</strong> On peut essayer de se connecter autant de fois qu'on veut, sans être bloqué.</p>
+    <p class="impact"><strong>Impact :</strong> L'attaquant peut lancer une attaque par dictionnaire 24h/24 jusqu'à trouver le bon mot de passe.</p>
+    <div class="rec">Recommandation : Installer "Limit Login Attempts Reloaded" — 3 essais max, puis blocage 15 minutes.</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-medium">Moyenne</span>
+    <h3>5. Éditeur de fichier activé dans l'admin</h3>
+    <p><strong>Concrètement :</strong> Un administrateur peut modifier les fichiers PHP du site depuis le panneau d'admin. Si un attaquant vole un compte admin, il peut modifier n'importe quel fichier.</p>
+    <div class="rec">Recommandation : Désactiver l'éditeur de fichier (<code>define('DISALLOW_FILE_EDIT', true);</code>).</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-medium">Moyenne</span>
+    <h3>6. REST API WordPress exposée</h3>
+    <p><strong>Concrètement :</strong> L'API REST de WordPress est accessible sans authentification, permettant de lister les utilisateurs et leurs informations.</p>
+    <div class="rec">Recommandation : Restreindre l'accès à l'API REST aux utilisateurs connectés.</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-medium">Moyenne</span>
+    <h3>7. Pages d'erreur PHP visibles</h3>
+    <p><strong>Concrètement :</strong> En cas d'erreur, WordPress affiche des messages détaillés qui révèlent la structure du site aux attaquants.</p>
+    <div class="rec">Recommandation : Désactiver l'affichage des erreurs dans <code>wp-config.php</code>.</div>
+  </div>
+
+  <div class="vuln-card">
+    <span class="severity sev-low">Faible</span>
+    <h3>8. Version WordPress visible dans le code source</h3>
+    <p>La version de WordPress est visible dans le code HTML, permettant aux attaquants de cibler les failles connues de cette version.</p>
+  </div>
+
+  <div class="action-plan">
+    <h2>Plan d'action prioritaire</h2>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content"><h4>Urgence (24h) — Mettre à jour Elementor et WordPress</h4><p>Corriger la faille critique qui expose le site à une prise de contrôle totale.</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content"><h4>Urgence (48h) — Supprimer le compte admin + désactiver XML-RPC</h4><p>Bloquer les attaques par force brute en supprimant les accès par défaut.</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content"><h4>Important — Installer Wordfence + limite de connexion</h4><p>Ajouter un pare-feu WordPress et limiter les tentatives de connexion.</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content"><h4>Important — Mettre en place les sauvegardes automatiques</h4><p>Sauvegarde quotidienne vers le cloud (UpdraftPlus ou l'hébergeur).</p></div>
+    </div>
+  </div>
+
+  <a href="../../index.html#portfolio" class="back-link">&larr; Retour au portfolio NovaSec</a>
+  <div class="footer-note">Document confidentiel — NovaSec © 2026 — Rapport de démonstration à but pédagogique</div>
+</div>
+</body>
+</html>

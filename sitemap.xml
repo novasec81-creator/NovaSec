@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://novasec.pages.dev/</loc><priority>1.0</priority></url>
+  <url><loc>https://novasec.pages.dev/cgv.html</loc><priority>0.4</priority></url>
+  <url><loc>https://novasec.pages.dev/confidentialite.html</loc><priority>0.3</priority></url>
+  <url><loc>https://novasec.pages.dev/mentions-legales.html</loc><priority>0.3</priority></url>
+  <url><loc>https://novasec.pages.dev/merci.html</loc><priority>0.2</priority></url>
+  <url><loc>https://novasec.pages.dev/blog.html</loc><priority>0.7</priority></url>
+  <url><loc>https://novasec.pages.dev/blog/site-pirate.html</loc><priority>0.6</priority></url>
+  <url><loc>https://novasec.pages.dev/blog/cibles-tpe.html</loc><priority>0.6</priority></url>
+  <url><loc>https://novasec.pages.dev/blog/mots-de-passe.html</loc><priority>0.6</priority></url>
+  <url><loc>https://novasec.pages.dev/devis-type.pdf</loc><priority>0.4</priority></url>
+  <url><loc>https://novasec.pages.dev/facture-type.pdf</loc><priority>0.4</priority></url>
+  <url><loc>https://novasec.pages.dev/contrat-prestation.pdf</loc><priority>0.4</priority></url>
+  <url><loc>https://novasec.pages.dev/autorisation-audit.pdf</loc><priority>0.4</priority></url>
+  <url><loc>https://novasec.pages.dev/formations/01-phishing.html</loc><priority>0.6</priority></url>
+  <url><loc>https://novasec.pages.dev/formations/02-mots-de-passe.html</loc><priority>0.6</priority></url>
+  <url><loc>https://novasec.pages.dev/formations/03-securiser-entreprise.html</loc><priority>0.6</priority></url>
+  <url><loc>https://novasec.pages.dev/formations/04-wordpress.html</loc><priority>0.6</priority></url>
+  <url><loc>https://novasec.pages.dev/formations/05-arnaques.html</loc><priority>0.6</priority></url>
+  <url><loc>https://novasec.pages.dev/formations/06-guide-complet.html</loc><priority>0.6</priority></url>
+</urlset>

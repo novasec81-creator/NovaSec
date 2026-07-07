@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NovaSec - Consultant Cybersécurité &amp; Développement Web pour TPE/PME. Audits sécurité, création de sites sécurisés, formations cyber. Intervention à distance.">
+  <meta name="keywords" content="cybersécurité, audit sécurité, création site web, formation phishing, TPE, PME, consultant sécurité, NovaSec">
+  <meta name="author" content="NovaSec">
+  <meta name="google-site-verification" content="uF9335X_oes1z6Fd2xCnGwWJHIRPGkYvRGCgKFG-FLc" />
+  <meta property="og:title" content="NovaSec – Cybersécurité &amp; Développement Web">
+  <meta property="og:description" content="Audits sécurité, création de sites, formations cyber pour TPE/PME. Intervention à distance uniquement.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://novasec.pages.dev">
+  <meta property="og:site_name" content="NovaSec">
+  <meta property="og:locale" content="fr_FR">
+  <link rel="canonical" href="https://novasec.pages.dev">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0e17'/%3E%3Cpath d='M16 6L6 11v6c0 5.2 4.3 9.6 10 11 5.7-1.4 10-5.8 10-11v-6l-10-5zm0 2.2l7.5 3.8v4.5c0 4-3.3 7.4-7.5 8.5-4.2-1.1-7.5-4.5-7.5-8.5v-4.5L16 8.2z' fill='%2300e5ff'/%3E%3C/svg%3E">
+  <title>NovaSec – Cybersécurité &amp; Développement Web</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "NovaSec",
+    "description": "Consultant cybersécurité et développement web pour TPE/PME",
+    "url": "https://novasec.pages.dev",
+    "email": "NovaSec81@gmail.com",
+    "areaServed": "France",
+    "priceRange": "19€–1799€",
+    "serviceType": ["Audit sécurité", "Création site web", "Formation cyber", "Maintenance", "Pentest"]
+  }
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">Nova<span>Sec</span></a>
+      <div class="nav-toggle" id="navToggle" role="button" tabindex="0" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#formations" class="nav-link">Formations</a></li>
+        <li><a href="#packs" class="nav-link">Packs</a></li>
+        <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <li><a href="#contact" class="nav-link nav-cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-shapes">
+      <div class="hero-shape"></div>
+      <div class="hero-shape"></div>
+      <div class="hero-shape"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">Consultant Cybersécurité &amp; Développement Web</div>
+      <h1 class="hero-title">Protégez votre entreprise.<br><span>Développez votre présence en ligne.</span></h1>
+      <p class="hero-subtitle">Des solutions accessibles et sur mesure pour TPE, PME, artisans et indépendants. Un interlocuteur unique pour votre sécurité informatique et votre site web.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Demander un devis</a>
+        <a href="#services" class="btn btn-outline">Nos services</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="services" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Prestations</span>
+        <h2>Tous les services NovaSec</h2>
+        <p>De l'audit express à la maintenance mensuelle, en passant par la création de sites et les formations.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Diagnostic Sécurité Express</h3>
+          <p class="service-price">79 €</p>
+          <ul>
+            <li>Scan du site web</li>
+            <li>Vérification SSL</li>
+            <li>Analyse des plugins</li>
+            <li>Rapport PDF</li>
+          </ul>
+          <button class="btn-card" data-service="Diagnostic Sécurité Express">Demander ce service</button>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3>Audit Sécurité Complet</h3>
+          <p class="service-price">219 €</p>
+          <ul>
+            <li>Audit OWASP complet</li>
+            <li>Test des accès et sessions</li>
+            <li>Rapport détaillé</li>
+            <li>Recommandations</li>
+          </ul>
+          <button class="btn-card" data-service="Audit Sécurité Complet">Demander ce service</button>
+        </div>
+        <div class="service-card featured">
+          <div class="service-badge">Populaire</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3>Audit + Correction</h3>
+          <p class="service-price">369 €</p>
+          <ul>
+            <li>Audit complet + rapport</li>
+            <li>Correction des vulnérabilités</li>
+            <li>Configuration sécurité</li>
+            <li>Rapport de fin d'intervention</li>
+          </ul>
+          <button class="btn-card" data-service="Audit + Correction">Demander ce service</button>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+          </div>
+          <h3>Test d'Intrusion (Pentest Light)</h3>
+          <p class="service-price">499 €</p>
+          <ul>
+            <li>Scénarios d'attaque réels</li>
+            <li>Test manuel + automatisé</li>
+            <li>Rapport d'exploitation</li>
+            <li>Plan de correction</li>
+          </ul>
+          <button class="btn-card" data-service="Test d'Intrusion (Pentest Light)">Demander ce service</button>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.858 15.355-5.858 21.213 0"/></svg>
+          </div>
+          <h3>Audit Wi-Fi &amp; Réseau Local</h3>
+          <p class="service-price">129 €</p>
+          <ul>
+            <li>Scan réseau complet</li>
+            <li>Test Wi-Fi et équipements</li>
+            <li>Détection des intrusions</li>
+            <li>Recommandations</li>
+          </ul>
+          <button class="btn-card" data-service="Audit Wi-Fi &amp; Réseau Local">Demander ce service</button>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 15l4-8 4 8m-8 0h8"/><path d="M17 13v4m0 0l-3-3m3 3l3-3"/></svg>
+          </div>
+          <h3>Site One-Page Urgence</h3>
+          <p class="service-price">399 €</p>
+          <ul>
+            <li>Site livré en 48h</li>
+            <li>Design responsive</li>
+            <li>SSL + sécurisé</li>
+            <li>Hébergement conseillé</li>
+          </ul>
+          <button class="btn-card" data-service="Site One-Page Urgence">Demander ce service</button>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+          </div>
+          <h3>Création de Site Sécurisé</h3>
+          <p class="service-price">799 – 1 599 €</p>
+          <ul>
+            <li>WordPress ou statique</li>
+            <li>Responsive &amp; HTTPS</li>
+            <li>Sauvegardes intégrées</li>
+            <li>Sécurisé dès la conception</li>
+          </ul>
+          <button class="btn-card" data-service="Création de Site Sécurisé">Demander ce service</button>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </div>
+          <h3>Refonte de Site</h3>
+          <p class="service-price">649 – 1 399 €</p>
+          <ul>
+            <li>Modernisation design</li>
+            <li>Mise à niveau sécurité</li>
+            <li>Optimisation performances</li>
+            <li>Migration sans perte</li>
+          </ul>
+          <button class="btn-card" data-service="Refonte de Site">Demander ce service</button>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <h3>Config Sécurité Email / M365</h3>
+          <p class="service-price">149 €</p>
+          <ul>
+            <li>Anti-phishing (SPF, DKIM, DMARC)</li>
+            <li>Sécurisation M365/Google</li>
+            <li>Rapport de configuration</li>
+            <li>Conseils utilisateurs</li>
+          </ul>
+          <button class="btn-card" data-service="Config Sécurité Email / M365">Demander ce service</button>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3>Accompagnement RGPD</h3>
+          <p class="service-price">179 €</p>
+          <ul>
+            <li>Checklist conformité</li>
+            <li>Registre de traitement</li>
+            <li>Mentions légales</li>
+            <li>Conseils personnalisés</li>
+          </ul>
+          <button class="btn-card" data-service="Accompagnement RGPD">Demander ce service</button>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+          </div>
+          <h3>Urgence Piratage</h3>
+          <p class="service-price">349 €</p>
+          <ul>
+            <li>Intervention sous 48h</li>
+            <li>Diagnostic d'urgence</li>
+            <li>Nettoyage + restauration</li>
+            <li>Rapport post-incident</li>
+          </ul>
+          <button class="btn-card" data-service="Urgence Piratage">Demander ce service</button>
+        </div>
+      </div>
+      <div class="section-footer">
+        <a href="#contact" class="btn btn-primary">Demander un devis gratuit</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="formations" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Formations</span>
+        <h2>Formez vos équipes aux risques cyber</h2>
+        <p>Des guides pratiques en PDF, simples à comprendre, prêts à l'emploi.</p>
+      </div>
+      <div class="formations-grid">
+        <a href="formations/01-phishing.html" target="_blank" rel="noopener" class="formation-card">
+          <div class="formation-num">01</div>
+          <h3>Reconnaître un e-mail de phishing</h3>
+          <p>Comprendre le phishing, exemples concrets, exercices, quiz.</p>
+          <div class="formation-footer"><span class="formation-price">19 €</span><span class="formation-action">Voir →</span></div>
+          <span class="btn-card" data-service="Formation - Phishing">Demander cette formation</span>
+        </a>
+        <a href="formations/02-mots-de-passe.html" target="_blank" rel="noopener" class="formation-card">
+          <div class="formation-num">02</div>
+          <h3>Les mots de passe sécurisés</h3>
+          <p>Bonnes pratiques, gestionnaires, double authentification.</p>
+          <div class="formation-footer"><span class="formation-price">19 €</span><span class="formation-action">Voir →</span></div>
+          <span class="btn-card" data-service="Formation - Mots de passe">Demander cette formation</span>
+        </a>
+        <a href="formations/03-securiser-entreprise.html" target="_blank" rel="noopener" class="formation-card">
+          <div class="formation-num">03</div>
+          <h3>Sécuriser son entreprise</h3>
+          <p>Sauvegardes, antivirus, pare-feu, Wi-Fi, Windows Update.</p>
+          <div class="formation-footer"><span class="formation-price">39 €</span><span class="formation-action">Voir →</span></div>
+          <span class="btn-card" data-service="Formation - Sécuriser Entreprise">Demander cette formation</span>
+        </a>
+        <a href="formations/04-wordpress.html" target="_blank" rel="noopener" class="formation-card">
+          <div class="formation-num">04</div>
+          <h3>Sécuriser WordPress</h3>
+          <p>Wordfence, plugins, sauvegardes, permissions, comptes.</p>
+          <div class="formation-footer"><span class="formation-price">39 €</span><span class="formation-action">Voir →</span></div>
+          <span class="btn-card" data-service="Formation - WordPress">Demander cette formation</span>
+        </a>
+        <a href="formations/05-arnaques.html" target="_blank" rel="noopener" class="formation-card">
+          <div class="formation-num">05</div>
+          <h3>Éviter les arnaques sur Internet</h3>
+          <p>Faux SMS, faux colis, faux Microsoft, QR codes frauduleux.</p>
+          <div class="formation-footer"><span class="formation-price">19 €</span><span class="formation-action">Voir →</span></div>
+          <span class="btn-card" data-service="Formation - Arnaques">Demander cette formation</span>
+        </a>
+        <a href="formations/06-guide-complet.html" target="_blank" rel="noopener" class="formation-card featured">
+          <div class="formation-num">06</div>
+          <h3>Guide complet de cybersécurité</h3>
+          <p>80 à 100 pages. Tous les essentifs : phishing, ransomwares, cloud, Wi-Fi, mots de passe.</p>
+          <div class="formation-footer"><span class="formation-price">49 €</span><span class="formation-action">Voir →</span></div>
+          <span class="btn-card" data-service="Formation - Guide Complet">Demander cette formation</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="packs" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Packs</span>
+        <h2>Des packs pour aller plus loin</h2>
+        <p>Services combinés à prix réduit pour une protection complète.</p>
+      </div>
+      <div class="packs-grid">
+        <div class="pack-card">
+          <h3>Starter</h3>
+          <p class="pack-price">129 €</p>
+          <ul>
+            <li>Diagnostic Sécurité Express</li>
+            <li>Rapport PDF</li>
+            <li>1 formation PDF au choix</li>
+          </ul>
+          <button class="btn-card" data-service="Pack Starter">Choisir ce pack</button>
+        </div>
+        <div class="pack-card featured">
+          <div class="pack-badge">Recommandé</div>
+          <h3>Protection</h3>
+          <p class="pack-price">299 €</p>
+          <ul>
+            <li>Audit Sécurité Complet</li>
+            <li>Rapport détaillé</li>
+            <li>Formation Phishing</li>
+            <li>Formation Mots de passe</li>
+          </ul>
+          <button class="btn-card" data-service="Pack Protection">Choisir ce pack</button>
+        </div>
+        <div class="pack-card">
+          <h3>Premium</h3>
+          <p class="pack-price">529 €</p>
+          <ul>
+            <li>Audit + Corrections</li>
+            <li>Toutes les formations</li>
+            <li>1 mois de maintenance</li>
+            <li>Assistance prioritaire</li>
+          </ul>
+          <button class="btn-card" data-service="Pack Premium">Choisir ce pack</button>
+        </div>
+        <div class="pack-card">
+          <h3>Site + Sécurité</h3>
+          <p class="pack-price">1 099 – 1 799 €</p>
+          <ul>
+            <li>Création de site sécurisé</li>
+            <li>Audit sécurité complet</li>
+            <li>3 mois de maintenance</li>
+            <li>Formation cyber offerte</li>
+          </ul>
+          <button class="btn-card" data-service="Pack Site + Sécurité">Choisir ce pack</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="maintenance" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Maintenance</span>
+        <h2>Un suivi mensuel pour la tranquillité</h2>
+        <p>Je m'occupe de la sécurité de votre site pour vous.</p>
+      </div>
+      <div class="maintenance-grid">
+        <div class="maintenance-card">
+          <h3>Essentiel</h3>
+          <p class="maintenance-price">39 €<span>/mois</span></p>
+          <ul>
+            <li>Sauvegardes automatiques</li>
+            <li>Mises à jour sécurité</li>
+            <li>Vérification SSL</li>
+            <li>Rapport mensuel</li>
+            <li class="feature-muted">Assistance non incluse</li>
+          </ul>
+          <button class="btn-card" data-service="Maintenance Essentiel">Souscrire</button>
+        </div>
+        <div class="maintenance-card featured">
+          <h3>Pro</h3>
+          <p class="maintenance-price">79 €<span>/mois</span></p>
+          <ul>
+            <li>Pack Essentiel</li>
+            <li>Monitoring 24/7</li>
+            <li>Scan hebdomadaire</li>
+            <li>1h d'assistance incluse/mois</li>
+          </ul>
+          <button class="btn-card" data-service="Maintenance Pro">Souscrire</button>
+        </div>
+        <div class="maintenance-card">
+          <h3>Premium</h3>
+          <p class="maintenance-price">149 €<span>/mois</span></p>
+          <ul>
+            <li>Pack Pro</li>
+            <li>Corrections de sécurité</li>
+            <li>Assistance prioritaire</li>
+            <li>3h de maintenance incluses/mois</li>
+          </ul>
+          <button class="btn-card" data-service="Maintenance Premium">Souscrire</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Processus</span>
+        <h2>Comment ça marche</h2>
+        <p>Un accompagnement simple et transparent, de la demande jusqu'au suivi.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="process-num">1</div>
+          <div class="process-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <h3>Vous contactez NovaSec</h3>
+          <p>Par formulaire ou email. Je vous réponds sous 24h pour comprendre votre besoin.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">2</div>
+          <div class="process-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3>Devis gratuit sous 48h</h3>
+          <p>Je vous prépare un devis clair, sans engagement. Vous ne payez qu'à validation.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">3</div>
+          <div class="process-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+          </div>
+          <h3>Réalisation de la prestation</h3>
+          <p>Audit, création ou maintenance. Vous êtes tenu informé à chaque étape.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">4</div>
+          <div class="process-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3>Livraison et suivi</h3>
+          <p>Rapport, site en ligne ou formation. Un suivi est assuré après la prestation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="portfolio" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Portfolio</span>
+        <h2>Réalisations et démonstrations</h2>
+        <p>Des exemples concrets de mon travail en audit et développement web.</p>
+      </div>
+      <div class="portfolio-grid">
+        <a href="portfolio-demo/audit-ecommerce/index.html" target="_blank" rel="noopener" class="portfolio-card">
+          <div class="portfolio-img" style="background: linear-gradient(135deg, #0f1923, #1a2a3a);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="1.5"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/></svg>
+          </div>
+          <h3>Audit Démo – Site e-commerce</h3>
+          <p>Rapport d'audit complet avec 12 vulnérabilités identifiées et plan d'action prioritaire.</p>
+          <span class="portfolio-link">Voir le projet →</span>
+        </a>
+        <a href="portfolio-demo/audit-wordpress/index.html" target="_blank" rel="noopener" class="portfolio-card">
+          <div class="portfolio-img" style="background: linear-gradient(135deg, #0f1923, #1a2a3a);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 22a10 10 0 01-7.07-2.93L12 12V2a10 10 0 010 20z"/></svg>
+          </div>
+          <h3>Audit Démo – Site WordPress</h3>
+          <p>8 vulnérabilités détectées sur un site WordPress : plugins obsolètes, comptes admin, XML-RPC.</p>
+          <span class="portfolio-link">Voir le projet →</span>
+        </a>
+        <a href="portfolio-demo/audit-reseau/index.html" target="_blank" rel="noopener" class="portfolio-card">
+          <div class="portfolio-img" style="background: linear-gradient(135deg, #0f1923, #1a2a3a);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="1.5"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></svg>
+          </div>
+          <h3>Audit Démo – Réseau PME</h3>
+          <p>Analyse de la sécurité réseau : NAS exposé, RDP sans protection, Wi-Fi non segmenté.</p>
+          <span class="portfolio-link">Voir le projet →</span>
+        </a>
+        <a href="portfolio-demo/site-cabinet-medical/index.html" target="_blank" rel="noopener" class="portfolio-card">
+          <div class="portfolio-img" style="background: linear-gradient(135deg, #0f1923, #1a2a3a);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="1.5"><path d="M12 8v8m4-4H8"/><circle cx="12" cy="12" r="10"/></svg>
+          </div>
+          <h3>Site Vitrine – Cabinet médical</h3>
+          <p>Site complet responsive avec prise de RDV, téléconsultation, avis patients et SSL.</p>
+          <span class="portfolio-link">Voir le projet →</span>
+        </a>
+        <a href="portfolio-demo/site-restaurant/index.html" target="_blank" rel="noopener" class="portfolio-card">
+          <div class="portfolio-img" style="background: linear-gradient(135deg, #0f1923, #1a2a3a);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="1.5"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>
+          </div>
+          <h3>Site Vitrine – Restaurant</h3>
+          <p>Site one-page élégant avec carte, horaires, localisation et formulaire de réservation.</p>
+          <span class="portfolio-link">Voir le projet →</span>
+        </a>
+        <a href="portfolio-demo/site-vulnerable/index.html" target="_blank" rel="noopener" class="portfolio-card">
+          <div class="portfolio-img" style="background: linear-gradient(135deg, #0f1923, #1a2a3a);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="1.5"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+          </div>
+          <h3>Site vulnérable (formation)</h3>
+          <p>Site banane fictif avec 5 failles réelles (SQL, XSS, CSRF, IDOR, fichiers exposés) à tester.</p>
+          <span class="portfolio-link">Voir le projet →</span>
+          <span class="btn-card" data-service="Site Vulnérable (Pentest Lab)">Demander ce lab</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">FAQ</span>
+        <h2>Questions fréquentes</h2>
+        <p>Réponses aux questions les plus courantes.</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>Combien de temps dure un audit de sécurité ?</span>
+            <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Un diagnostic express se fait sous 48h. Un audit complet prend entre 5 et 10 jours ouvrés selon la taille du site ou du réseau. Le rapport détaillé est fourni avec les corrections prioritaires.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>Comment se passe la création d'un site ?</span>
+            <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Vous me contactez, je vous fais un devis gratuit sous 48h. Une fois validé, je crée le site (WordPress ou statique, selon vos besoins). Un site one-page est livré sous 48h, un site complet sous 1 à 3 semaines. SSL, responsive et sécurisé dès la conception.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>Les formations sont-elles adaptées aux débutants ?</span>
+            <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Oui, elles sont conçues pour des non-initiés. Pas de jargon technique inutile. Chaque formation explique les concepts simplement, avec des exemples concrets, des quiz et des checklists imprimables.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>Comment acheter une formation ?</span>
+            <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Contactez-moi via le formulaire en précisant la formation souhaitée. Je vous enverrai un lien de paiement sécurisé par email, puis le PDF protégé avec son mot de passe unique.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            <span>Proposez-vous des garanties ?</span>
+            <svg class="faq-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Oui. Toutes les informations sont dans les <a href="cgv.html" style="color:#00e5ff;">Conditions Générales de Vente</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Contact</span>
+        <h2>Parlons de votre projet</h2>
+        <p>Besoin d'un audit, d'un site ou de formations ? Contactez-moi dès maintenant.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span>NovaSec81@gmail.com</span>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            <a href="https://www.tiktok.com/@n0vasec81" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">@n0vasec81</a>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+            <span>Intervention à distance uniquement</span>
+          </div>
+        </div>
+        <form class="contact-form" id="contactForm">
+          <input type="text" name="nom" placeholder="Nom / Entreprise" required>
+          <input type="email" name="email" placeholder="Adresse e-mail" required>
+          <select name="service" required>
+            <option value="">Sélectionnez un service</option>
+            <option>Diagnostic Sécurité Express</option>
+            <option>Audit Sécurité Complet</option>
+            <option>Audit + Correction</option>
+            <option>Test d'Intrusion (Pentest Light)</option>
+            <option>Audit Wi-Fi &amp; Réseau Local</option>
+            <option>Site One-Page Urgence</option>
+            <option>Création de Site Sécurisé</option>
+            <option>Refonte de Site</option>
+            <option>Config Sécurité Email / M365</option>
+            <option>Accompagnement RGPD</option>
+            <option>Urgence Piratage</option>
+            <option>Formation</option>
+            <option>Maintenance</option>
+            <option>Formation - Phishing</option>
+            <option>Formation - Mots de passe</option>
+            <option>Formation - Sécuriser Entreprise</option>
+            <option>Formation - WordPress</option>
+            <option>Formation - Arnaques</option>
+            <option>Formation - Guide Complet</option>
+            <option>Pack Starter</option>
+            <option>Pack Protection</option>
+            <option>Pack Premium</option>
+            <option>Pack Site + Sécurité</option>
+            <option>Maintenance Essentiel</option>
+            <option>Maintenance Pro</option>
+            <option>Maintenance Premium</option>
+            <option>Site Vulnérable (Pentest Lab)</option>
+          </select>
+          <textarea name="message" rows="4" placeholder="Décrivez votre besoin..." required></textarea>
+          <button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-content">
+      <p>Ce site n'utilise pas de cookies et ne collecte aucune donnée personnelle sans votre consentement explicite. <a href="confidentialite.html">En savoir plus</a></p>
+      <button class="cookie-btn" onclick="document.getElementById('cookieBanner').classList.remove('show');localStorage.setItem('cookies','ok');">Compris</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">Nova<span>Sec</span></a>
+          <p>Consultant Cybersécurité &amp; Développement Web<br>Protégez votre entreprise. Développez votre présence en ligne.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <a href="#services">Audit sécurité</a>
+          <a href="#services">Création de site</a>
+          <a href="#formations">Formations</a>
+          <a href="#maintenance">Maintenance</a>
+        </div>
+        <div class="footer-links">
+          <h4>Contact</h4>
+          <a href="mailto:NovaSec81@gmail.com">NovaSec81@gmail.com</a>
+          <a href="#contact">Formulaire de contact</a>
+        </div>
+        <div class="footer-links">
+          <h4>Légal</h4>
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="cgv.html">CGV</a>
+          <a href="confidentialite.html">Confidentialité</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 NovaSec. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "0fa2411bc95f4e07aca612a34ce08cdb"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>

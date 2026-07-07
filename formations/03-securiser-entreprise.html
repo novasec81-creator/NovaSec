@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formation – Sécuriser son entreprise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { margin: 18mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; color: #1a1a2e; max-width: 210mm; margin: 0 auto; padding: 40px; line-height: 1.8; font-size: 12.5px; background: #fafafa; }
+  .page { background: #fff; border-radius: 4px; padding: 40px 48px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .cover { text-align: center; padding: 60px 0 20px; }
+  .cover h1 { font-size: 28px; } .cover h1 span { color: #00e5ff; }
+  .cover .sstitre { color: #64748b; font-size: 15px; margin-top: 6px; }
+  .cover .titre { font-size: 26px; font-weight: 700; margin: 30px 0 8px; }
+  .cover .prix { font-size: 20px; font-weight: 700; color: #00e5ff; }
+  .cover .pagecount { color: #94a3b8; font-size: 13px; margin-top: 4px; }
+  .sommaire { background: #f8fafc; border-radius: 10px; padding: 24px 32px; margin: 30px 0; border: 1px solid #e2e8f0; }
+  .sommaire h2 { font-size: 16px; margin-bottom: 12px; border: none; }
+  .sommaire ul { columns: 2; list-style: none; padding: 0; }
+  .sommaire ul li { padding: 3px 0; font-size: 13px; color: #475569; }
+  .sommaire ul li::before { content: "0" counter(item) ". "; counter-increment: item; color: #00e5ff; font-weight: 600; }
+  .sommaire ul { counter-reset: item; }
+  h2 { font-size: 18px; margin: 36px 0 14px; border-bottom: 2px solid #00e5ff; padding-bottom: 6px; color: #0f172a; }
+  h3 { font-size: 15px; margin: 24px 0 10px; color: #0f172a; }
+  h4 { font-size: 13.5px; margin: 18px 0 8px; color: #334155; }
+  p { color: #334155; margin-bottom: 10px; }
+  ul, ol { padding-left: 22px; margin-bottom: 12px; }
+  li { margin-bottom: 5px; color: #334155; }
+  .encadre { background: #f0fdfa; border-left: 4px solid #10b981; padding: 14px 18px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .alerte { background: #fef2f2; border-left: 4px solid #ef4444; padding: 14px 18px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .info { background: #f0f9ff; border-left: 4px solid #0ea5e9; padding: 14px 18px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .exemple { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 20px; margin: 16px 0; }
+  .exemple h4 { font-size: 12px; color: #64748b; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+  code { background: #f1f5f9; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12.5px; }
+  th { background: #1a1a2e; color: #fff; padding: 10px 14px; text-align: left; }
+  td { padding: 10px 14px; border-bottom: 1px solid #e2e8f0; }
+  tr:nth-child(even) td { background: #f8fafc; }
+  .btn-print { position: fixed; top: 20px; right: 20px; padding: 10px 20px; background: #00e5ff; color: #1a1a2e; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-family: inherit; z-index: 10; }
+  .btn-print:hover { background: #33eaff; }
+  @media print { body { padding: 0; background: #fff; } .page { box-shadow: none; padding: 0; } .btn-print { display: none; } .cover { padding-top: 20px; } }
+  .page-break { page-break-before: always; }
+  .password-gate { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a1a2e; display: none; align-items: center; justify-content: center; z-index: 9999; }
+  .password-gate-inner { background: #fff; padding: 40px; border-radius: 12px; max-width: 400px; width: 90%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+  .password-gate h2 { border: none; margin: 0 0 8px 0; color: #1a1a2e; }
+  .password-gate p { color: #64748b; font-size: 13px; margin-bottom: 20px; }
+  .password-gate input { width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 15px; font-family: inherit; margin-bottom: 12px; outline: none; box-sizing: border-box; }
+  .password-gate input:focus { border-color: #00e5ff; }
+  .password-gate button { width: 100%; padding: 12px; background: #00e5ff; color: #1a1a2e; border: none; border-radius: 8px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; }
+  .password-gate button:hover { background: #33eaff; }
+  .password-gate .error { color: #ef4444; font-size: 12px; margin-top: 8px; display: none; }
+  .password-gate .logo { font-size: 24px; font-weight: 800; margin-bottom: 16px; }
+  .password-gate .logo span { color: #00e5ff; }
+</style>
+</head>
+<body>
+<div id="passwordGate" class="password-gate">
+  <div class="password-gate-inner">
+    <div class="logo">Nova<span>Sec</span></div>
+    <h2>Formation payante</h2>
+    <p>Cette formation est protégée. Veuillez saisir le mot de passe reçu lors de votre achat.</p>
+    <input type="password" id="pwdInput" placeholder="Mot de passe" autocomplete="off">
+    <button id="pwdSubmit">Accéder à la formation</button>
+    <div class="error" id="pwdError">Mot de passe incorrect.</div>
+  </div>
+</div>
+<div id="protectedContent" class="page">
+
+<div class="cover">
+  <h1>Nova<span>Sec</span></h1>
+  <p class="sstitre">Formation cybersécurité pour TPE/PME</p>
+  <p class="titre">Sécuriser son entreprise au quotidien</p>
+  <p class="prix">39 €</p>
+  <p class="pagecount">Version 1.0 — 2026 — ~17 pages</p>
+</div>
+
+<div class="sommaire">
+  <h2>Sommaire</h2>
+  <ul>
+    <li>Pourquoi les TPE/PME sont la cible n°1</li>
+    <li>Les 3 piliers de la sécurité en entreprise</li>
+    <li>Diagnostic de votre niveau de sécurité</li>
+    <li>Les sauvegardes : votre bouée de sauvetage</li>
+    <li>La sécurité des équipements</li>
+    <li>La sécurité du réseau</li>
+    <li>La sécurité des données</li>
+    <li>La sécurité humaine (employés)</li>
+    <li>Plan de réponse aux incidents</li>
+    <li>Assurance cyber et aspects juridiques</li>
+    <li>Budget sécurité pour TPE/PME</li>
+    <li>Checklist de sécurité mensuelle</li>
+  </ul>
+</div>
+
+<h2>Pourquoi les TPE/PME sont la cible n°1</h2>
+<p>Contrairement à une idée reçue, les pirates ne s'attaquent pas qu'aux grandes entreprises. Les TPE/PME sont même <strong>les cibles préférées</strong> des cybercriminels :</p>
+<ul>
+  <li><strong>Moins protégées</strong> : pas de DSI, pas d'équipe sécurité, peu d'antivirus</li>
+  <li><strong>Moins formées</strong> : les employés n'ont pas reçu de sensibilisation</li>
+  <li><strong>Plus vulnérables</strong> : logiciels non mis à jour, mots de passe faibles</li>
+  <li><strong>Plus payantes</strong> : une TPE est prête à payer une rançon car elle ne peut pas se permettre l'arrêt</li>
+  <li><strong>Porte d'entrée</strong> : les pirates peuvent attaquer une petite entreprise pour remonter vers ses grands clients</li>
+</ul>
+
+<div class="alerte">
+  <strong>Chiffres 2025-2026 :</strong>
+  <ul>
+    <li><strong>60 %</strong> des TPE/PME françaises ont subi au moins une cyberattaque</li>
+    <li><strong>43 %</strong> des attaques ciblent les TPE/PME</li>
+    <li><strong>1,2 million</strong> € : coût moyen d'une attaque pour une PME (incluant rançon, perte d'exploitation, réputation)</li>
+    <li><strong>67 %</strong> des dirigeants pensent "ne pas être une cible" — tort</li>
+  </ul>
+</div>
+
+<h2>Les 3 piliers de la sécurité en entreprise</h2>
+<table>
+  <tr><th>Pilier</th><th>Description</th><th>Exemple</th></tr>
+  <tr><td>🔐 Technique</td><td>Outils, logiciels, pare-feu, antivirus, sauvegardes</td><td>Installer un pare-feu, mettre à jour Windows, sauvegarder sur un disque externe</td></tr>
+  <tr><td>👤 Humain</td><td>Sensibilisation, formation, procédures</td><td>Former les employés au phishing, établir une charte informatique</td></tr>
+  <tr><td>📋 Organisationnel</td><td>Processus, politique sécurité, plan de reprise</td><td>Écrire un Plan de Reprise d'Activité (PRA), faire des audits</td></tr>
+</table>
+<p>Un pire seul ne suffit pas. Vous pouvez avoir le meilleur antivirus du monde, si un employé donne son mot de passe par téléphone, vous êtes vulnérable.</p>
+
+<h2>Diagnostic de votre niveau de sécurité</h2>
+<p>Faites ce test rapide pour évaluer votre entreprise. Comptez 1 point pour chaque "oui" :</p>
+<ol>
+  <li>Les mots de passe font au moins 12 caractères avec diversité</li>
+  <li>La double authentification (2FA) est activée sur les comptes critiques</li>
+  <li>Windows/Mac/Linux sont à jour sur tous les postes</li>
+  <li>Un antivirus est installé et actif sur tous les postes</li>
+  <li>Les sauvegardes se font automatiquement et sont testées</li>
+  <li>Les employés ont été formés à la cybersécurité</li>
+  <li>Un pare-feu est actif sur le réseau de l'entreprise</li>
+  <li>Le WiFi utilise le chiffrement WPA2/WPA3 avec un mot de passe fort</li>
+  <li>Un réseau invité séparé existe pour les clients/visiteurs</li>
+  <li>Les accès sont révoqués immédiatement au départ d'un employé</li>
+  <li>Un logiciel malveillant n'a pas été détecté dans les 6 derniers mois</li>
+  <li>Un plan de réponse aux incidents existe (au moins sur papier)</li>
+</ol>
+<table>
+  <tr><th>Score</th><th>Niveau</th><th>Action recommandée</th></tr>
+  <tr><td>0-3</td><td>Critique 🚨</td><td>Vous êtes très exposé. Contactez un professionnel d'urgence.</td></tr>
+  <tr><td>4-6</td><td>Faible ⚠️</td><td>Des bases sont en place mais il manque l'essentiel.</td></tr>
+  <tr><td>7-9</td><td>Moyen 👍</td><td>Bonne base, quelques axes d'amélioration.</td></tr>
+  <tr><td>10-12</td><td>Fort ✅</td><td>Votre entreprise est bien protégée. Continuez ainsi.</td></tr>
+</table>
+
+<h2 class="page-break">Les sauvegardes : votre bouée de sauvetage</h2>
+<p>La sauvegarde est <strong>la mesure de sécurité la plus importante</strong>. Si tout le reste échoue (ransomware, incendie, vol, panne), une bonne sauvegarde vous permet de repartir.</p>
+
+<h3>La règle du 3-2-1</h3>
+<ul>
+  <li><strong>3</strong> copies de vos données</li>
+  <li>Sur <strong>2</strong> supports différents</li>
+  <li>Dont <strong>1</strong> hors site (physiquement ailleurs)</li>
+</ul>
+
+<div class="exemple">
+  <h4>Application de la règle 3-2-1</h4>
+  <ul>
+    <li>Copie 1 : sur le disque dur du serveur (données originales)</li>
+    <li>Copie 2 : sur un disque dur externe branché une fois par semaine</li>
+    <li>Copie 3 : sur un cloud (Backblaze, iDrive, pCloud) ou chez un tiers de confiance</li>
+  </ul>
+</div>
+
+<h3>Que sauvegarder ?</h3>
+<ul>
+  <li>Documents comptables et factures</li>
+  <li>Base de données client</li>
+  <li>Fichiers de production (devis, contrats, rapports)</li>
+  <li>Sites web et bases de données associées</li>
+  <li>Emails professionnels (export PST ou sauvegarde Exchange/365)</li>
+  <li>Configuration des logiciels métiers</li>
+  <li>Mots de passe (export du gestionnaire de mots de passe)</li>
+</ul>
+
+<h3>Plan de sauvegarde recommandé</h3>
+<table>
+  <tr><th>Fréquence</th><th>Type</th><th>Support</th></tr>
+  <tr><td>Quotidienne</td><td>Sauvegarde incrémentielle</td><td>Disque réseau (NAS) ou cloud</td></tr>
+  <tr><td>Hebdomadaire</td><td>Sauvegarde complète</td><td>Disque dur externe</td></tr>
+  <tr><td>Mensuelle</td><td>Sauvegarde complète</td><td>Cloud / hors site</td></tr>
+  <tr><td>Trimestrielle</td><td>Test de restauration</td><td>Vérifier que ça fonctionne</td></tr>
+</table>
+
+<div class="alerte">
+  <strong>Ne faites pas l'erreur classique :</strong> brancher un disque dur de sauvegarde en permanence. Un ransomware le chiffrera aussi. Débranchez-le après la sauvegarde, ou utilisez un NAS avec snapshots immutables.
+</div>
+
+<h2>La sécurité des équipements</h2>
+
+<h3>Postes de travail (PC, Mac)</h3>
+<ul>
+  <li><strong>Mises à jour automatiques</strong> : activez Windows Update / macOS Software Update</li>
+  <li><strong>Antivirus</strong> : Windows Defender est suffisant pour une TPE bien configuré, sinon Bitdefender ou ESET</li>
+  <li><strong>Contrôle de compte utilisateur</strong> : pas de droits administrateur pour les postes de travail</li>
+  <li><strong>Verrouillage automatique</strong> : écran verrouillé après 5 minutes d'inactivité (Win+L)</li>
+  <li><strong>Chiffrement du disque</strong> : BitLocker (Windows Pro) ou FileVault (Mac) activé</li>
+  <li><strong>Applications</strong> : n'installez que les logiciels nécessaires, supprimez ceux inutilisés</li>
+</ul>
+
+<h3>Smartphones et tablettes</h3>
+<ul>
+  <li>Code PIN ou biométrie obligatoire</li>
+  <li>Chiffrement du téléphone activé</li>
+  <li>Pas de jailbreak/root</li>
+  <li>Mises à jour du système et des applications</li>
+  <li>Ne pas télécharger d'applications hors des stores officiels</li>
+  <li>Effacement à distance configuré (Find My iPhone / Localiser mon appareil)</li>
+  <li>VPN obligatoire sur WiFi public</li>
+</ul>
+
+<h3>Serveurs et NAS</h3>
+<ul>
+  <li>Accès SSH/RDP protégé par mot de passe fort et 2FA</li>
+  <li>Désactiver les accès root distants</li>
+  <li>Pare-feu : bloquer tout sauf les ports nécessaires</li>
+  <li>Mises à jour régulières du système d'exploitation et des applications</li>
+  <li>Snapshots immutables sur le NAS (protège contre les ransomwares)</li>
+  <li>Journalisation des connexions (logs) : conservez-les au moins 6 mois</li>
+</ul>
+
+<h2 class="page-break">La sécurité du réseau</h2>
+
+<h3>WiFi professionnel</h3>
+<table>
+  <tr><th>Élément</th><th>Recommandation</th></tr>
+  <tr><td>Chiffrement</td><td>WPA3 si possible, sinon WPA2 (pas de WEP)</td></tr>
+  <tr><td>Mot de passe WiFi principal</td><td>16+ caractères, complexe</td></tr>
+  <tr><td>Réseau invité</td><td>Obligatoire pour clients et visiteurs</td></tr>
+  <tr><td>Réseau IoT</td><td>Séparé pour les imprimantes, caméras, objets connectés</td></tr>
+  <tr><td>Admin box</td><td>Changer le mot de passe par défaut de la Freebox/Livebox/Bbox</td></tr>
+  <tr><td>WPS</td><td>Désactivé (vulnérable)</td></tr>
+</table>
+
+<h3>VPN (Virtual Private Network)</h3>
+<p>Si vos employés se connectent depuis l'extérieur (télétravail, déplacement), un <strong>VPN</strong> est indispensable pour chiffrer la connexion. Solutions adaptées aux TPE :</p>
+<ul>
+  <li><strong>WireGuard</strong> : simple, moderne, rapide (gratuit)</li>
+  <li><strong>OpenVPN</strong> : plus configurable, très sécurisé (gratuit)</li>
+  <li><strong>Tailscale</strong> : basé sur WireGuard, très simple à configurer (gratuit pour petits effectifs)</li>
+  <li><strong>NordLayer</strong> : solution payante clé en main pour PME</li>
+</ul>
+
+<h2>La sécurité des données</h2>
+
+<h3>Classification des données</h3>
+<p>Toutes les données de l'entreprise n'ont pas la même valeur. Classez-les :</p>
+<table>
+  <tr><th>Niveau</th><th>Exemples</th><th>Protection</th></tr>
+  <tr><td>Public</td><td>Site web, plaquette commerciale</td><td>Aucune restriction</td></tr>
+  <tr><td>Interne</td><td>Procédures, organigramme, notes de service</td><td>Accès à tous les employés</td></tr>
+  <tr><td>Confidentiel</td><td>Fiches de paie, comptabilité, fichiers clients</td><td>Accès restreint aux personnes concernées</td></tr>
+  <tr><td>Secret</td><td>Mots de passe, clés API, données bancaires</td><td>Accès très restreint + coffre-fort</td></tr>
+</table>
+
+<h3>Protection selon le type de données</h3>
+<ul>
+  <li><strong>Données clients</strong> : chiffrement, accès restreint, conservation limitée (RGPD)</li>
+  <li><strong>Données comptables</strong> : sauvegarde quotidienne, accès au comptable uniquement</li>
+  <li><strong>Données bancaires</strong> : jamais stockées en clair, jamais par email</li>
+  <li><strong>Emails</strong> : chiffrement de bout en bout si possible, archivage obligatoire</li>
+  <li><strong>Mots de passe</strong> : uniquement dans un gestionnaire de mots de passe, jamais dans un fichier Excel</li>
+</ul>
+
+<h2>La sécurité humaine (employés)</h2>
+
+<h3>Former et sensibiliser</h3>
+<ul>
+  <li><strong>Session d'accueil</strong> : inclure la cybersécurité dans le parcours d'intégration</li>
+  <li><strong>Formation annuelle</strong> : 1h par an, en groupe (ces formations NovaSec peuvent être utilisées)</li>
+  <li><strong>Phishing simulé</strong> : envoyez de faux e-mails de phishing à vos équipes pour les entraîner</li>
+  <li><strong>Affiches</strong> : mettez des posters de sensibilisation dans la salle de pause</li>
+  <li><strong>Newsletter interne</strong> : partagez une astuce sécurité par mois</li>
+</ul>
+
+<h3>Charte informatique</h3>
+<p>Toute entreprise devrait avoir une charte que les employés signent. Points essentiels :</p>
+<ul>
+  <li>Usage du matériel et d'Internet à titre professionnel uniquement</li>
+  <li>Obligation de verrouiller sa session en quittant son poste</li>
+  <li>Interdiction d'installer des logiciels non autorisés</li>
+  <li>Règle des mots de passe (12+ caractères, gestionnaire, 2FA)</li>
+  <li>Procédure en cas d'incident (qui contacter, quoi faire)</li>
+  <li>Respect des données personnelles (RGPD)</li>
+  <li>Sanctions en cas de non-respect</li>
+</ul>
+
+<h3>Départ d'un employé</h3>
+<p>Procédure à suivre impérativement :</p>
+<ol>
+  <li>Révoquer tous les accès (email, SaaS, CRM, serveur, VPN)</li>
+  <li>Récupérer le matériel (PC, téléphone, badge)</li>
+  <li>Changer les mots de passe partagés que l'employé connaissait</li>
+  <li>Faire un backup de ses emails et documents (si besoin métier)</li>
+  <li>Supprimer son compte utilisateur dans les 24h</li>
+</ol>
+
+<h2 class="page-break">Plan de réponse aux incidents</h2>
+<p>Même avec toutes les précautions, une attaque peut arriver. Avoir un plan prêt permet de <strong>réduire le temps de réaction de 80 %</strong> et les dégâts.</p>
+
+<h3>Les 5 étapes</h3>
+<table>
+  <tr><th>Étape</th><th>Action</th><th>Qui</th></tr>
+  <tr><td>1. Détection</td><td>Identifier l'incident : email suspect, fichier chiffré, panne, vol</td><td>Employé / direction</td></tr>
+  <tr><td>2. Confinement</td><td>Débrancher le PC du réseau, couper le WiFi, désactiver le compte</td><td>Employé + responsable</td></tr>
+  <tr><td>3. Éradication</td><td>Nettoyer le PC, réinstaller, restaurer les sauvegardes</td><td>Professionnel (NovaSec)</td></tr>
+  <tr><td>4. Rétablissement</td><td>Remettre l'activité en route, vérifier l'intégrité des données</td><td>Professionnel + direction</td></tr>
+  <tr><td>5. Retour d'expérience</td><td>Analyser ce qui s'est passé, corriger, améliorer</td><td>Direction</td></tr>
+</table>
+
+<h3>Contacts d'urgence à avoir</h3>
+<ul>
+  <li>NovaSec (support cybersécurité) — tel et email à définir</li>
+  <li>Support informatique : votre prestataire habituel</li>
+  <li>Assureur : numéro de l'assurance cyber</li>
+  <li>CNIL : en cas de fuite de données personnelles (+ de 48h pour notifier)</li>
+  <li>Police / Gendarmerie : plateforme cybermalveillance.gouv.fr</li>
+  <li>Banque : opposition carte / compte en cas de fraude</li>
+</ul>
+
+<h2>Assurance cyber et aspects juridiques</h2>
+
+<h3>Assurance cyber</h3>
+<p>De plus en plus d'assureurs proposent des contrats spécifiques pour couvrir les risques cyber :</p>
+<ul>
+  <li><strong>Frais de réponse à incident</strong> : expertise, avocat, notification RGPD</li>
+  <li><strong>Perte d'exploitation</strong> : compensation financière pendant l'arrêt</li>
+  <li><strong>Rançon</strong> : certains contrats couvrent le paiement de rançon (déconseillé mais parfois couvert)</li>
+  <li><strong>Atteinte à la réputation</strong> : communication de crise</li>
+  <li><strong>Responsabilité civile</strong> : si vos clients sont impactés par une fuite chez vous</li>
+</ul>
+<div class="info">
+  <strong>Conseil :</strong> Comparez les offres de Groupama, MAIF, AXA, Hiscox. Le prix pour une TPE est généralement de 200 à 800 €/an. Vérifiez que le contrat inclut bien un support d'urgence disponible 24h/24.
+</div>
+
+<h3>RGPD et conformité</h3>
+<ul>
+  <li>Registre des traitements obligatoire (même pour une TPE)</li>
+  <li>Déclaration des violations de données à la CNIL sous 72h</li>
+  <li>Information des personnes concernées en cas de fuite</li>
+  <li>Nomination d'un DPO (délégué à la protection des données) si votre cœur de métier implique du traitement de données à grande échelle</li>
+  <li>Respect du droit à l'effacement ("droit à l'oubli")</li>
+</ul>
+
+<h2>Budget sécurité pour TPE/PME</h2>
+<p>Exemple de budget annuel pour une TPE de 3-5 personnes :</p>
+<table>
+  <tr><th>Poste</th><th>Coût/an estimé</th></tr>
+  <tr><td>Antivirus + sécurité des postes</td><td>100-300 €</td></tr>
+  <tr><td>Gestionnaire de mots de passe (équipe)</td><td>60-240 €</td></tr>
+  <tr><td>VPN professionnel</td><td>0-300 €</td></tr>
+  <tr><td>Sauvegarde cloud</td><td>100-400 €</td></tr>
+  <tr><td>NAS + disques (si sauvegarde locale)</td><td>300-800 € (investissement unique)</td></tr>
+  <tr><td>Formation employés</td><td>200-600 €</td></tr>
+  <tr><td>Audit sécurité NovaSec</td><td>199-799 €</td></tr>
+  <tr><td>Assurance cyber</td><td>200-800 €</td></tr>
+  <tr><td><strong>Total estimé</strong></td><td><strong>1 000-3 500 €/an</strong></td></tr>
+</table>
+<p>Rapporté au coût d'une attaque (8 000-15 000 € minimum), c'est un investissement rentable. <strong>1 € investi en cybersécurité = 5 € économisés en cas d'attaque.</strong></p>
+
+<h2>Checklist de sécurité mensuelle</h2>
+<ul>
+  <li> Mises à jour Windows/macOS installées sur tous les postes</li>
+  <li> Mises à jour des logiciels métiers vérifiées</li>
+  <li> Sauvegarde du mois testée (restauration d'au moins 1 fichier)</li>
+  <li> Antivirus : signature à jour, scan rapide effectué</li>
+  <li> Vérification du stockage NAS/disque externe</li>
+  <li> Ajout/suppression d'employés : accès vérifiés</li>
+  <li> Charte informatique : nouveaux employés formés</li>
+  <li> Revue des mots de passe faibles (via le gestionnaire)</li>
+  <li> Vérification que le WiFi invité est toujours actif</li>
+  <li> Aucun incident signalé non résolu</li>
+</ul>
+
+<div class="encadre">
+  <strong>Le mot de la fin :</strong> La cybersécurité en entreprise n'est pas une option ni un projet ponctuel. C'est un processus continu. Commencez par les bases (mots de passe, sauvegardes, mises à jour) et améliorez progressivement. Chaque mois, faites un petit pas de plus. Et n'oubliez pas : NovaSec est là pour vous accompagner à chaque étape.
+</div>
+
+<p style="text-align:center;margin-top:40px;color:#94a3b8;font-size:12px;">Formation NovaSec – Tous droits réservés – 2026 – Version 1.0</p>
+
+</div>
+<script>
+var FORMATION_ID = '03-securiser-entreprise';
+var TOKEN_KEY = 'nova_' + FORMATION_ID;
+var EXPIRES_KEY = 'nova_exp_' + FORMATION_ID;
+
+document.addEventListener('DOMContentLoaded', function() {
+  var gate = document.getElementById('passwordGate');
+  var content = document.getElementById('protectedContent');
+  var input = document.getElementById('pwdInput');
+  var error = document.getElementById('pwdError');
+  var submitBtn = document.getElementById('pwdSubmit');
+  var attempts = 0;
+  var maxAttempts = 3;
+
+  var token = sessionStorage.getItem(TOKEN_KEY);
+  var expires = sessionStorage.getItem(EXPIRES_KEY);
+  if (token && expires && Date.now() < parseInt(expires)) {
+    gate.style.display = 'none';
+    content.style.display = 'block';
+  } else {
+    content.style.display = 'none';
+    gate.style.display = 'flex';
+  }
+
+  function checkPassword() {
+    fetch('/api/verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ formation: FORMATION_ID, password: input.value })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.valid) {
+        sessionStorage.setItem(TOKEN_KEY, data.token);
+        sessionStorage.setItem(EXPIRES_KEY, Date.now() + 3600000);
+        gate.style.display = 'none';
+        content.style.display = 'block';
+      } else {
+        attempts++;
+        error.style.display = 'block';
+        if (attempts >= maxAttempts) {
+          error.textContent = 'Trop de tentatives. Rechargez la page.';
+          input.disabled = true;
+          submitBtn.disabled = true;
+        }
+        input.value = '';
+      }
+    })
+    .catch(function() {
+      error.textContent = 'Erreur serveur. Rechargez la page.';
+      error.style.display = 'block';
+    });
+  }
+  submitBtn.addEventListener('click', checkPassword);
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+});
+</script>
+</body>
+</html>

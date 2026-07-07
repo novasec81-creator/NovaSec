@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formation – Sécuriser WordPress</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { margin: 18mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; color: #1a1a2e; max-width: 210mm; margin: 0 auto; padding: 40px; line-height: 1.8; font-size: 12.5px; background: #fafafa; }
+  .page { background: #fff; border-radius: 4px; padding: 40px 48px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .cover { text-align: center; padding: 60px 0 20px; }
+  .cover h1 { font-size: 28px; } .cover h1 span { color: #00e5ff; }
+  .cover .sstitre { color: #64748b; font-size: 15px; margin-top: 6px; }
+  .cover .titre { font-size: 26px; font-weight: 700; margin: 30px 0 8px; }
+  .cover .prix { font-size: 20px; font-weight: 700; color: #00e5ff; }
+  .cover .pagecount { color: #94a3b8; font-size: 13px; margin-top: 4px; }
+  .sommaire { background: #f8fafc; border-radius: 10px; padding: 24px 32px; margin: 30px 0; border: 1px solid #e2e8f0; }
+  .sommaire h2 { font-size: 16px; margin-bottom: 12px; border: none; }
+  .sommaire ul { columns: 2; list-style: none; padding: 0; }
+  .sommaire ul li { padding: 3px 0; font-size: 13px; color: #475569; }
+  .sommaire ul li::before { content: "0" counter(item) ". "; counter-increment: item; color: #00e5ff; font-weight: 600; }
+  .sommaire ul { counter-reset: item; }
+  h2 { font-size: 18px; margin: 36px 0 14px; border-bottom: 2px solid #00e5ff; padding-bottom: 6px; color: #0f172a; }
+  h3 { font-size: 15px; margin: 24px 0 10px; color: #0f172a; }
+  h4 { font-size: 13.5px; margin: 18px 0 8px; color: #334155; }
+  p { color: #334155; margin-bottom: 10px; }
+  ul, ol { padding-left: 22px; margin-bottom: 12px; }
+  li { margin-bottom: 5px; color: #334155; }
+  .encadre { background: #f0fdfa; border-left: 4px solid #10b981; padding: 14px 18px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .alerte { background: #fef2f2; border-left: 4px solid #ef4444; padding: 14px 18px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .info { background: #f0f9ff; border-left: 4px solid #0ea5e9; padding: 14px 18px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .exemple { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 20px; margin: 16px 0; }
+  .exemple h4 { font-size: 12px; color: #64748b; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+  code { background: #f1f5f9; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12.5px; }
+  th { background: #1a1a2e; color: #fff; padding: 10px 14px; text-align: left; }
+  td { padding: 10px 14px; border-bottom: 1px solid #e2e8f0; }
+  tr:nth-child(even) td { background: #f8fafc; }
+  .btn-print { position: fixed; top: 20px; right: 20px; padding: 10px 20px; background: #00e5ff; color: #1a1a2e; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-family: inherit; z-index: 10; }
+  .btn-print:hover { background: #33eaff; }
+  @media print { body { padding: 0; background: #fff; } .page { box-shadow: none; padding: 0; } .btn-print { display: none; } .cover { padding-top: 20px; } }
+  .page-break { page-break-before: always; }
+  .password-gate { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a1a2e; display: none; align-items: center; justify-content: center; z-index: 9999; }
+  .password-gate-inner { background: #fff; padding: 40px; border-radius: 12px; max-width: 400px; width: 90%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+  .password-gate h2 { border: none; margin: 0 0 8px 0; color: #1a1a2e; }
+  .password-gate p { color: #64748b; font-size: 13px; margin-bottom: 20px; }
+  .password-gate input { width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 15px; font-family: inherit; margin-bottom: 12px; outline: none; box-sizing: border-box; }
+  .password-gate input:focus { border-color: #00e5ff; }
+  .password-gate button { width: 100%; padding: 12px; background: #00e5ff; color: #1a1a2e; border: none; border-radius: 8px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; }
+  .password-gate button:hover { background: #33eaff; }
+  .password-gate .error { color: #ef4444; font-size: 12px; margin-top: 8px; display: none; }
+  .password-gate .logo { font-size: 24px; font-weight: 800; margin-bottom: 16px; }
+  .password-gate .logo span { color: #00e5ff; }
+</style>
+</head>
+<body>
+<div id="passwordGate" class="password-gate">
+  <div class="password-gate-inner">
+    <div class="logo">Nova<span>Sec</span></div>
+    <h2>Formation payante</h2>
+    <p>Cette formation est protégée. Veuillez saisir le mot de passe reçu lors de votre achat.</p>
+    <input type="password" id="pwdInput" placeholder="Mot de passe" autocomplete="off">
+    <button id="pwdSubmit">Accéder à la formation</button>
+    <div class="error" id="pwdError">Mot de passe incorrect.</div>
+  </div>
+</div>
+<div id="protectedContent" class="page">
+
+<div class="cover">
+  <h1>Nova<span>Sec</span></h1>
+  <p class="sstitre">Formation cybersécurité pour TPE/PME</p>
+  <p class="titre">Sécuriser WordPress</p>
+  <p class="prix">39 €</p>
+  <p class="pagecount">Version 1.0 — 2026 — ~15 pages</p>
+</div>
+
+<div class="sommaire">
+  <h2>Sommaire</h2>
+  <ul>
+    <li>Pourquoi WordPress est une cible</li>
+    <li>Les failles WordPress les plus exploitées</li>
+    <li>Les bons réflexes dès l'installation</li>
+    <li>Mises à jour : la règle d'or</li>
+    <li>Extensions et thèmes : le maillon faible</li>
+    <li>Sécurisation des accès (utilisateurs)</li>
+    <li>Protection contre les attaques courantes</li>
+    <li>Les extensions de sécurité recommandées</li>
+    <li>Sauvegarde et plan de reprise</li>
+    <li>Checklist de sécurisation WordPress</li>
+  </ul>
+</div>
+
+<h2>Pourquoi WordPress est une cible</h2>
+<p>WordPress est le CMS le plus utilisé au monde (<strong>43 % des sites web</strong>), ce qui en fait logiquement la cible n°1 des pirates. Sa popularité, couplée à une base d'utilisateurs pas toujours technique, en fait un terrain de jeu idéal :</p>
+<ul>
+  <li><strong>90 % des CMS piratés</strong> sont des WordPress (les autres : Joomla 6 %, Drupal 2 %)</li>
+  <li><strong>2 000+ failles</strong> recensées sur WordPress (core, extensions, thèmes) par an</li>
+  <li><strong>1 site WordPress sur 3</strong> n'est pas à jour</li>
+  <li><strong>70 % des failles</strong> viennent des extensions non mises à jour</li>
+  <li><strong>8 000+</strong> sites WordPress piratés chaque jour dans le monde</li>
+</ul>
+
+<div class="info">
+  <strong>Pourquoi les pirates ciblent-ils les petits sites ?</strong> Ils ne ciblent pas votre site en particulier. Des robots scannent en permanence Internet pour trouver des WordPress non à jour. Si le vôtre est vulnérable, il sera attaqué automatiquement, souvent dans les 48h suivant la publication d'une faille.
+</div>
+
+<h2>Les failles WordPress les plus exploitées</h2>
+
+<table>
+  <tr><th>Type de faille</th><th>Fréquence</th><th>Impact</th></tr>
+  <tr><td>Extensions obsolètes avec faille connue</td><td>Très fréquent</td><td>Prise de contrôle complète du site</td></tr>
+  <tr><td>Injection SQL</td><td>Fréquent</td><td>Vol de la base de données (utilisateurs, mots de passe)</td></tr>
+  <tr><td>Cross-Site Scripting (XSS)</td><td>Très fréquent</td><td>Vol de cookies, redirection des visiteurs</td></tr>
+  <tr><td>Brute force sur wp-admin</td><td>Constant</td><td>Accès à l'administration</td></tr>
+  <tr><td>Upload de fichiers malveillants</td><td>Moyen</td><td>Installation de backdoor, prise de contrôle</td></tr>
+  <tr><td>Faille dans le thème</td><td>Moyen</td><td>Défiguration du site, injection de code</td></tr>
+  <tr><td>XML-RPC attaque</td><td>Fréquent</td><td>Attaque par force brute amplifiée</td></tr>
+  <tr><td>Redirection vers des sites malveillants</td><td>Fréquent</td><td>Vol de visiteurs, référencement toxique</td></tr>
+</table>
+
+<h2>Les bons réflexes dès l'installation</h2>
+
+<h3>Choix de l'hébergement</h3>
+<p>Tout commence par l'hébergement. Un hébergement mutualisé à 3 €/mois partage le serveur avec 500 autres sites. Si l'un d'eux est piraté, le vôtre peut l'être aussi. Privilégiez :</p>
+<ul>
+  <li><strong>Hébergements sécurisés WordPress</strong> : Kinsta, WP Engine, Flywheel, o2switch</li>
+  <li><strong>Hébergements gérés</strong> : mises à jour, sauvegardes, pare-feu inclus</li>
+  <li><strong>Hébergements français de qualité</strong> : o2switch, Infomaniak, PlanetHoster</li>
+  <li>Évitez l'hébergement gratuit ou ultra low-cost (moins de 5 €/mois)</li>
+</ul>
+
+<h3>Configuration initiale</h3>
+<table>
+  <tr><th>Action</th><th>Pourquoi ?</th></tr>
+  <tr><td>Changer le préfixe de table <code>wp_</code> en quelque chose d'unique</td><td>Empêche les injections SQL automatisées</td></tr>
+  <tr><td>Supprimer le compte utilisateur "admin"</td><td>Ce compte est la cible n°1 des attaques par force brute</td></tr>
+  <tr><td>Modifier l'URL de connexion <code>/wp-admin</code></td><td>Réduit le nombre de tentatives automatisées</td></tr>
+  <tr><td>Activer SSL/HTTPS (certificat Let's Encrypt)</td><td>Chiffre les échanges entre le visiteur et le site</td></tr>
+  <tr><td>Désactiver la modification de fichiers depuis l'admin</td><td>Empêche un pirate d'éditer le code du site</td></tr>
+  <tr><td>Limiter les tentatives de connexion</td><td>Bloque les attaques par force brute</td></tr>
+  <tr><td>Activer les mises à jour automatiques pour les versions mineures</td><td>Corrige les failles sans intervention manuelle</td></tr>
+</table>
+
+<h2 class="page-break">Mises à jour : la règle d'or</h2>
+<p><strong>Un site WordPress non à jour est un site compromis.</strong> Les pirates exploitent les failles connues publiées publiquement. Dès qu'une mise à jour de sécurité sort, les robots d'attaque sont programmés dans les heures qui suivent.</p>
+
+<h3>Que mettre à jour ?</h3>
+<ol>
+  <li><strong>Le cœur WordPress</strong> (core) — automatique pour les versions mineures</li>
+  <li><strong>Les extensions</strong> (plugins) — vérifier chaque semaine</li>
+  <li><strong>Les thèmes</strong> — vérifier chaque semaine</li>
+  <li><strong>PHP</strong> (version du langage côté serveur) — vérifier avec votre hébergeur</li>
+</ol>
+
+<h3>Bonnes pratiques</h3>
+<ul>
+  <li><strong>Activez les mises à jour automatiques</strong> pour les extensions de sécurité</li>
+  <li><strong>Testez les mises à jour</strong> sur un site de staging (copie de test) avant de les appliquer en production</li>
+  <li><strong>Faites une sauvegarde</strong> avant chaque mise à jour majeure (version majeure de WordPress ou d'une extension critique)</li>
+  <li><strong>Supprimez les extensions inutilisées</strong> : une extension inactive peut toujours être vulnérable</li>
+  <li><strong>Vérifiez les changelogs</strong> : si une extension n'a pas été mise à jour depuis 2+ ans, trouvez une alternative</li>
+</ul>
+
+<div class="alerte">
+  <strong>Piège fréquent :</strong> "Mon hébergeur s'occupe des mises à jour." Vérifiez. La plupart des hébergements mutualisés ne mettent à jour que le serveur, pas votre WordPress. C'est votre responsabilité.
+</div>
+
+<h2>Extensions et thèmes : le maillon faible</h2>
+<p>Les extensions sont la principale cause des piratages WordPress. Plus vous en avez, plus la surface d'attaque est grande.</p>
+
+<h3>Règles de sécurité pour les extensions</h3>
+<ul>
+  <li><strong>Moins c'est mieux</strong> : n'installez que les extensions dont vous avez réellement besoin</li>
+  <li><strong>Vérifiez la note et les avis</strong> : une extension avec 2 étoiles et 10 installs actives est risquée</li>
+  <li><strong>Vérifiez la date de dernière mise à jour</strong> : si + de 6 mois, cherchez une alternative</li>
+  <li><strong>Vérifiez la compatibilité</strong> : l'extension est-elle compatible avec votre version de WordPress et PHP ?</li>
+  <li><strong>Préférez les extensions du répertoire officiel</strong> (wordpress.org/plugins) plutôt que des sources tierces</li>
+  <li><strong>Achetez sur des places de marché réputées</strong> : Envato (ThemeForest/CodeCanyon) ou directement chez l'éditeur</li>
+  <li><strong>Ne piratez jamais d'extensions</strong> : une extension "nulled" (version crackée) contient presque toujours un malware</li>
+</ul>
+
+<h3>Extensions à fuir absolument</h3>
+<ul>
+  <li>Les extensions "nulled" (crackées)</li>
+  <li>Les extensions qui promettent "10 000 visiteurs gratuits" ou "référencement automatique"</li>
+  <li>Les extensions téléchargées depuis des sites de partage douteux</li>
+  <li>Les extensions avec des avis négatifs mentionnant des failles de sécurité</li>
+  <li>Les extensions abandonnées (pas de mise à jour depuis + de 2 ans)</li>
+</ul>
+
+<h2>Sécurisation des accès (utilisateurs)</h2>
+
+<h3>Les rôles WordPress</h3>
+<p>WordPress propose 6 rôles avec des permissions différentes. Donnez le rôle strictement nécessaire à chaque utilisateur :</p>
+<table>
+  <tr><th>Rôle</th><th>Permissions</th><th>Usage</th></tr>
+  <tr><td>Super Admin</td><td>Contrôle total sur le réseau multisite</td><td>Réservé au propriétaire du réseau</td></tr>
+  <tr><td>Administrateur</td><td>Contrôle total sur un site</td><td>Réservé à 1-2 personnes de confiance</td></tr>
+  <tr><td>Éditeur</td><td>Publie, modifie et supprime tout contenu</td><td>Responsable contenu</td></tr>
+  <tr><td>Auteur</td><td>Publie et modifie ses propres articles</td><td>Rédacteur</td></tr>
+  <tr><td>Contributeur</td><td>Écrit des articles mais ne publie pas</td><td>Stagiaire, rédacteur débutant</td></tr>
+  <tr><td>Abonné</td><td>Lit et commente</td><td>Membres du site</td></tr>
+</table>
+
+<div class="encadre">
+  <strong>Règle du moindre privilège :</strong> chaque utilisateur doit avoir le strict minimum de permissions pour faire son travail. Un rédacteur n'a pas besoin de pouvoir installer des extensions.
+</div>
+
+<h3>Protection de l'administration</h3>
+<ul>
+  <li><strong>2FA obligatoire</strong> pour tous les comptes administrateurs (extension : Wordfence, WP 2FA)</li>
+  <li><strong>Limiter les tentatives de connexion</strong> : après 5 échecs, bloquer l'IP pendant 15 minutes</li>
+  <li><strong>Changer l'URL de connexion</strong> : de /wp-admin vers /connexion (extension : WPS Hide Login)</li>
+  <li><strong>Désactiver le XML-RPC</strong> : protège contre les attaques par force brute amplifiées (sauf si vous utilisez l'app mobile WordPress)</li>
+  <li><strong>Désactiver les notifications d'échec de connexion</strong> : ne dites pas si le login existe ou non ("identifiants incorrects" dans les deux cas)</li>
+</ul>
+
+<h2 class="page-break">Protection contre les attaques courantes</h2>
+
+<h3>Attaque par force brute</h3>
+<p>Des robots tentent des milliers de combinaisons login/mot de passe par seconde.</p>
+<p><strong>Protection :</strong> limite de tentatives + 2FA + CAPTCHA + changer l'URL de connexion</p>
+
+<h3>Injection SQL</h3>
+<p>Le pirate insère du code SQL dans les champs de saisie pour interroger la base de données.</p>
+<p><strong>Protection :</strong> maintenir WordPress à jour (les correctifs de sécurité des injections sont dans les mises à jour) + firewall applicatif (WAF) + extension de sécurité</p>
+
+<h3>Cross-Site Scripting (XSS)</h3>
+<p>Le pirate injecte du code JavaScript dans une page du site pour voler les visiteurs.</p>
+<p><strong>Protection :</strong> mettre à jour les extensions qui permettent la saisie de contenu + ne pas autoriser les scripts non fiables</p>
+
+<h3>DDoS (Déni de service distribué)</h3>
+<p>Des milliers de requêtes submergent votre site pour le rendre inaccessible.</p>
+<p><strong>Protection :</strong> utiliser un CDN comme Cloudflare (offre gratuite) qui filtre le trafic malveillant avant qu'il n'atteigne votre serveur</p>
+
+<h3>Malware / Backdoor</h3>
+<p>Un fichier malveillant est installé sur votre site via une extension vulnérable ou une faille.</p>
+<p><strong>Protection :</strong> scanner régulièrement avec une extension de sécurité + surveillance de l'intégrité des fichiers</p>
+
+<h2>Les extensions de sécurité recommandées</h2>
+<table>
+  <tr><th>Extension</th><th>Prix</th><th>Fonctionnalités principales</th></tr>
+  <tr><td>Wordfence Security</td><td>Gratuit / Premium ($119/an)</td><td>Pare-feu, scanner de malware, 2FA, blocage IP</td></tr>
+  <tr><td>Solid Security (iThemes)</td><td>Gratuit / Pro ($99/an)</td><td>Limite de connexions, 2FA, scanner, modification URL</td></tr>
+  <tr><td>Sucuri Security</td><td>Gratuit / Audit payant</td><td>Scanner malware, surveillance intégrité, audits</td></tr>
+  <tr><td>WP 2FA</td><td>Gratuit / Premium</td><td>Double authentification simple à configurer</td></tr>
+  <tr><td>Akismet</td><td>Gratuit (perso) / payant (pro)</td><td>Anti-spam commentaires (déjà inclus, activez-le)</td></tr>
+  <tr><td>Cloudflare (CDN + sécurité)</td><td>Gratuit / Pro ($20/mois)</td><td>CDN, pare-feu, anti-DDoS, optimisation</td></tr>
+  <tr><td>UpdraftPlus</td><td>Gratuit / Premium</td><td>Sauvegardes automatiques vers le cloud</td></tr>
+</table>
+
+<div class="info">
+  <strong>Recommandation NovaSec :</strong> Wordfence (version gratuite) + Cloudflare (gratuit) + UpdraftPlus (gratuit) forment déjà une protection solide. Si vous avez un budget, passez en premium pour les sauvegardes automatisées.
+</div>
+
+<h2>Sauvegarde et plan de reprise</h2>
+
+<h3>Que sauvegarder ?</h3>
+<ul>
+  <li><strong>Les fichiers</strong> : wp-content/themes, wp-content/plugins, wp-content/uploads, wp-config.php</li>
+  <li><strong>La base de données</strong> : toutes les tables (contenu, utilisateurs, réglages)</li>
+</ul>
+
+<h3>Fréquence</h3>
+<table>
+  <tr><th>Type de site</th><th>Fréquence</th></tr>
+  <tr><td>Site vitrine (peu de mises à jour)</td><td>Hebdomadaire</td></tr>
+  <tr><td>Blog (articles 1-2x par semaine)</td><td>Quotidienne</td></tr>
+  <tr><td>E-commerce (WooCommerce)</td><td>Quotidienne + avant chaque modification majeure</td></tr>
+  <tr><td>Site avec utilisateurs (adhésion, abonnement)</td><td>Quotidienne</td></tr>
+</table>
+
+<h3>Plan de reprise en 5 étapes</h3>
+<ol>
+  <li>Identifier l'infection (fichiers modifiés, code suspect)</li>
+  <li>Mettre le site en maintenance (page "Site en maintenance")</li>
+  <li>Supprimer les fichiers corrompus et les backdoors</li>
+  <li>Réinstaller WordPress, extensions et thèmes propres</li>
+  <li>Restaurer la base de données depuis la sauvegarde propre</li>
+</ol>
+
+<div class="alerte">
+  <strong>Important :</strong> Si votre site est piraté, ne restaurez pas une sauvegarde elle-même infectée. Revenez à une version antérieure à l'infection connue. Si vous n'avez pas de sauvegarde propre, faites appel à un professionnel (NovaSec) pour nettoyer le site.
+</div>
+
+<h2 class="page-break">Checklist de sécurisation WordPress</h2>
+
+<h3>✅ À faire dès l'installation</h3>
+<ul>
+  <li> Changer le préfixe de table <code>wp_</code></li>
+  <li> Supprimer le compte "admin"</li>
+  <li> Modifier l'URL de connexion</li>
+  <li> Activer SSL/HTTPS</li>
+  <li> Désactiver la modification de fichiers dans l'admin</li>
+  <li> Installer une extension de sécurité (Wordfence)</li>
+  <li> Activer la 2FA pour les administrateurs</li>
+  <li> Installer une extension de sauvegarde (UpdraftPlus)</li>
+  <li> Créer un utilisateur avec les droits minimaux pour le quotidien</li>
+  <li> Configurer Cloudflare (gratuit)</li>
+</ul>
+
+<h3>✅ À faire chaque semaine</h3>
+<ul>
+  <li> Vérifier les mises à jour disponibles (cœur, extensions, thèmes)</li>
+  <li> Appliquer les mises à jour</li>
+  <li> Vérifier que la sauvegarde automatique a bien fonctionné</li>
+  <li> Lire le rapport de sécurité de Wordfence</li>
+</ul>
+
+<h3>✅ À faire chaque mois</h3>
+<ul>
+  <li> Supprimer les extensions et thèmes inutilisés</li>
+  <li> Vérifier les utilisateurs (supprimer les comptes inactifs)</li>
+  <li> Tester la restauration d'une sauvegarde</li>
+  <li> Vérifier les logs de connexion (tentatives échouées)</li>
+  <li> Scanner complet du site (Wordfence)</li>
+  <li> Vérifier que le certificat SSL n'est pas expiré</li>
+</ul>
+
+<h3>✅ À faire tous les 6 mois</h3>
+<ul>
+  <li> Changer le mot de passe administrateur</li>
+  <li> Auditer les extensions : sont-elles toujours utiles ?</li>
+  <li> Vérifier la version de PHP (hébergement)</li>
+  <li> Vérifier les permissions des fichiers (644 pour les fichiers, 755 pour les dossiers)</li>
+  <li> Faire un audit de sécurité complet (par NovaSec ou par vous-même)</li>
+</ul>
+
+<div class="encadre">
+  <strong>Rappel :</strong> La sécurité WordPress n'est pas un projet ponctuel. C'est une routine. Quelques minutes par semaine vous évitent des jours d'immobilisation et des milliers d'euros de réparation.
+</div>
+
+<p style="text-align:center;margin-top:40px;color:#94a3b8;font-size:12px;">Formation NovaSec – Tous droits réservés – 2026 – Version 1.0</p>
+
+</div>
+<script>
+var FORMATION_ID = '04-wordpress';
+var TOKEN_KEY = 'nova_' + FORMATION_ID;
+var EXPIRES_KEY = 'nova_exp_' + FORMATION_ID;
+
+document.addEventListener('DOMContentLoaded', function() {
+  var gate = document.getElementById('passwordGate');
+  var content = document.getElementById('protectedContent');
+  var input = document.getElementById('pwdInput');
+  var error = document.getElementById('pwdError');
+  var submitBtn = document.getElementById('pwdSubmit');
+  var attempts = 0;
+  var maxAttempts = 3;
+
+  var token = sessionStorage.getItem(TOKEN_KEY);
+  var expires = sessionStorage.getItem(EXPIRES_KEY);
+  if (token && expires && Date.now() < parseInt(expires)) {
+    gate.style.display = 'none';
+    content.style.display = 'block';
+  } else {
+    content.style.display = 'none';
+    gate.style.display = 'flex';
+  }
+
+  function checkPassword() {
+    fetch('/api/verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ formation: FORMATION_ID, password: input.value })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.valid) {
+        sessionStorage.setItem(TOKEN_KEY, data.token);
+        sessionStorage.setItem(EXPIRES_KEY, Date.now() + 3600000);
+        gate.style.display = 'none';
+        content.style.display = 'block';
+      } else {
+        attempts++;
+        error.style.display = 'block';
+        if (attempts >= maxAttempts) {
+          error.textContent = 'Trop de tentatives. Rechargez la page.';
+          input.disabled = true;
+          submitBtn.disabled = true;
+        }
+        input.value = '';
+      }
+    })
+    .catch(function() {
+      error.textContent = 'Erreur serveur. Rechargez la page.';
+      error.style.display = 'block';
+    });
+  }
+  submitBtn.addEventListener('click', checkPassword);
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+});
+</script>
+</body>
+</html>
