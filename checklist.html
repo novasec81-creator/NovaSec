@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Téléchargez la checklist sécurité gratuite NovaSec — 10 points essentiels pour sécuriser votre TPE/PME.">
+  <title>Checklist Sécurité Gratuite — NovaSec</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0e17'/%3E%3Cpath d='M16 6L6 11v6c0 5.2 4.3 9.6 10 11 5.7-1.4 10-5.8 10-11v-6l-10-5zm0 2.2l7.5 3.8v4.5c0 4-3.3 7.4-7.5 8.5-4.2-1.1-7.5-4.5-7.5-8.5v-4.5L16 8.2z' fill='%2300e5ff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .lead { max-width: 600px; margin: 0 auto; padding: 120px 24px 80px; text-align: center; }
+    .lead h1 { font-size: clamp(1.8rem,4vw,2.4rem); font-weight: 800; margin-bottom: 12px; }
+    .lead h1 span { color: var(--accent); }
+    .lead p { color: var(--text-secondary); font-size: 1rem; margin-bottom: 32px; }
+    .lead-form { display: flex; flex-direction: column; gap: 12px; max-width: 400px; margin: 0 auto 24px; }
+    .lead-form input { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; font-size: 0.95rem; color: var(--text-primary); font-family: inherit; }
+    .lead-form input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+    .lead-form button { padding: 14px; background: var(--accent); color: var(--bg-primary); border: none; border-radius: var(--radius-sm); font-size: 1rem; font-weight: 700; cursor: pointer; font-family: inherit; transition: var(--transition); }
+    .lead-form button:hover { background: #33eaff; transform: translateY(-2px); }
+    .lead-note { color: var(--text-secondary); font-size: 0.8rem; opacity: 0.7; }
+    .preview { max-width: 300px; margin: 40px auto; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; text-align: left; }
+    .preview h3 { font-size: 0.9rem; margin-bottom: 12px; color: var(--accent); }
+    .preview ul { list-style: none; }
+    .preview ul li { padding: 6px 0; color: var(--text-secondary); font-size: 0.85rem; }
+    .preview ul li::before { content: "\2713"; color: var(--accent-alt); margin-right: 8px; }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Nova<span>Sec</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#services" class="nav-link">Services</a></li>
+        <li><a href="index.html#formations" class="nav-link">Formations</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <li><a href="checklist.html" class="nav-link">Checklist</a></li>
+        <li><a href="index.html#contact" class="nav-link nav-cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="lead">
+    <h1>Checklist sécurité <span>gratuite</span></h1>
+    <p>10 points essentiels pour savoir si votre TPE/PME est protégée. À imprimer et à cocher.</p>
+
+    <form class="lead-form" id="leadForm">
+      <input type="text" name="nom" placeholder="Votre prénom" required>
+      <input type="email" name="email" placeholder="Votre email" required>
+      <button type="submit">Recevoir la checklist gratuite</button>
+    </form>
+    <p class="lead-note">PDF envoyé par email. Pas de spam, désinscription à tout moment.</p>
+
+    <div class="preview">
+      <h3>Dans la checklist :</h3>
+      <ul>
+        <li>Mots de passe & accès</li>
+        <li>Sites & hébergement</li>
+        <li>Équipement & données</li>
+        <li>Sensibilisation phishing</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="section" style="text-align:center;padding:40px 24px 60px;">
+    <div class="container">
+      <span class="section-tag">Newsletter</span>
+      <h2 style="font-size:clamp(1.2rem,2.5vw,1.6rem);margin-bottom:8px;">Ne manquez rien</h2>
+      <p style="color:var(--text-secondary);font-size:0.9rem;max-width:400px;margin:0 auto 20px;">Conseils cyber, nouveaux articles et offres. Un email par mois.</p>
+      <form style="display:flex;gap:10px;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center;" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="a439b93f-8002-4e89-a3f8-3fffe0cb3c79">
+        <input type="hidden" name="subject" value="NovaSec - Inscription newsletter">
+        <input type="email" name="email" placeholder="Votre email" required style="flex:1;min-width:180px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;font-size:0.85rem;color:var(--text-primary);font-family:inherit;">
+        <button type="submit" class="btn btn-primary" style="padding:10px 16px;font-size:0.85rem;">S'inscrire</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">Nova<span>Sec</span></a>
+          <p>Consultant Cybersécurité &amp; Développement Web<br>Protégez votre entreprise. Développez votre présence en ligne.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <a href="index.html#services">Audit sécurité</a>
+          <a href="index.html#services">Création de site</a>
+          <a href="index.html#formations">Formations</a>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <a href="blog.html">Blog</a>
+          <a href="checklist.html">Checklist sécurité</a>
+          <a href="tarifs.html">Tarifs</a>
+        </div>
+        <div class="footer-links">
+          <h4>Légal</h4>
+          <a href="mentions-legales.html">Mentions légales</a>
+          <a href="cgv.html">CGV</a>
+          <a href="confidentialite.html">Confidentialité</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 NovaSec. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "0fa2411bc95f4e07aca612a34ce08cdb"}'></script>
+
+  <script>
+    document.getElementById('leadForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = this.querySelector('button');
+      btn.textContent = 'Envoi...';
+      btn.disabled = true;
+      var f = new FormData(this);
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: 'a439b93f-8002-4e89-a3f8-3fffe0cb3c79',
+          subject: 'NovaSec - Checklist sécurité demandée',
+          from_name: f.get('nom'),
+          email: f.get('email'),
+          message: 'Merci pour votre demande de checklist securite !\n\nTelechargez votre PDF ici :\nhttps://novasec.pages.dev/checklist-securite.pdf\n\nNovaSec'
+        })
+      }).then(function(r) { return r.json(); }).then(function(d) {
+        if (d.success) {
+          window.location.href = 'merci.html?dl=checklist';
+        } else { throw new Error(d.message); }
+      }).catch(function() {
+        window.location.href = 'merci.html?dl=checklist';
+      });
+    });
+  </script>
+</body>
+</html>

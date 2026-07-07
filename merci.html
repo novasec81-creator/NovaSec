@@ -12,18 +12,34 @@
   .icon svg { width: 32px; height: 32px; color: #00e5ff; }
   h1 { font-size: 24px; margin-bottom: 12px; }
   p { color: #94a3b8; font-size: 15px; margin-bottom: 24px; line-height: 1.7; }
-  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 12px 24px; background: #00e5ff; color: #0a0e17; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 12px 24px; background: #00e5ff; color: #0a0e17; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; transition: background .2s; }
   .btn:hover { background: #33eaff; }
+  .btn-secondary { background: transparent; border: 1px solid #1e293b; color: #f1f5f9; }
+  .btn-secondary:hover { background: #1e293b; }
+  .dl-group { display: flex; flex-direction: column; gap: 12px; align-items: center; }
 </style>
 </head>
 <body>
-<div class="card">
-  <div class="icon">
+<div class="card" id="card">
+  <div class="icon" id="icon">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
   </div>
-  <h1>Message envoyé !</h1>
-  <p>Merci pour votre message.<br>Je vous répondrai sous 24h à l'adresse email que vous avez indiquée.</p>
-  <a href="index.html" class="btn">&larr; Retour au site</a>
+  <h1 id="title">Message envoyé !</h1>
+  <p id="desc">Merci pour votre message. Je vous répondrai sous 24h à l'adresse email que vous avez indiquée.</p>
+  <div id="actions">
+    <a href="index.html" class="btn">&larr; Retour au site</a>
+  </div>
 </div>
+<script>
+  (function() {
+    var p = new URLSearchParams(window.location.search);
+    if (p.get('dl') === 'checklist') {
+      document.getElementById('icon').innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>';
+      document.getElementById('title').textContent = 'Checklist envoyée !';
+      document.getElementById('desc').innerHTML = 'Votre checklist sécurité est en route vers votre boîte email.<br>Vous pouvez aussi la télécharger directement ci-dessous.';
+      document.getElementById('actions').innerHTML = '<div class="dl-group"><a href="checklist-securite.pdf" class="btn" download>T&eacute;l&eacute;charger la checklist</a><a href="index.html" class="btn btn-secondary">&larr; Retour au site</a></div>';
+    }
+  })();
+</script>
 </body>
 </html>

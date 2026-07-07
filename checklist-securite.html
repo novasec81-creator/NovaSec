@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Checklist Sécurité NovaSec</title>
+<style>
+  @page { margin: 15mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a2e; max-width: 210mm; margin: 0 auto; padding: 30px; }
+  .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid #00e5ff; }
+  .header h1 { font-size: 26px; } .header h1 span { color: #00e5ff; }
+  .header p { color: #666; font-size: 13px; margin-top: 4px; }
+  .intro { background: #f0f9ff; padding: 16px 20px; border-radius: 8px; margin-bottom: 24px; font-size: 13px; border-left: 4px solid #00e5ff; }
+  .cat { margin-bottom: 20px; }
+  .cat h2 { font-size: 16px; color: #1a1a2e; margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid #e2e8f0; }
+  .item { display: flex; align-items: flex-start; gap: 10px; padding: 5px 0; font-size: 13px; }
+  .item input { margin-top: 2px; }
+  .item label { color: #334155; }
+  .footer { margin-top: 30px; padding-top: 16px; border-top: 1px solid #e2e8f0; text-align: center; font-size: 11px; color: #94a3b8; }
+  .footer strong { color: #1a1a2e; }
+  .btn-print { position: fixed; top: 20px; right: 20px; padding: 10px 20px; background: #00e5ff; color: #1a1a2e; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-family: inherit; }
+  .btn-print:hover { background: #33eaff; }
+  @media print { body { padding: 0; } .btn-print { display: none; } }
+</style>
+</head>
+<body>
+<button class="btn-print" onclick="window.print()">Imprimer / PDF</button>
+<div class="header">
+  <h1>Nova<span>Sec</span></h1>
+  <p>Checklist sécurité gratuite — 10 points essentiels pour TPE/PME</p>
+</div>
+<div class="intro">
+  <strong>Comment sécuriser votre entreprise en 10 points.</strong> Cochez ce que vous avez déjà fait. Chaque point non coché est une piste d'amélioration prioritaire.
+</div>
+
+<div class="cat">
+  <h2>Mots de passe & accès</h2>
+  <div class="item"><input type="checkbox"><label> Mot de passe différent pour chaque compte pro</label></div>
+  <div class="item"><input type="checkbox"><label> Double authentification (2FA) activée sur l'email et la banque</label></div>
+  <div class="item"><input type="checkbox"><label> Gestionnaire de mots de passe utilisé</label></div>
+</div>
+
+<div class="cat">
+  <h2>Sites & hébergement</h2>
+  <div class="item"><input type="checkbox"><label> Site en HTTPS (certificat SSL valide)</label></div>
+  <div class="item"><input type="checkbox"><label> Plugins et CMS mis à jour (si WordPress)</label></div>
+  <div class="item"><input type="checkbox"><label> Sauvegarde automatique hebdomadaire</label></div>
+</div>
+
+<div class="cat">
+  <h2>Équipement & données</h2>
+  <div class="item"><input type="checkbox"><label> Antivirus actif sur tous les postes</label></div>
+  <div class="item"><input type="checkbox"><label> PC et téléphone verrouillés par mot de passe</label></div>
+  <div class="item"><input type="checkbox"><label> Wi-Fi entreprise protégé (WPA2/3, mot de passe changé)</label></div>
+  <div class="item"><input type="checkbox"><label> Sensibilisation des employés au phishing</label></div>
+</div>
+
+<div class="footer">
+  <strong>NovaSec</strong> — Consultant Cybersécurité & Web — <strong>NovaSec81@gmail.com</strong><br>
+  Offert par NovaSec — TPE/PME : obtenez un diagnostic express pour 79 €
+</div>
+</body>
+</html>
